@@ -1,0 +1,29 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "iphone15",
+    "Marca": "apple",
+    "Descripcion": "iPhone 15, 128gb, 6gb",
+    "Costo": 8000.0,
+    "PrecioVenta": 15000.0,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PIA\\PuntoVenta\\bin\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\AppX\\Assets\\Products\\790339ad-80bb-4af6-b0a8-d964007f1d2a.jpg"
+  },
+  {
+    "Id": 2,
+    "Nombre": "iPhone16 ",
+    "Marca": "apple",
+    "Descripcion": "iPhone 16, 128gb, 6gb",
+    "Costo": 10000.0,
+    "PrecioVenta": 18000.0,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PIA\\PuntoVenta\\bin\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\AppX\\Assets\\Products\\33c86570-d04e-468f-8ac0-64bbb89a63ac.jpg"
+  },
+  {
+    "Id": 3,
+    "Nombre": "Laptop Lenovo 2",
+    "Marca": "Lenovo",
+    "Descripcion": "Lenovo 2, Ryzen 5, 1 tb, 12ram",
+    "Costo": 10000.0,
+    "PrecioVenta": 20000.0,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PIA\\PuntoVenta\\bin\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\AppX\\Assets\\Products\\2826533a-7c96-44f5-93d0-0a8ab7e8086c.jpg"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PuntoVenta (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PuntoVenta (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

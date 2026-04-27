@@ -1,0 +1,184 @@
+[
+  {
+    "Id": 1,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 15",
+        "Marca": "apple",
+        "PrecioUnitario": 15000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 3,
+        "Subtotal": 45000.0,
+        "CostoTotal": 24000.0,
+        "Utilidad": 21000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-04-27T14:09:15.7394232-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 3,
+    "TotalBruto": 45000.0,
+    "TotalCosto": 24000.0,
+    "Utilidad": 21000.0
+  },
+  {
+    "Id": 2,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 15",
+        "Marca": "apple",
+        "PrecioUnitario": 15000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 1,
+        "Subtotal": 15000.0,
+        "CostoTotal": 8000.0,
+        "Utilidad": 7000.0
+      },
+      {
+        "ProductId": 2,
+        "Nombre": "iPhone 16",
+        "Marca": "apple",
+        "PrecioUnitario": 18000.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18000.0,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-04-27T14:09:22.1031409-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 2,
+    "TotalBruto": 33000.0,
+    "TotalCosto": 18000.0,
+    "Utilidad": 15000.0
+  },
+  {
+    "Id": 3,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "iPhone 16",
+        "Marca": "apple",
+        "PrecioUnitario": 18000.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 2,
+        "Subtotal": 36000.0,
+        "CostoTotal": 20000.0,
+        "Utilidad": 16000.0
+      },
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 15",
+        "Marca": "apple",
+        "PrecioUnitario": 15000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 2,
+        "Subtotal": 30000.0,
+        "CostoTotal": 16000.0,
+        "Utilidad": 14000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-04-27T15:14:17.401837-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 4,
+    "TotalBruto": 66000.0,
+    "TotalCosto": 36000.0,
+    "Utilidad": 30000.0
+  },
+  {
+    "Id": 4,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 15",
+        "Marca": "apple",
+        "PrecioUnitario": 15000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 9,
+        "Subtotal": 135000.0,
+        "CostoTotal": 72000.0,
+        "Utilidad": 63000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-04-27T15:14:22.3491012-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 9,
+    "TotalBruto": 135000.0,
+    "TotalCosto": 72000.0,
+    "Utilidad": 63000.0
+  },
+  {
+    "Id": 5,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "iPhone 16",
+        "Marca": "apple",
+        "PrecioUnitario": 18000.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 11,
+        "Subtotal": 198000.0,
+        "CostoTotal": 110000.0,
+        "Utilidad": 88000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-04-27T15:14:27.482848-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 11,
+    "TotalBruto": 198000.0,
+    "TotalCosto": 110000.0,
+    "Utilidad": 88000.0
+  },
+  {
+    "Id": 6,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Laptop Lenovo 2",
+        "Marca": "Lenovo",
+        "PrecioUnitario": 20000.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 5,
+        "Subtotal": 100000.0,
+        "CostoTotal": 50000.0,
+        "Utilidad": 50000.0
+      },
+      {
+        "ProductId": 2,
+        "Nombre": "iPhone16 ",
+        "Marca": "apple",
+        "PrecioUnitario": 18000.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18000.0,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8000.0
+      },
+      {
+        "ProductId": 1,
+        "Nombre": "iphone15",
+        "Marca": "apple",
+        "PrecioUnitario": 15000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 1,
+        "Subtotal": 15000.0,
+        "CostoTotal": 8000.0,
+        "Utilidad": 7000.0
+      }
+    ],
+    "Empleado": "wef",
+    "Fecha": "2026-04-27T15:38:32.9363962-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 7,
+    "TotalBruto": 133000.0,
+    "TotalCosto": 68000.0,
+    "Utilidad": 65000.0
+  }
+]

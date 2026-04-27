@@ -1,0 +1,142 @@
+<Page
+    x:Class="PuntoVenta.Views.ReportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:PuntoVenta.Helpers">
+
+    <!-- 🔥 CONVERTERS -->
+    <Page.Resources>
+        <helpers:CurrencyConverter x:Key="CurrencyConverter"/>
+        <helpers:DateConverter x:Key="DateConverter"/>
+    </Page.Resources>
+
+    <Grid Padding="20" Background="#F5F6FA">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 🔍 FILTROS -->
+        <StackPanel Orientation="Horizontal" Spacing="15">
+
+            <!-- Desde -->
+            <StackPanel>
+                <TextBlock Text="Desde"/>
+                <DatePicker x:Name="StartDate"/>
+            </StackPanel>
+
+            <!-- Hasta -->
+            <StackPanel>
+                <TextBlock Text="Hasta"/>
+                <DatePicker x:Name="EndDate"/>
+            </StackPanel>
+
+            <!-- Empleado -->
+            <StackPanel>
+                <TextBlock Text="Empleado"/>
+                <ComboBox x:Name="EmployeeFilter"
+                          Width="200"/>
+            </StackPanel>
+
+            <!-- Botón -->
+            <StackPanel VerticalAlignment="Bottom">
+                <Button Content="Filtrar"
+                        Click="Filter_Click"
+                        Background="#2563EB"
+                        Foreground="White"/>
+            </StackPanel>
+            <Button Content="Salir"
+                    Width="150"
+                    Height="45"
+                    Background="#EF4444"
+                    Foreground="White"
+                    CornerRadius="8"
+                    Click="Logout_Click"/>
+
+        </StackPanel>
+
+        <!-- 🔝 UTILIDAD TOTAL -->
+        <TextBlock x:Name="TotalUtilidadText"
+                   Grid.Row="1"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="#059669"
+                   HorizontalAlignment="Right"
+                   Margin="0,10,0,10"/>
+
+        <!-- 📊 LISTA DE VENTAS -->
+        <ListView x:Name="SalesList"
+                  Grid.Row="2">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Padding="12"
+                            Margin="5"
+                            Background="White"
+                            CornerRadius="10">
+
+                        <StackPanel Spacing="5">
+
+                            <!-- FECHA -->
+                            <TextBlock Text="{Binding Fecha, Converter={StaticResource DateConverter}}"
+                                       FontSize="12"
+                                       Foreground="Gray"/>
+
+                            <!-- EMPLEADO -->
+                            <TextBlock Text="{Binding Empleado}"
+                                       FontWeight="Bold"/>
+
+                            <!-- PRODUCTOS -->
+                            <TextBlock Text="Productos:"
+                                       FontWeight="SemiBold"/>
+
+                            <ItemsControl ItemsSource="{Binding Details}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Nombre}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- TOTALES -->
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+
+                                <TextBlock Text="Total:"
+                                           FontWeight="SemiBold"/>
+
+                                <TextBlock Text="{Binding TotalBruto, Converter={StaticResource CurrencyConverter}}"
+                                           Foreground="#2563EB"/>
+
+                                <TextBlock Text="Utilidad:"
+                                           FontWeight="SemiBold"
+                                           Margin="10,0,0,0"/>
+
+                                <TextBlock Text="{Binding Utilidad, Converter={StaticResource CurrencyConverter}}"
+                                           Foreground="#059669"/>
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <!-- 🔻 TOTAL GENERAL -->
+        <TextBlock x:Name="TotalVentasText"
+                   Grid.Row="3"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="#2563EB"
+                   HorizontalAlignment="Right"
+                   Margin="0,10,0,0"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Username": "admin123",
+    "Password": "Admin123",
+    "NombreCompleto": "Administrador",
+    "Telefono": "0000000000",
+    "FechaNacimiento": "2000-01-01T00:00:00",
+    "Rol": "Admin"
+  },
+  {
+    "Id": 2,
+    "Username": "Francisco",
+    "Password": "Packo123",
+    "NombreCompleto": "FranciscoIbarra",
+    "Telefono": "8113158332",
+    "FechaNacimiento": "2004-03-16T03:32:39.5450026",
+    "Rol": "Empleado"
+  },
+  {
+    "Id": 3,
+    "Username": "Renata02",
+    "Password": "Renata02",
+    "NombreCompleto": "Renata Michelle",
+    "Telefono": "1234567890",
+    "FechaNacimiento": "2005-04-26T10:39:40.0361529",
+    "Rol": "Empleado"
+  },
+  {
+    "Id": 4,
+    "Username": "Patingo1",
+    "Password": "Patingo1",
+    "NombreCompleto": "wef",
+    "Telefono": "fwefewfewfew",
+    "FechaNacimiento": "2007-04-27T15:36:03.9674828",
+    "Rol": "Empleado"
+  }
+]
