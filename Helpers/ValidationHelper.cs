@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace PuntoVenta.Helpers
 {
@@ -28,6 +29,42 @@ namespace PuntoVenta.Helpers
             bool hasNumber = Regex.IsMatch(password, "[0-9]");
 
             return hasUpper && hasLower && hasNumber;
+        }
+
+        //validacion de fecha de nacimiento no mayor a la fecha actual
+        public static bool IsValidDateOfBirth(DateTime dateOfBirth)
+        {
+            DateTime today = DateTime.Now.Date;
+            int age = today.Year - dateOfBirth.Year;
+
+            if (dateOfBirth.Date > today)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //validacion de edad mayor a 18 años
+        public static bool IsAdult(DateTime dateOfBirth)
+        {
+            DateTime today = DateTime.Now.Date;
+            int age = today.Year - dateOfBirth.Year;
+
+            if (dateOfBirth.Date > today.AddYears(-age))
+            {
+                age--;
+            }
+            if (age >= 18)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

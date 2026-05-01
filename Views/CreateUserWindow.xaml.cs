@@ -18,12 +18,9 @@ namespace PuntoVenta.Views
 
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
-            var users = await JsonService.LoadAsync<User>("users.json");
-
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
 
-            // 🔥 CAMPOS VACÍOS
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(NameBox.Text) ||
@@ -34,7 +31,6 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 VALIDACIONES HELPERS
             if (!ValidationHelper.IsValidUsername(username))
             {
                 await ShowError("Username inválido (mínimo 8 caracteres)");
@@ -47,7 +43,19 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 DUPLICADO USERNAME
+            if (!ValidationHelper.IsValidDateOfBirth(BirthDatePicker.Date.DateTime))
+            {
+                await ShowError("La fecha no puede ser posterior a la actual.");
+                return;
+            }
+            else if (!ValidationHelper.IsAdult(BirthDatePicker.Date.DateTime))
+            {
+                await ShowError("El usuario debe ser mayor de edad.");
+                return;
+            }
+
+            var users = await JsonService.LoadAsync<User>("users.json");
+
             if (users.Exists(u => u.Username.ToLower() == username.ToLower()))
             {
                 await ShowError("El usuario ya existe");
@@ -56,7 +64,6 @@ namespace PuntoVenta.Views
 
             var user = new User
             {
-                Id = IdGenerator.GetNextId(users),
                 Username = username,
                 Password = password,
                 NombreCompleto = NameBox.Text,
@@ -65,9 +72,9 @@ namespace PuntoVenta.Views
                 Rol = (RoleBox.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Empleado"
             };
 
-            users.Add(user);
+            await UserService.CreateUserAsync(user);
 
-            await JsonService.SaveAsync("users.json", users);
+            await ShowError("Usuario guardado correctamente");
 
             this.Close();
         }

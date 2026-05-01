@@ -34,5 +34,14 @@
     "Telefono": "fwefewfewfew",
     "FechaNacimiento": "2007-04-27T15:36:03.9674828",
     "Rol": "Empleado"
+  },
+  {
+    "Id": 5,
+    "Username": "IvanGalav",
+    "Password": "Ivan1234",
+    "NombreCompleto": "Ivan Galaviz",
+    "Telefono": "wedfwfwe",
+    "FechaNacimiento": "2007-06-23T16:57:00.2720323",
+    "Rol": "Empleado"
   }
 ]

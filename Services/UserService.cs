@@ -1,4 +1,5 @@
 ﻿using PuntoVenta.Models;
+using PuntoVenta.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace PuntoVenta.Services
             {
                 users.Add(new User
                 {
-                    Id = 1,
+                    Id = IdGenerator.GetNextId(users),
                     Username = "admin123",
                     Password = "Admin123",
                     NombreCompleto = "Administrador",
@@ -36,6 +37,17 @@ namespace PuntoVenta.Services
 
             return users.FirstOrDefault(u =>
                 u.Username == username && u.Password == password);
+        }
+
+        public static async Task CreateUserAsync(User newUser)
+        {
+            var users = await JsonService.LoadAsync<User>(FILE);
+
+            newUser.Id = IdGenerator.GetNextId(users);
+
+            users.Add(newUser);
+
+            await JsonService.SaveAsync(FILE, users);
         }
     }
 }
