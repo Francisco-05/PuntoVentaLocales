@@ -6,6 +6,7 @@ using PuntoVenta.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace PuntoVenta.Views
 {
@@ -16,11 +17,17 @@ namespace PuntoVenta.Views
             this.InitializeComponent();
         }
 
+        
+        private void PhoneBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
-
+          
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(NameBox.Text) ||
@@ -28,6 +35,12 @@ namespace PuntoVenta.Views
                 RoleBox.SelectedItem == null)
             {
                 await ShowError("Todos los campos son obligatorios");
+                return;
+            }
+
+            if (PhoneBox.Text.Length != 10)
+            {
+                await ShowError("El número de teléfono debe tener 10 dígitos.");
                 return;
             }
 
@@ -83,7 +96,7 @@ namespace PuntoVenta.Views
         {
             ContentDialog dialog = new ContentDialog
             {
-                Title = "Error",
+                Title = "Mensaje",
                 Content = message,
                 CloseButtonText = "OK",
                 XamlRoot = this.Content.XamlRoot

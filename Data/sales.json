@@ -180,5 +180,28 @@
     "TotalBruto": 133000.0,
     "TotalCosto": 68000.0,
     "Utilidad": 65000.0
+  },
+  {
+    "Id": 7,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 15 pro",
+        "Marca": "apple",
+        "PrecioUnitario": 18000.0,
+        "CostoUnitario": 8000.0,
+        "Cantidad": 1,
+        "Subtotal": 18000.0,
+        "CostoTotal": 8000.0,
+        "Utilidad": 10000.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-01T19:39:34.2204271-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18000.0,
+    "TotalCosto": 8000.0,
+    "Utilidad": 10000.0
   }
 ]

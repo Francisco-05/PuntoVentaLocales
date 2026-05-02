@@ -22,7 +22,7 @@
                 <TextBox x:Name="UsernameBox" PlaceholderText="Username" Height="40"/>
                 <PasswordBox x:Name="PasswordBox" PlaceholderText="Password" Height="40"/>
                 <TextBox x:Name="NameBox" PlaceholderText="Nombre completo" Height="40"/>
-                <TextBox x:Name="PhoneBox" PlaceholderText="Teléfono" Height="40"/>
+                <TextBox x:Name="PhoneBox" PlaceholderText="Teléfono" Height="40" MaxLength="10" BeforeTextChanging="PhoneBox_BeforeTextChanging"/>
 
                 <DatePicker x:Name="BirthDatePicker"/>
 
