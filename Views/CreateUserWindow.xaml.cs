@@ -17,17 +17,18 @@ namespace PuntoVenta.Views
             this.InitializeComponent();
         }
 
-        
+        // Validación de solo números en el teléfono
         private void PhoneBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
         }
 
+        // Guardar usuario con validaciones
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
-          
+            
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(NameBox.Text) ||
@@ -66,7 +67,7 @@ namespace PuntoVenta.Views
                 await ShowError("El usuario debe ser mayor de edad.");
                 return;
             }
-
+            // Verificar si el usuario ya existe
             var users = await JsonService.LoadAsync<User>("users.json");
 
             if (users.Exists(u => u.Username.ToLower() == username.ToLower()))
@@ -75,6 +76,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            // Crear el nuevo usuario
             var user = new User
             {
                 Username = username,

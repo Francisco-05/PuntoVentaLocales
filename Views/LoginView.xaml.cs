@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
+using System;
 
 namespace PuntoVenta.Views
 {
@@ -30,17 +31,19 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 GUARDAR USUARIO EN SESIÓN
+            // Guardar usuario en sesión
             SessionService.CurrentUser = user;
+            // Guardar hora de login
+            SessionService.LoginTime = DateTime.Now;
 
-            // 👑 ADMIN
+            // ADMIN
             if (user.Rol == "Admin")
             {
                 MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
                 return;
             }
 
-            // 🧑 EMPLEADO → POS
+            // EMPLEADO
             if (user.Rol == "Empleado")
             {
                 MainWindow.Instance.MainFrameControl.Navigate(typeof(ProductCatalogView));

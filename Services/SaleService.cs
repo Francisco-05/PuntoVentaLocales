@@ -9,13 +9,13 @@ namespace PuntoVenta.Services
     {
         private const string FILE = "sales.json";
 
-        // 📥 Obtener todas las ventas
+        // Obtener todas las ventas
         public static async Task<List<Sale>> GetAllAsync()
         {
             return await JsonService.LoadAsync<Sale>(FILE);
         }
 
-        // 💾 Agregar venta
+        // Agregar venta
         public static async Task AddAsync(Sale sale)
         {
             var sales = await JsonService.LoadAsync<Sale>(FILE);

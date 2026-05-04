@@ -5,7 +5,7 @@ namespace PuntoVenta.Helpers
 {
     public static class ValidationHelper
     {
-        // 🔥 Username mínimo 8 caracteres
+        //Username mínimo 8 caracteres
         public static bool IsValidUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -14,7 +14,7 @@ namespace PuntoVenta.Helpers
             return username.Length >= 8;
         }
 
-        // 🔥 Password segura:
+        // Password segura:
         // min 8, 1 mayúscula, 1 minúscula, 1 número
         public static bool IsValidPassword(string password)
         {

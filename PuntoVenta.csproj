@@ -45,6 +45,11 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\DifferencesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\CreateProductWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
