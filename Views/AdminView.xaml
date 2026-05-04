@@ -1,62 +1,126 @@
 <Page
     x:Class="PuntoVenta.Views.AdminView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Loaded="Page_Loaded">
 
-    <Grid Background="#F5F6FA">
+    <Grid Background="RosyBrown">
 
-        <StackPanel Padding="30" Spacing="20">
+        <StackPanel Padding="50"
+                    Spacing="40"
+                    HorizontalAlignment="Center">
 
             <TextBlock 
-                Text="Panel de Administrador"
-                FontSize="28"
-                FontWeight="Bold"/>
+                Text="INICIO ADMINISTRATIVO"
+                FontFamily="Arial Black"
+                FontSize="50"
+                FontWeight="Bold"
+                Foreground="White"
+                HorizontalAlignment="Center"/>
 
-            <StackPanel Orientation="Horizontal" Spacing="20">
+            <Grid RowSpacing="100"
+                  ColumnSpacing="70"
+                  HorizontalAlignment="Center">
 
-                <Button Content="👤 Crear Empleado"
-                        Width="200"
-                        Height="80"
-                        FontSize="16"
-                        Background="#10B981"
-                        Foreground="White"
-                        CornerRadius="10"
-                        Click="CreateUser_Click"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                <Button Content="📦 Crear Producto"
-                        Width="200"
-                        Height="80"
-                        FontSize="16"
-                        Background="#3B82F6"
-                        Foreground="White"
-                        CornerRadius="10"
-                        Click="CreateProduct_Click"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                <Button Content="📊 Ver Reportes de ventas"
-                        Width="200"
-                        Height="80"
-                        FontSize="16"
-                        Background="#F59E0B"
-                        Foreground="White"
-                        CornerRadius="10"
-                        Click="ReportView_Click"/>
-                <Button Content="Reporte Diferencias"
-                        Width="200"
-                        Height="80"
-                        FontSize="16"
-                        Background="#8B5CF6"
-                        Foreground="White"
-                        CornerRadius="10"
-                        Click="DifView_Click"/>
-            </StackPanel>
+                <Button x:Name="BtnCrearEmpleado"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Content="👤 Crear Empleado"
+                        Width="500"
+                        Height="150"
+                        Background="Cornsilk"
+                        Foreground="Black"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        CornerRadius="16"
+                        Click="CreateUser_Click"
+                        Opacity="0">
+                    <Button.RenderTransform>
+                        <TranslateTransform Y="60"/>
+                    </Button.RenderTransform>
+                </Button>
 
-            <Button Content="Cerrar sesión"
-                    Width="200"
-                    Height="45"
-                    Background="#EF4444"
+                <Button x:Name="BtnCrearProducto"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Content="📦 Crear Producto"
+                        Width="500"
+                        Height="150"
+                        Background="Cornsilk"
+                        Foreground="Black"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        CornerRadius="16"
+                        Click="CreateProduct_Click"
+                        Opacity="0">
+                    <Button.RenderTransform>
+                        <TranslateTransform Y="60"/>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button x:Name="BtnReportes"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Content="📋 Ver Reportes de ventas"
+                        Width="500"
+                        Height="150"
+                        Background="Cornsilk"
+                        Foreground="Black"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        CornerRadius="16"
+                        Click="ReportView_Click"
+                        Opacity="0">
+                    <Button.RenderTransform>
+                        <TranslateTransform Y="60"/>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button x:Name="BtnDiferencias"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Content="📊 Reporte Diferencias"
+                        Width="500"
+                        Height="150"
+                        Background="Cornsilk"
+                        Foreground="Black"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        CornerRadius="16"
+                        Click="DifView_Click"
+                        Opacity="0">
+                    <Button.RenderTransform>
+                        <TranslateTransform Y="60"/>
+                    </Button.RenderTransform>
+                </Button>
+
+            </Grid>
+
+            <Button x:Name="BtnCerrarSesion"
+                    Content="Cerrar sesión"
+                    Width="250"
+                    Height="50"
+                    Background="DarkRed"
                     Foreground="White"
+                    FontWeight="SemiBold"
                     CornerRadius="8"
-                    Click="Logout_Click"/>
+                    HorizontalAlignment="Center"
+                    Click="Logout_Click"
+                    Opacity="0">
+                <Button.RenderTransform>
+                    <TranslateTransform Y="40"/>
+                </Button.RenderTransform>
+            </Button>
 
         </StackPanel>
 

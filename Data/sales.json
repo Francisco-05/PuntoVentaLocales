@@ -628,5 +628,28 @@
     "TotalBruto": 18499.99,
     "TotalCosto": 10000.0,
     "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 26,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "Renata Michelle",
+    "Fecha": "2026-05-04T02:31:36.8211481-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
   }
 ]
