@@ -3,12 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Grid Background="#F5F6FA">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Tan" Offset="0"/>
+                <GradientStop Color="LightYellow" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Border 
-            Width="400"
+            Width="700"
             Padding="30"
-            Background="White"
-            CornerRadius="15"
+            Background="Ivory"
+            CornerRadius="20"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
 
@@ -17,12 +23,15 @@
                 <TextBlock 
                     Text="Iniciar Sesión"
                     FontSize="28"
-                    FontWeight="Bold"
+                    FontWeight="ExtraBold"
+                    FontFamily="Broadway"
+                    Foreground="DimGray"
                     HorizontalAlignment="Center"/>
 
                 <TextBox 
                     x:Name="UsernameBox"
                     PlaceholderText="Usuario"
+                    FontFamily="Arial"
                     Height="45"
                     FontSize="16"
                     CornerRadius="8"
@@ -31,6 +40,7 @@
                 <PasswordBox 
                     x:Name="PasswordBox"
                     PlaceholderText="Contraseña"
+                    FontFamily="Arial"
                     Height="45"
                     FontSize="16"
                     CornerRadius="8"
@@ -40,15 +50,19 @@
                     Content="Entrar"
                     Height="45"
                     FontSize="16"
-                    Background="#4F46E5"
-                    Foreground="White"
+                    FontFamily="Arial"
+                    Background="WhiteSmoke"
+                    Foreground="Black"
                     CornerRadius="8"
+                    Padding="20,10,20,10"
+                    HorizontalAlignment="Center"
                     Click="Login_Click"/>
 
                 <TextBlock 
                     x:Name="ErrorText"
-                    Foreground="Red"
-                    HorizontalAlignment="Center"/>
+                    Foreground="DarkRed"
+                    FontFamily="Arial"
+                    FontSize="14"/>
 
             </StackPanel>
         </Border>

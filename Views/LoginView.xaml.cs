@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
+using System;
 
 namespace PuntoVenta.Views
 {
@@ -32,6 +33,8 @@ namespace PuntoVenta.Views
 
             // 🔥 GUARDAR USUARIO EN SESIÓN
             SessionService.CurrentUser = user;
+            // ⏰ GUARDAR HORA DE LOGIN
+            SessionService.LoginTime = DateTime.Now;
 
             // 👑 ADMIN
             if (user.Rol == "Admin")
