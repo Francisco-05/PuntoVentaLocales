@@ -32,7 +32,7 @@
                         CornerRadius="10"
                         Click="CreateProduct_Click"/>
 
-                <Button Content="📊 Ver Reportes de ventas"
+                <Button Content="📊 Ver Reportes"
                         Width="200"
                         Height="80"
                         FontSize="16"
@@ -40,14 +40,6 @@
                         Foreground="White"
                         CornerRadius="10"
                         Click="ReportView_Click"/>
-                <Button Content="Reporte Diferencias"
-                        Width="200"
-                        Height="80"
-                        FontSize="16"
-                        Background="#8B5CF6"
-                        Foreground="White"
-                        CornerRadius="10"
-                        Click="DifView_Click"/>
             </StackPanel>
 
             <Button Content="Cerrar sesión"

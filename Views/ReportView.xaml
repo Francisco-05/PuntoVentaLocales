@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:helpers="using:PuntoVenta.Helpers">
 
-    
+    <!-- 🔥 CONVERTERS -->
     <Page.Resources>
         <helpers:CurrencyConverter x:Key="CurrencyConverter"/>
         <helpers:DateConverter x:Key="DateConverter"/>
@@ -19,32 +19,36 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-      
+        <!-- 🔍 FILTROS + LOGOUT -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
+            <!-- IZQUIERDA -->
             <StackPanel Orientation="Horizontal" Spacing="15">
 
+                <!-- Desde -->
                 <StackPanel>
                     <TextBlock Text="Desde"/>
                     <DatePicker x:Name="StartDate"/>
                 </StackPanel>
 
+                <!-- Hasta -->
                 <StackPanel>
                     <TextBlock Text="Hasta"/>
                     <DatePicker x:Name="EndDate"/>
                 </StackPanel>
 
-             
+                <!-- Empleado -->
                 <StackPanel>
                     <TextBlock Text="Empleado"/>
                     <ComboBox x:Name="EmployeeFilter"
                               Width="200"/>
                 </StackPanel>
 
+                <!-- Botón Filtrar -->
                 <StackPanel VerticalAlignment="Bottom">
                     <Button Content="Filtrar"
                             Click="Filter_Click"
@@ -54,6 +58,7 @@
 
             </StackPanel>
 
+            <!-- DERECHA (LOGOUT) -->
             <Button Grid.Column="1"
                     Content="Salir"
                     Background="#EF4444"
@@ -66,6 +71,7 @@
 
         </Grid>
 
+        <!-- 🔝 UTILIDAD TOTAL -->
         <TextBlock x:Name="TotalUtilidadText"
                    Grid.Row="1"
                    FontSize="18"
@@ -74,6 +80,7 @@
                    HorizontalAlignment="Right"
                    Margin="0,10,0,10"/>
 
+        <!-- 📊 LISTA DE VENTAS -->
         <ListView x:Name="SalesList"
                   Grid.Row="2">
 
@@ -87,13 +94,16 @@
 
                         <StackPanel Spacing="5">
 
+                            <!-- FECHA -->
                             <TextBlock Text="{Binding Fecha, Converter={StaticResource DateConverter}}"
                                        FontSize="12"
                                        Foreground="Gray"/>
 
+                            <!-- EMPLEADO -->
                             <TextBlock Text="{Binding Empleado}"
                                        FontWeight="Bold"/>
 
+                            <!-- PRODUCTOS -->
                             <TextBlock Text="Productos:"
                                        FontWeight="SemiBold"/>
 
@@ -105,6 +115,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
+                            <!-- TOTALES -->
                             <StackPanel Orientation="Horizontal" Spacing="10">
 
                                 <TextBlock Text="Total:"
@@ -131,6 +142,7 @@
 
         </ListView>
 
+        <!-- 🔻 TOTAL GENERAL -->
         <TextBlock x:Name="TotalVentasText"
                    Grid.Row="3"
                    FontSize="18"

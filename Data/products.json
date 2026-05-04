@@ -16,14 +16,5 @@
     "Costo": 1.0,
     "PrecioVenta": 1000.0,
     "Imagen": ""
-  },
-  {
-    "Id": 3,
-    "Nombre": "Laptop",
-    "Marca": "Lenovo",
-    "Descripcion": "kljqjkbdkjwcw",
-    "Costo": 1000.0,
-    "PrecioVenta": 1001.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\a5248fa9-5ae6-499a-a6e3-1d80a1330332.jpg"
   }
 ]

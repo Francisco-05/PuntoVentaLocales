@@ -8,10 +8,10 @@ namespace PuntoVenta.Helpers
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null) return "";
-            //Convierte el valor a DateTime y lo formatea como "dd/MM/yyyy HH:mm"
+
             return ((DateTime)value).ToString("dd/MM/yyyy HH:mm");
         }
-            
+
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();

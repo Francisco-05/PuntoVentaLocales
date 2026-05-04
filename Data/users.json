@@ -61,14 +61,5 @@
     "Telefono": "1234567890",
     "FechaNacimiento": "1999-05-03T20:38:04.8376496",
     "Rol": "Empleado"
-  },
-  {
-    "Id": 8,
-    "Username": "fsdfsdfdsfasd",
-    "Password": "Packo123",
-    "NombreCompleto": "wef",
-    "Telefono": "1000000000",
-    "FechaNacimiento": "2008-05-03T23:39:38.7968565",
-    "Rol": "Empleado"
   }
 ]

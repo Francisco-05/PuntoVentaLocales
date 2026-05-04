@@ -8,29 +8,29 @@ namespace PuntoVenta.Models
 {
     public class SaleDetail
     {
-        // Relación con el producto
+        // 🔗 Relación con el producto
         public int ProductId { get; set; }
 
-        // Información del producto (snapshot al momento de la venta)
+        // 🏷️ Información del producto (snapshot al momento de la venta)
         public string Nombre { get; set; } = "";
         public string Marca { get; set; } = "";
 
-        // Precio de venta por unidad
+        // 💰 Precio de venta por unidad
         public double PrecioUnitario { get; set; }
 
-        // Costo por unidad (para calcular utilidad)
+        // 💸 Costo por unidad (para calcular utilidad)
         public double CostoUnitario { get; set; }
 
-        // Cantidad comprada
+        // 🔢 Cantidad comprada
         public int Cantidad { get; set; }
 
-        // Subtotal (precio * cantidad)
+        // 💲 Subtotal (precio * cantidad)
         public double Subtotal => PrecioUnitario * Cantidad;
 
-        // Costo total (costo * cantidad)
+        // 📉 Costo total (costo * cantidad)
         public double CostoTotal => CostoUnitario * Cantidad;
 
-        // Ganancia por este producto
+        // 📈 Ganancia por este producto
         public double Utilidad => Subtotal - CostoTotal;
     }
 }

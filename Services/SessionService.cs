@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using PuntoVenta.Models;
 
 namespace PuntoVenta.Services
 {
     public static class SessionService
     {
-        // Usuario actualmente autenticado
         public static User CurrentUser { get; set; }
-
-        // Hora en que inicia sesión
-        public static DateTime LoginTime { get; set; }
     }
 }

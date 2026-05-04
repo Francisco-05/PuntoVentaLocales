@@ -23,13 +23,13 @@
                        FontWeight="SemiBold"
                        HorizontalAlignment="Right"/>
             
-            <Button Content="Cortar Caja"
+            <Button Content="Cerrar sesión"
                     Width="200"
                     Height="45"
                     Background="#EF4444"
                     Foreground="White"
                     CornerRadius="8"
-                    Click="CashCut_Click"/>
+                    Click="Logout_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">

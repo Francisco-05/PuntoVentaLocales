@@ -8,7 +8,7 @@ namespace PuntoVenta.Helpers
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is double precio)
-            {   //Cambia el formato del precio a moneda local con dos decimales
+            {
                 return precio.ToString("C2");
             }
             return value;

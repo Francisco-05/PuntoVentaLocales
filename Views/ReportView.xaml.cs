@@ -18,14 +18,14 @@ namespace PuntoVenta.Views
             LoadData();
         }
 
-        // Cargar datos de ventas
+        // 📥 CARGAR DATOS
         private async void LoadData()
         {
             allSales = await SaleService.GetAllAsync();
 
             SalesList.ItemsSource = allSales;
 
-            //cargar empleados únicos
+            // 👤 cargar empleados únicos
             var empleados = allSales
                 .Select(s => s.Empleado)
                 .Distinct()
@@ -36,12 +36,12 @@ namespace PuntoVenta.Views
             CalculateTotals(allSales);
         }
 
-      
+        // 🔍 FILTRAR
         private void Filter_Click(object sender, RoutedEventArgs e)
         {
             var filtered = allSales.AsEnumerable();
 
-            // Filtro por fecha
+            // 📅 FILTRO POR FECHA (WinUI correcto)
             if (StartDate.Date != default)
             {
                 var start = StartDate.Date.DateTime.Date;
@@ -58,7 +58,7 @@ namespace PuntoVenta.Views
                     s.Fecha.Date <= end);
             }
 
-            // Filtro por empleado
+            // 👤 FILTRO POR EMPLEADO
             if (EmployeeFilter.SelectedItem != null)
             {
                 string emp = EmployeeFilter.SelectedItem.ToString();
@@ -76,7 +76,7 @@ namespace PuntoVenta.Views
             MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
         }
 
-        // Calcular totales de ventas y utilidad
+        // 🧮 CALCULAR TOTALES
         private void CalculateTotals(List<Sale> sales)
         {
             double totalVentas = sales.Sum(s => s.TotalBruto);
