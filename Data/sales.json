@@ -203,5 +203,430 @@
     "TotalBruto": 18000.0,
     "TotalCosto": 8000.0,
     "Utilidad": 10000.0
+  },
+  {
+    "Id": 8,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:15:13.7976435-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 9,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:15:38.5152361-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 10,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:19:52.7381202-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 11,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:23:20.0613095-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 12,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:29:51.7049404-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 13,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T22:43:35.9604889-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 14,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:09:16.9182111-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 15,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 4,
+        "Subtotal": 73999.96,
+        "CostoTotal": 40000.0,
+        "Utilidad": 33999.96000000001
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:09:27.3854638-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 4,
+    "TotalBruto": 73999.96,
+    "TotalCosto": 40000.0,
+    "Utilidad": 33999.96000000001
+  },
+  {
+    "Id": 16,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:09:36.2856755-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 17,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 5,
+        "Subtotal": 92499.95000000001,
+        "CostoTotal": 50000.0,
+        "Utilidad": 42499.95000000001
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:19:47.5357768-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 5,
+    "TotalBruto": 92499.95000000001,
+    "TotalCosto": 50000.0,
+    "Utilidad": 42499.95000000001
+  },
+  {
+    "Id": 18,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:21:37.3221021-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 19,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:23:06.6579136-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 20,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 4,
+        "Subtotal": 4000.0,
+        "CostoTotal": 4.0,
+        "Utilidad": 3996.0
+      },
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 3,
+        "Subtotal": 55499.97,
+        "CostoTotal": 30000.0,
+        "Utilidad": 25499.97
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:23:13.5405691-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 7,
+    "TotalBruto": 59499.97,
+    "TotalCosto": 30004.0,
+    "Utilidad": 29495.970000000005
+  },
+  {
+    "Id": 21,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:23:19.7082032-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 22,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 1,
+        "Subtotal": 1000.0,
+        "CostoTotal": 1.0,
+        "Utilidad": 999.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:23:59.9590475-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 1000.0,
+    "TotalCosto": 1.0,
+    "Utilidad": 999.0
+  },
+  {
+    "Id": 23,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 4,
+        "Subtotal": 4000.0,
+        "CostoTotal": 4.0,
+        "Utilidad": 3996.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:24:08.0935816-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 4,
+    "TotalBruto": 4000.0,
+    "TotalCosto": 4.0,
+    "Utilidad": 3996.0
+  },
+  {
+    "Id": 24,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:24:13.0088868-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 25,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-03T23:24:16.3100322-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
   }
 ]

@@ -23,13 +23,13 @@
                        FontWeight="SemiBold"
                        HorizontalAlignment="Right"/>
             
-            <Button Content="Cerrar sesión"
+            <Button Content="Cortar Caja"
                     Width="200"
                     Height="45"
                     Background="#EF4444"
                     Foreground="White"
                     CornerRadius="8"
-                    Click="Logout_Click"/>
+                    Click="CashCut_Click"/>
         </Grid>
 
         <!-- CONTENIDO PRINCIPAL -->

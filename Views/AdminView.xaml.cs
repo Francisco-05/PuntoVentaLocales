@@ -25,11 +25,19 @@ namespace PuntoVenta.Views
             win.Activate();
         }
 
-        // 📊 Reportes (lo dejamos listo para después)
+        // 📊 Reporte de ventas
         private void ReportView_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(ReportView));
         }
+
+        // 🧾 🔥 NUEVO → REPORTE DIFERENCIAS
+        private void DifView_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrameControl.Navigate(typeof(DifferencesView));
+        }
+
+        // 🚪 Logout
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(LoginView));
