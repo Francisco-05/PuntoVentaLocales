@@ -5,9 +5,10 @@ using PuntoVenta.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage.Pickers;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using WinRT.Interop;
 
 namespace PuntoVenta.Views
@@ -37,9 +38,10 @@ namespace PuntoVenta.Views
 
             if (file != null)
             {
+                // ✅ RUTA CORREGIDA (estable en cualquier PC)
                 string assetsFolder = Path.Combine(
-                    AppDomain.CurrentDomain.BaseDirectory,
-                    "Assets",
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "PuntoVenta",
                     "Products"
                 );
 
@@ -49,18 +51,35 @@ namespace PuntoVenta.Views
                 string newFileName = Guid.NewGuid() + Path.GetExtension(file.Name);
                 string destinationPath = Path.Combine(assetsFolder, newFileName);
 
-                // 🔥 FIX REAL (EVITA CRASH WIN32)
+                // ✅ Copiar imagen de forma segura
                 using (var stream = await file.OpenStreamForReadAsync())
                 using (var fileStream = File.Create(destinationPath))
                 {
                     await stream.CopyToAsync(fileStream);
                 }
 
-                selectedImagePath = destinationPath;
-                ImageBox.Text = newFileName;
+                // ✅ Guardar datos
+                selectedImagePath = destinationPath; // ruta completa
+                ImageBox.Text = newFileName;         // solo nombre (recomendado)
             }
         }
+        private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            string text = args.NewText;
 
+            // Permitir solo números y punto
+            if (text.Any(c => !char.IsDigit(c) && c != '.'))
+            {
+                args.Cancel = true;
+                return;
+            }
+
+            // Permitir solo un punto decimal
+            if (text.Count(c => c == '.') > 1)
+            {
+                args.Cancel = true;
+            }
+        }
         // 💾 SAVE PRODUCT
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -92,6 +111,17 @@ namespace PuntoVenta.Views
             if (costo < 0 || precio < 0)
             {
                 await ShowError("No se permiten valores negativos");
+                return;
+            }
+
+            if (precio <= costo)
+            {
+                await ShowError("El precio de venta no puede ser igual o menor al costo");
+                return;
+            }
+            if (costo < 1)
+            {
+                await ShowError("El costo no puede ser menor a $1.00");
                 return;
             }
 

@@ -28,7 +28,6 @@
 
                 <ComboBox x:Name="RoleBox">
                     <ComboBoxItem Content="Empleado"/>
-                    <ComboBoxItem Content="Admin"/>
                 </ComboBox>
 
                 <Button Content="Guardar Usuario"

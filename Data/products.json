@@ -1,11 +1,20 @@
 [
   {
     "Id": 1,
-    "Nombre": "iPhone 15 pro",
-    "Marca": "apple",
-    "Descripcion": "iPhone 15 pro, 256gb, 8gb",
-    "Costo": 8000.0,
-    "PrecioVenta": 18000.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PIA\\PuntoVenta\\bin\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\AppX\\Assets\\Products\\7c858250-635c-4161-9af3-54ddcc7e766c.jpg"
+    "Nombre": "iPhone 16",
+    "Marca": "iPhone 16",
+    "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
+    "Costo": 10000.0,
+    "PrecioVenta": 18499.99,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
+  },
+  {
+    "Id": 2,
+    "Nombre": "ertethrtyrerty",
+    "Marca": "rtrutyrytryetyr",
+    "Descripcion": "ytrytreeyrtyrt",
+    "Costo": 1.0,
+    "PrecioVenta": 1000.0,
+    "Imagen": ""
   }
 ]

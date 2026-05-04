@@ -42,7 +42,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Products\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -21,10 +21,10 @@
 
                 <TextBox x:Name="NameBox" PlaceholderText="Nombre" Height="40"/>
                 <TextBox x:Name="BrandBox" PlaceholderText="Marca" Height="40"/>
-                <TextBox x:Name="DescBox" PlaceholderText="Descripción" Height="40"/>
+                <TextBox x:Name="DescBox" PlaceholderText="Descripción" Height="40" />
 
-                <TextBox x:Name="CostBox" PlaceholderText="Costo" Height="40"/>
-                <TextBox x:Name="PriceBox" PlaceholderText="Precio venta (con IVA)" Height="40"/>
+                <TextBox x:Name="CostBox" PlaceholderText="Costo" Height="40" BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"/>
+                <TextBox x:Name="PriceBox" PlaceholderText="Precio venta (con IVA)" Height="40" BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"/>
 
                 <StackPanel Spacing="8">
 

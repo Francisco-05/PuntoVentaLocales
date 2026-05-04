@@ -19,44 +19,57 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 🔍 FILTROS -->
-        <StackPanel Orientation="Horizontal" Spacing="15">
+        <!-- 🔍 FILTROS + LOGOUT -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <!-- Desde -->
-            <StackPanel>
-                <TextBlock Text="Desde"/>
-                <DatePicker x:Name="StartDate"/>
+            <!-- IZQUIERDA -->
+            <StackPanel Orientation="Horizontal" Spacing="15">
+
+                <!-- Desde -->
+                <StackPanel>
+                    <TextBlock Text="Desde"/>
+                    <DatePicker x:Name="StartDate"/>
+                </StackPanel>
+
+                <!-- Hasta -->
+                <StackPanel>
+                    <TextBlock Text="Hasta"/>
+                    <DatePicker x:Name="EndDate"/>
+                </StackPanel>
+
+                <!-- Empleado -->
+                <StackPanel>
+                    <TextBlock Text="Empleado"/>
+                    <ComboBox x:Name="EmployeeFilter"
+                              Width="200"/>
+                </StackPanel>
+
+                <!-- Botón Filtrar -->
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button Content="Filtrar"
+                            Click="Filter_Click"
+                            Background="#2563EB"
+                            Foreground="White"/>
+                </StackPanel>
+
             </StackPanel>
 
-            <!-- Hasta -->
-            <StackPanel>
-                <TextBlock Text="Hasta"/>
-                <DatePicker x:Name="EndDate"/>
-            </StackPanel>
-
-            <!-- Empleado -->
-            <StackPanel>
-                <TextBlock Text="Empleado"/>
-                <ComboBox x:Name="EmployeeFilter"
-                          Width="200"/>
-            </StackPanel>
-
-            <!-- Botón -->
-            <StackPanel VerticalAlignment="Bottom">
-                <Button Content="Filtrar"
-                        Click="Filter_Click"
-                        Background="#2563EB"
-                        Foreground="White"/>
-            </StackPanel>
-            <Button Content="Salir"
-                    Width="150"
-                    Height="45"
+            <!-- DERECHA (LOGOUT) -->
+            <Button Grid.Column="1"
+                    Content="Salir"
                     Background="#EF4444"
                     Foreground="White"
-                    CornerRadius="8"
-                    Click="Logout_Click"/>
+                    CornerRadius="4"
+                    Click="Logout_Click"
+                    VerticalAlignment="Bottom"
+                    Margin="10,0,0,0"
+                    MinWidth="100"/>
 
-        </StackPanel>
+        </Grid>
 
         <!-- 🔝 UTILIDAD TOTAL -->
         <TextBlock x:Name="TotalUtilidadText"

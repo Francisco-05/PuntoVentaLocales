@@ -43,5 +43,23 @@
     "Telefono": "wedfwfwe",
     "FechaNacimiento": "2007-06-23T16:57:00.2720323",
     "Rol": "Empleado"
+  },
+  {
+    "Id": 6,
+    "Username": "Gilberto",
+    "Password": "Mirasur2",
+    "NombreCompleto": "Gilberto Alejandro",
+    "Telefono": "1234567890",
+    "FechaNacimiento": "2008-05-03T16:31:19.1840975",
+    "Rol": "Empleado"
+  },
+  {
+    "Id": 7,
+    "Username": "FranciscoAlberto",
+    "Password": "Alberto123",
+    "NombreCompleto": "Francisco Alberto Estrada",
+    "Telefono": "1234567890",
+    "FechaNacimiento": "1999-05-03T20:38:04.8376496",
+    "Rol": "Empleado"
   }
 ]
