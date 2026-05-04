@@ -8,10 +8,11 @@ namespace PuntoVenta.Services
 {
     public static class JsonService
     {
+        //  Busca el directorio del proyecto para guardar los archivos JSON
         private static string GetDataPath()
         {
             DirectoryInfo? directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-
+            //  Subir directorios hasta encontrar el proyecto
             while (directory != null)
             {
                 string projectFile = Path.Combine(directory.FullName, "PuntoVenta.csproj");
@@ -23,12 +24,13 @@ namespace PuntoVenta.Services
 
                 directory = directory.Parent;
             }
-
+            //  Si no se encuentra el proyecto, usar una carpeta en Documentos
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
         }
-
+        //  Ruta base para los archivos JSON
         private static string basePath = GetDataPath();
 
+        //  Asegura que la carpeta exista antes de leer o escribir archivos
         private static void EnsureFolder()
         {
             if (!Directory.Exists(basePath))
@@ -36,7 +38,7 @@ namespace PuntoVenta.Services
                 Directory.CreateDirectory(basePath);
             }
         }
-
+        //  Carga una lista de objetos desde un archivo JSON, o crea el archivo si no existe
         public static async Task<List<T>> LoadAsync<T>(string fileName)
         {
             EnsureFolder();
@@ -58,7 +60,7 @@ namespace PuntoVenta.Services
 
             return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
         }
-
+        //  Guarda una lista de objetos en un archivo JSON
         public static async Task SaveAsync<T>(string fileName, List<T> data)
         {
             EnsureFolder();

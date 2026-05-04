@@ -5,6 +5,7 @@ namespace PuntoVenta.Helpers
 {
     public class CurrencyConverter : IValueConverter
     {
+        // Convierte un double a formato de moneda local
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is double precio)
@@ -13,7 +14,7 @@ namespace PuntoVenta.Helpers
             }
             return value;
         }
-
+        
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();

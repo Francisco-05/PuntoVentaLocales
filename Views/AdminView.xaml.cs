@@ -12,33 +12,33 @@ namespace PuntoVenta.Views
             this.InitializeComponent();
         }
 
-        // 🧑 Crear usuario
+        // Crear usuario
         private void CreateUser_Click(object sender, RoutedEventArgs e)
         {
             var win = new CreateUserWindow();
             win.Activate();
         }
 
-        // 📦 Crear producto
+        // Crear producto
         private void CreateProduct_Click(object sender, RoutedEventArgs e)
         {
             var win = new CreateProductWindow();
             win.Activate();
         }
 
-        // 📊 Reporte de ventas
+        // Reporte de ventas
         private void ReportView_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(ReportView));
         }
 
-        // 🧾 🔥 NUEVO → REPORTE DIFERENCIAS
+        // Reporte de diferencias
         private void DifView_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(DifferencesView));
         }
 
-        // FUNCION DE ANIMACION PARA LA VENTANA DE ADMINISTRADOR
+        // Función para cerrar sesión
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(LoginView));

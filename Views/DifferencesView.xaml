@@ -13,11 +13,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <!-- 🔥 FILTROS -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 🔝 HEADER -->
         <Grid>
             <TextBlock Text="Reporte de diferencias de caja"
                        FontSize="22"
@@ -30,7 +28,6 @@
                     Click="Back_Click"/>
         </Grid>
 
-        <!-- 🔍 FILTROS -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="15" Margin="0,15,0,10">
 
             <StackPanel>
@@ -57,7 +54,6 @@
 
         </StackPanel>
 
-        <!-- 📋 LISTA -->
         <ListView x:Name="DifferencesList"
                   Grid.Row="2"
                   Margin="0,10,0,0">

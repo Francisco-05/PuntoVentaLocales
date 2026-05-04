@@ -7,7 +7,7 @@ namespace PuntoVenta.Services
     {
         public static User CurrentUser { get; set; }
 
-        // 🔥 NUEVO → Hora en que inicia sesión
+        // Hora en que inicia sesión
         public static DateTime LoginTime { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace PuntoVenta.Views
             this.InitializeComponent();
         }
 
-        // 🖼 SELECT IMAGE (CORREGIDO)
+        // Seleccionar imagen
         private async void SelectImage_Click(object sender, RoutedEventArgs e)
         {
             var picker = new FileOpenPicker();
@@ -38,7 +38,7 @@ namespace PuntoVenta.Views
 
             if (file != null)
             {
-                // ✅ RUTA CORREGIDA (estable en cualquier PC)
+                // Ruta segura: Guardar en carpeta de documentos del usuario
                 string assetsFolder = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     "PuntoVenta",
@@ -51,16 +51,16 @@ namespace PuntoVenta.Views
                 string newFileName = Guid.NewGuid() + Path.GetExtension(file.Name);
                 string destinationPath = Path.Combine(assetsFolder, newFileName);
 
-                // ✅ Copiar imagen de forma segura
+                // Copiar imagen de forma segura
                 using (var stream = await file.OpenStreamForReadAsync())
                 using (var fileStream = File.Create(destinationPath))
                 {
                     await stream.CopyToAsync(fileStream);
                 }
 
-                // ✅ Guardar datos
-                selectedImagePath = destinationPath; // ruta completa
-                ImageBox.Text = newFileName;         // solo nombre (recomendado)
+              
+                selectedImagePath = destinationPath; 
+                ImageBox.Text = newFileName;         
             }
         }
         private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -80,12 +80,12 @@ namespace PuntoVenta.Views
                 args.Cancel = true;
             }
         }
-        // 💾 SAVE PRODUCT
+        // guardar producto
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             var products = await JsonService.LoadAsync<Product>("products.json");
 
-            // 🔥 CAMPOS VACÍOS
+            // Campos obligatorios
             if (string.IsNullOrWhiteSpace(NameBox.Text) ||
                 string.IsNullOrWhiteSpace(BrandBox.Text) ||
                 string.IsNullOrWhiteSpace(CostBox.Text) ||
@@ -95,7 +95,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 NUMÉRICOS
+            // numeros válidos
             if (!double.TryParse(CostBox.Text, out double costo))
             {
                 await ShowError("Costo inválido");
@@ -125,7 +125,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 DUPLICADO (NOMBRE + MARCA)
+            // Verificar duplicados (nombre + marca)
             bool exists = products.Exists(p =>
                 p.Nombre.ToLower() == NameBox.Text.ToLower() &&
                 p.Marca.ToLower() == BrandBox.Text.ToLower()
@@ -155,7 +155,7 @@ namespace PuntoVenta.Views
             this.Close();
         }
 
-        // ⚠️ ERROR DIALOG
+     
         private async Task ShowError(string message)
         {
             ContentDialog dialog = new ContentDialog

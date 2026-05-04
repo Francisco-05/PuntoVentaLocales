@@ -12,12 +12,14 @@ namespace PuntoVenta.Views
     {
         private List<DiferenciaCaja> allData = new();
 
+        
         public DifferencesView()
         {
             this.InitializeComponent();
             LoadData();
         }
 
+        // Carga los datos desde el JSON y llena la lista y el filtro de empleados
         private async void LoadData()
         {
             var data = await JsonService.LoadAsync<DiferenciaCaja>("diferenciasCaja.json");
@@ -29,7 +31,7 @@ namespace PuntoVenta.Views
 
             DifferencesList.ItemsSource = allData;
 
-            // 🔥 CARGAR EMPLEADOS
+            // Crear lista de empleados únicos para el filtro
             var empleados = allData
                 .Select(d => d.Empleado)
                 .Distinct()
@@ -45,21 +47,21 @@ namespace PuntoVenta.Views
         {
             var filtered = allData.AsEnumerable();
 
-            // 📅 FILTRO FECHA INICIO
+            // Filtro fecha inicio
             if (StartDate.Date != default(DateTimeOffset))
             {
                 var start = StartDate.Date.Date;
                 filtered = filtered.Where(d => d.Fecha >= start);
             }
 
-            // 📅 FILTRO FECHA FIN
+            // Filtro fecha fin 
             if (EndDate.Date != default(DateTimeOffset))
             {
                 var end = EndDate.Date.Date.AddDays(1);
                 filtered = filtered.Where(d => d.Fecha < end);
             }
 
-            // 👤 FILTRO EMPLEADO
+            // Filtro empleado
             if (EmployeeFilter.SelectedItem != null &&
                 EmployeeFilter.SelectedItem.ToString() != "Todos")
             {

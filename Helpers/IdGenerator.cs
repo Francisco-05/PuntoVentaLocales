@@ -5,6 +5,7 @@ namespace PuntoVenta.Helpers
 {
     public static class IdGenerator
     {
+        // Genera el siguiente ID basado en la lista existente
         public static int GetNextId<T>(List<T> list)
         {
             if (list == null || list.Count == 0)

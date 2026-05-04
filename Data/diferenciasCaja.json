@@ -48,5 +48,35 @@
     "EfectivoSistema": 5000.0,
     "EfectivoReal": 5000.0,
     "Diferencia": 0.0
+  },
+  {
+    "Id": 6,
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:09:45.0421699-06:00",
+    "InicioSesion": "2026-05-04T13:09:19.3084916-06:00",
+    "FinSesion": "2026-05-04T13:09:38.6935719-06:00",
+    "EfectivoSistema": 1000.0,
+    "EfectivoReal": 1000.0,
+    "Diferencia": 0.0
+  },
+  {
+    "Id": 7,
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:11:30.5139078-06:00",
+    "InicioSesion": "2026-05-04T13:11:13.5175425-06:00",
+    "FinSesion": "2026-05-04T13:11:24.4628121-06:00",
+    "EfectivoSistema": 1000.0,
+    "EfectivoReal": 5000.0,
+    "Diferencia": 4000.0
+  },
+  {
+    "Id": 8,
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:16:52.9545963-06:00",
+    "InicioSesion": "2026-05-04T13:16:35.4374154-06:00",
+    "FinSesion": "2026-05-04T13:16:49.8367709-06:00",
+    "EfectivoSistema": 5000.0,
+    "EfectivoReal": 5000.0,
+    "Diferencia": 0.0
   }
 ]

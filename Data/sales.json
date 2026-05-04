@@ -651,5 +651,97 @@
     "TotalBruto": 18499.99,
     "TotalCosto": 10000.0,
     "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 27,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 1,
+        "Subtotal": 1000.0,
+        "CostoTotal": 1.0,
+        "Utilidad": 999.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:09:32.6909182-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 1000.0,
+    "TotalCosto": 1.0,
+    "Utilidad": 999.0
+  },
+  {
+    "Id": 28,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 1,
+        "Subtotal": 1000.0,
+        "CostoTotal": 1.0,
+        "Utilidad": 999.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:11:18.959921-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 1000.0,
+    "TotalCosto": 1.0,
+    "Utilidad": 999.0
+  },
+  {
+    "Id": 29,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "ertethrtyrerty",
+        "Marca": "rtrutyrytryetyr",
+        "PrecioUnitario": 1000.0,
+        "CostoUnitario": 1.0,
+        "Cantidad": 5,
+        "Subtotal": 5000.0,
+        "CostoTotal": 5.0,
+        "Utilidad": 4995.0
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:16:42.233873-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 5,
+    "TotalBruto": 5000.0,
+    "TotalCosto": 5.0,
+    "Utilidad": 4995.0
+  },
+  {
+    "Id": 30,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "iPhone 16",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 18499.99,
+        "CostoTotal": 10000.0,
+        "Utilidad": 8499.990000000002
+      }
+    ],
+    "Empleado": "FranciscoIbarra",
+    "Fecha": "2026-05-04T13:16:45.3840719-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 1,
+    "TotalBruto": 18499.99,
+    "TotalCosto": 10000.0,
+    "Utilidad": 8499.990000000002
   }
 ]

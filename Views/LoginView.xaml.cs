@@ -31,19 +31,19 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // 🔥 GUARDAR USUARIO EN SESIÓN
+            // Guardar usuario en sesión
             SessionService.CurrentUser = user;
-            // ⏰ GUARDAR HORA DE LOGIN
+            // Guardar hora de login
             SessionService.LoginTime = DateTime.Now;
 
-            // 👑 ADMIN
+            // ADMIN
             if (user.Rol == "Admin")
             {
                 MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
                 return;
             }
 
-            // 🧑 EMPLEADO → POS
+            // EMPLEADO 
             if (user.Rol == "Empleado")
             {
                 MainWindow.Instance.MainFrameControl.Navigate(typeof(ProductCatalogView));
