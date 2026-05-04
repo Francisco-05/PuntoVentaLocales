@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 🔥 BARRA SUPERIOR (USUARIO) -->
+ 
         <Grid Background="#1F2937" Padding="10">
             <TextBlock x:Name="UserText"
                        Foreground="White"
@@ -32,7 +32,6 @@
                     Click="CashCut_Click"/>
         </Grid>
 
-        <!-- CONTENIDO PRINCIPAL -->
         <Grid Grid.Row="1">
 
             <Grid.ColumnDefinitions>
@@ -40,7 +39,6 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- 🛍️ PRODUCTOS -->
             <ScrollViewer Grid.Column="0">
                 <ItemsControl x:Name="ProductsList">
 
@@ -90,7 +88,6 @@
                 </ItemsControl>
             </ScrollViewer>
 
-            <!-- 🛒 CARRITO -->
             <Grid Grid.Column="1" Background="White" Padding="10">
 
                 <Grid.RowDefinitions>
