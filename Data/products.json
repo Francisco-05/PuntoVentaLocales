@@ -2,10 +2,11 @@
   {
     "Id": 1,
     "Nombre": "iPhone 16",
-    "Marca": "iPhone 16",
+    "Marca": "Apple",
     "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
     "Costo": 10000.0,
     "PrecioVenta": 18499.99,
+    "Existencias": 10,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
   },
   {
@@ -15,6 +16,7 @@
     "Descripcion": "ytrytreeyrtyrt",
     "Costo": 1.0,
     "PrecioVenta": 1000.0,
+    "Existencias": 0,
     "Imagen": ""
   }
 ]

@@ -3,7 +3,6 @@ using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,16 +12,30 @@ using WinRT.Interop;
 
 namespace PuntoVenta.Views
 {
-    public sealed partial class CreateProductWindow : Window
+    public sealed partial class EditProductWindow : Window
     {
+        private readonly Product product;
         private string selectedImagePath = "";
 
-        public CreateProductWindow()
+        public EditProductWindow(Product product)
         {
             this.InitializeComponent();
+            this.product = product;
+            LoadProduct();
         }
 
-        // Seleccionar imagen
+        private void LoadProduct()
+        {
+            NameBox.Text = product.Nombre;
+            BrandBox.Text = product.Marca;
+            DescBox.Text = product.Descripcion;
+            CostBox.Text = product.Costo.ToString();
+            PriceBox.Text = product.PrecioVenta.ToString();
+            StockBox.Text = product.Existencias.ToString();
+            selectedImagePath = product.Imagen;
+            ImageBox.Text = Path.GetFileName(product.Imagen);
+        }
+
         private async void SelectImage_Click(object sender, RoutedEventArgs e)
         {
             var picker = new FileOpenPicker();
@@ -38,7 +51,6 @@ namespace PuntoVenta.Views
 
             if (file != null)
             {
-                // Ruta segura: Guardar en carpeta de documentos del usuario
                 string assetsFolder = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     "PuntoVenta",
@@ -51,51 +63,57 @@ namespace PuntoVenta.Views
                 string newFileName = Guid.NewGuid() + Path.GetExtension(file.Name);
                 string destinationPath = Path.Combine(assetsFolder, newFileName);
 
-                // Copiar imagen de forma segura
                 using (var stream = await file.OpenStreamForReadAsync())
                 using (var fileStream = File.Create(destinationPath))
                 {
                     await stream.CopyToAsync(fileStream);
                 }
 
-              
-                selectedImagePath = destinationPath; 
-                ImageBox.Text = newFileName;         
+                selectedImagePath = destinationPath;
+                ImageBox.Text = newFileName;
             }
         }
+
         private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             string text = args.NewText;
 
-            // Permitir solo números y punto
             if (text.Any(c => !char.IsDigit(c) && c != '.'))
             {
                 args.Cancel = true;
                 return;
             }
 
-            // Permitir solo un punto decimal
             if (text.Count(c => c == '.') > 1)
             {
                 args.Cancel = true;
             }
         }
-        // guardar producto
+
+        private void OnlyNumbers_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            string text = args.NewText;
+
+            if (text.Any(c => !char.IsDigit(c)))
+            {
+                args.Cancel = true;
+            }
+        }
+
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             var products = await JsonService.LoadAsync<Product>("products.json");
 
-            // Campos obligatorios
             if (string.IsNullOrWhiteSpace(NameBox.Text) ||
                 string.IsNullOrWhiteSpace(BrandBox.Text) ||
                 string.IsNullOrWhiteSpace(CostBox.Text) ||
-                string.IsNullOrWhiteSpace(PriceBox.Text))
+                string.IsNullOrWhiteSpace(PriceBox.Text) ||
+                string.IsNullOrWhiteSpace(StockBox.Text))
             {
                 await ShowError("Todos los campos son obligatorios");
                 return;
             }
 
-            // numeros válidos
             if (!double.TryParse(CostBox.Text, out double costo))
             {
                 await ShowError("Costo inválido");
@@ -108,7 +126,19 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            if (!int.TryParse(StockBox.Text, out int existencias))
+            {
+                await ShowError("Existencias inválidas");
+                return;
+            }
+
             if (costo < 0 || precio < 0)
+            {
+                await ShowError("No se permiten valores negativos");
+                return;
+            }
+
+            if (existencias < 0)
             {
                 await ShowError("No se permiten valores negativos");
                 return;
@@ -119,14 +149,15 @@ namespace PuntoVenta.Views
                 await ShowError("El precio de venta no puede ser igual o menor al costo");
                 return;
             }
+
             if (costo < 1)
             {
                 await ShowError("El costo no puede ser menor a $1.00");
                 return;
             }
 
-            // Verificar duplicados (nombre + marca)
             bool exists = products.Exists(p =>
+                p.Id != product.Id &&
                 p.Nombre.ToLower() == NameBox.Text.ToLower() &&
                 p.Marca.ToLower() == BrandBox.Text.ToLower()
             );
@@ -137,26 +168,28 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            var product = new Product
+            var index = products.FindIndex(p => p.Id == product.Id);
+            if (index < 0)
             {
-                Id = products.Count + 1,
-                Nombre = NameBox.Text,
-                Marca = BrandBox.Text,
-                Descripcion = DescBox.Text,
-                Costo = costo,
-                PrecioVenta = precio,
-                Existencias = 0,
-                Imagen = selectedImagePath
-            };
+                await ShowError("Producto no encontrado");
+                return;
+            }
 
-            products.Add(product);
+            product.Nombre = NameBox.Text;
+            product.Marca = BrandBox.Text;
+            product.Descripcion = DescBox.Text;
+            product.Costo = costo;
+            product.PrecioVenta = precio;
+            product.Existencias = existencias;
+            product.Imagen = selectedImagePath;
+
+            products[index] = product;
 
             await JsonService.SaveAsync("products.json", products);
 
             this.Close();
         }
 
-     
         private async Task ShowError(string message)
         {
             ContentDialog dialog = new ContentDialog
