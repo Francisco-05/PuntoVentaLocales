@@ -1,8 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using PuntoVenta.Helpers;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
 using System;
+using System.Collections.Generic;
 
 namespace PuntoVenta.Views
 {
@@ -17,6 +19,28 @@ namespace PuntoVenta.Views
         private async void Init()
         {
             await UserService.InitializeAsync();
+            SetupEnterNavigation();
+        }
+
+        private void SetupEnterNavigation()
+        {
+            UsernameBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    PasswordBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            PasswordBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    Login_Click(null, null);
+                }
+            };
         }
 
         private async void Login_Click(object sender, RoutedEventArgs e)

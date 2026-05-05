@@ -22,6 +22,73 @@ namespace PuntoVenta.Views
             this.InitializeComponent();
             this.product = product;
             LoadProduct();
+            SetupEnterNavigation();
+        }
+
+        private void SetupEnterNavigation()
+        {
+            NameBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    BrandBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            BrandBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    DescBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            DescBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    CostBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            CostBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    PriceBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            PriceBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    StockBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            StockBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    ImageBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            ImageBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    Save_Click(null, null);
+                }
+            };
         }
 
         private void LoadProduct()
