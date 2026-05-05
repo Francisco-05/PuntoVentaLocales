@@ -36,7 +36,7 @@
                     MinWidth="100"/>
         </Grid>
 
-        <ScrollViewer Grid.Row="1" Margin="0,20,0,0">
+        <ScrollViewer Grid.Row="1" Margin="0,20,0,0" HorizontalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -47,13 +47,13 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="140"/>
                             <ColumnDefinition Width="220"/>
                             <ColumnDefinition Width="110"/>
                             <ColumnDefinition Width="130"/>
                             <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="380"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -93,13 +93,13 @@
                                 <Grid Height="32">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="140"/>
                                         <ColumnDefinition Width="220"/>
                                         <ColumnDefinition Width="110"/>
                                         <ColumnDefinition Width="130"/>
                                         <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="380"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Border BorderBrush="#3A3A3A" BorderThickness="0,0,1,0" Padding="8,0" VerticalAlignment="Center">
@@ -140,6 +140,14 @@
                                                     Padding="8,4"
                                                     CornerRadius="4"
                                                     MinWidth="90"/>
+                                            <Button Content="Eliminar"
+                                                    Background="#EF4444"
+                                                    Foreground="White"
+                                                    FontSize="12"
+                                                    Padding="8,4"
+                                                    CornerRadius="4"
+                                                    MinWidth="80"
+                                                    Click="Delete_Click"/>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
