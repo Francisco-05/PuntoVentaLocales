@@ -16,7 +16,7 @@
     "Descripcion": "Intel Core i5, 16GB RAM, 512GB SSD, pantalla FHD 14\"",
     "Costo": 11700.0,
     "PrecioVenta": 16200.0,
-    "Existencias": 20,
+    "Existencias": 40,
     "Imagen": ""
   },
   {
@@ -26,7 +26,7 @@
     "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
     "Costo": 5800.0,
     "PrecioVenta": 9100.0,
-    "Existencias": 10,
+    "Existencias": 12,
     "Imagen": ""
   },
   {

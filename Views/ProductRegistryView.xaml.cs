@@ -1,10 +1,12 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using PuntoVenta.Helpers;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PuntoVenta.Views
 {
@@ -82,6 +84,11 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            if (!await ConfirmAdminPasswordAsync())
+            {
+                return;
+            }
+
             product.Existencias += amount;
 
             await JsonService.SaveAsync("products.json", products);
@@ -122,6 +129,63 @@ namespace PuntoVenta.Views
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
+        }
+
+        private async Task<bool> ConfirmAdminPasswordAsync()
+        {
+            var passwordBox = new PasswordBox();
+
+            var dialog = new ContentDialog
+            {
+                Title = "Confirmar administrador",
+                Content = passwordBox,
+                PrimaryButtonText = "Confirmar",
+                CloseButtonText = "Cancelar",
+                XamlRoot = this.XamlRoot
+            };
+
+            var result = await dialog.ShowAsync();
+            if (result != ContentDialogResult.Primary)
+            {
+                return false;
+            }
+
+            string password = passwordBox.Password;
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                await ShowError("Todos los campos son obligatorios");
+                return false;
+            }
+
+            if (!ValidationHelper.IsValidPassword(password))
+            {
+                await ShowError("Contraseña incorrecta");
+                return false;
+            }
+
+            var users = await JsonService.LoadAsync<User>("users.json");
+            bool isAdmin = users.Any(u => u.Rol == "Admin" && u.Password == password);
+
+            if (!isAdmin)
+            {
+                await ShowError("Contraseña incorrecta");
+                return false;
+            }
+
+            return true;
+        }
+
+        private async Task ShowError(string message)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Error",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
         }
     }
 }

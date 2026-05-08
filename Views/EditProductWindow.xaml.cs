@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using PuntoVenta.Helpers;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
 using System;
@@ -248,6 +249,11 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            if (!await ConfirmAdminPasswordAsync())
+            {
+                return;
+            }
+
             product.Nombre = NameBox.Text;
             product.Marca = BrandBox.Text;
             product.Descripcion = DescBox.Text;
@@ -274,6 +280,50 @@ namespace PuntoVenta.Views
             };
 
             await dialog.ShowAsync();
+        }
+
+        private async Task<bool> ConfirmAdminPasswordAsync()
+        {
+            var passwordBox = new PasswordBox();
+
+            var dialog = new ContentDialog
+            {
+                Title = "Confirmar administrador",
+                Content = passwordBox,
+                PrimaryButtonText = "Confirmar",
+                CloseButtonText = "Cancelar",
+                XamlRoot = this.Content.XamlRoot
+            };
+
+            var result = await dialog.ShowAsync();
+            if (result != ContentDialogResult.Primary)
+            {
+                return false;
+            }
+
+            string password = passwordBox.Password;
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                await ShowError("Todos los campos son obligatorios");
+                return false;
+            }
+
+            if (!ValidationHelper.IsValidPassword(password))
+            {
+                await ShowError("Contraseña incorrecta");
+                return false;
+            }
+
+            var users = await JsonService.LoadAsync<User>("users.json");
+            bool isAdmin = users.Any(u => u.Rol == "Admin" && u.Password == password);
+
+            if (!isAdmin)
+            {
+                await ShowError("Contraseña incorrecta");
+                return false;
+            }
+
+            return true;
         }
     }
 }
