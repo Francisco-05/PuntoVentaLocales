@@ -743,5 +743,39 @@
     "TotalBruto": 18499.99,
     "TotalCosto": 10000.0,
     "Utilidad": 8499.990000000002
+  },
+  {
+    "Id": 31,
+    "Details": [
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "Apple",
+        "PrecioUnitario": 18499.99,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 9,
+        "Subtotal": 166499.91,
+        "CostoTotal": 90000.0,
+        "Utilidad": 76499.91
+      },
+      {
+        "ProductId": 2,
+        "Nombre": "Laptop Ultrabook 14\"",
+        "Marca": "Dell",
+        "PrecioUnitario": 16200.0,
+        "CostoUnitario": 11700.0,
+        "Cantidad": 5,
+        "Subtotal": 81000.0,
+        "CostoTotal": 58500.0,
+        "Utilidad": 22500.0
+      }
+    ],
+    "Empleado": "Desconocido",
+    "Fecha": "2026-05-08T05:10:14.4599673-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 14,
+    "TotalBruto": 247499.91,
+    "TotalCosto": 148500.0,
+    "Utilidad": 98999.91000000002
   }
 ]
