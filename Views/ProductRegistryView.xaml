@@ -139,7 +139,8 @@
                                                     FontSize="12"
                                                     Padding="8,4"
                                                     CornerRadius="4"
-                                                    MinWidth="90"/>
+                                                    MinWidth="90"
+                                                    Click="Restock_Click"/>
                                             <Button Content="Eliminar"
                                                     Background="#EF4444"
                                                     Foreground="White"
