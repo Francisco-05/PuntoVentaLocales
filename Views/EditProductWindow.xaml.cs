@@ -181,6 +181,12 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            if (NameBox.Text.Trim().Length < 5)
+            {
+                await ShowError("El nombre del producto debe tener al menos 5 caracteres");
+                return;
+            }
+
             if (!double.TryParse(CostBox.Text, out double costo))
             {
                 await ShowError("Costo inválido");
