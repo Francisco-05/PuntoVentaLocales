@@ -1,41 +1,6 @@
 [
   {
     "Id": 1,
-<<<<<<< HEAD
-    "Nombre": "iPhone 15",
-    "Marca": "apple",
-    "Descripcion": "iPhone 15 128gb",
-    "Costo": 10000.0,
-    "PrecioVenta": 16000.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\7b0956e4-ac32-4dd0-9bdc-ee3d5a9bb667.jpg"
-  },
-  {
-    "Id": 2,
-    "Nombre": "AirPods 4",
-    "Marca": "Apple",
-    "Descripcion": "AirPods 4 con cancelacion de ruido",
-    "Costo": 1800.0,
-    "PrecioVenta": 2600.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\18747fa8-d711-4b97-9a65-293dc8d9ac94.jpg"
-  },
-  {
-    "Id": 3,
-    "Nombre": "Cargador iPhone (TIPO C)",
-    "Marca": "Apple",
-    "Descripcion": "Cargador de iPhone 20W  Original Tipo C",
-    "Costo": 200.0,
-    "PrecioVenta": 600.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\d6c2d27d-e8e6-41da-84c6-76f08a29884e.jpg"
-  },
-  {
-    "Id": 4,
-    "Nombre": "cargador",
-    "Marca": "Apple",
-    "Descripcion": "cargador apple",
-    "Costo": 100.0,
-    "PrecioVenta": 500.0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\6adc1545-2dc4-468d-a42e-42cea8fa972a.jpg"
-=======
     "Nombre": "iPhone 16",
     "Marca": "Apple",
     "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
@@ -83,6 +48,5 @@
     "PrecioVenta": 1070.0,
     "Existencias": 10,
     "Imagen": ""
->>>>>>> 92d392f15d5282491fd533c52164b95586c050ed
   }
 ]

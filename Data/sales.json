@@ -75,14 +75,10 @@
     "Fecha": "2026-05-04T19:09:27.1961052-06:00",
     "MetodoPago": "Efectivo",
     "TotalArticulos": 1,
-<<<<<<< HEAD
     "TotalBruto": 2600.0,
     "TotalCosto": 1800.0,
     "Utilidad": 800.0
-=======
-    "TotalBruto": 18000.0,
-    "TotalCosto": 8000.0,
-    "Utilidad": 10000.0
+
   },
   {
     "Id": 8,
@@ -657,6 +653,5 @@
     "TotalBruto": 247499.91,
     "TotalCosto": 148500.0,
     "Utilidad": 98999.91000000002
->>>>>>> 92d392f15d5282491fd533c52164b95586c050ed
   }
 ]
