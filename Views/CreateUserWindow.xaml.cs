@@ -5,8 +5,8 @@ using PuntoVenta.Models;
 using PuntoVenta.Services;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PuntoVenta.Views
 {
@@ -15,6 +15,13 @@ namespace PuntoVenta.Views
         public CreateUserWindow()
         {
             this.InitializeComponent();
+
+            // Fecha por defecto: usuario de 18 años
+            BirthDatePicker.Date = DateTimeOffset.Now.AddYears(-18);
+
+            // Evita seleccionar fechas futuras
+            BirthDatePicker.MaxDate = DateTimeOffset.Now;
+
             SetupEnterNavigation();
         }
 
@@ -84,7 +91,7 @@ namespace PuntoVenta.Views
         {
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
-          
+
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(NameBox.Text) ||
@@ -113,12 +120,21 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            if (!ValidationHelper.IsValidDateOfBirth(BirthDatePicker.Date.DateTime))
+            // Verifica que exista fecha seleccionada
+            if (BirthDatePicker.Date == null)
+            {
+                await ShowError("Selecciona una fecha de nacimiento.");
+                return;
+            }
+
+            DateTime birthDate = BirthDatePicker.Date.Value.DateTime;
+
+            if (!ValidationHelper.IsValidDateOfBirth(birthDate))
             {
                 await ShowError("La fecha no puede ser posterior a la actual.");
                 return;
             }
-            else if (!ValidationHelper.IsAdult(BirthDatePicker.Date.DateTime))
+            else if (!ValidationHelper.IsAdult(birthDate))
             {
                 await ShowError("El usuario debe ser mayor de edad.");
                 return;
@@ -138,7 +154,7 @@ namespace PuntoVenta.Views
                 Password = password,
                 NombreCompleto = NameBox.Text,
                 Telefono = PhoneBox.Text,
-                FechaNacimiento = BirthDatePicker.Date.DateTime,
+                FechaNacimiento = birthDate,
                 Rol = (RoleBox.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Empleado"
             };
 

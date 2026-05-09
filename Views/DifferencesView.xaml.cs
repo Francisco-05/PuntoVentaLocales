@@ -2,9 +2,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace PuntoVenta.Views
 {
@@ -12,14 +12,54 @@ namespace PuntoVenta.Views
     {
         private List<DiferenciaCaja> allData = new();
 
-        
         public DifferencesView()
         {
             this.InitializeComponent();
+
+            // Fecha por defecto
+            StartDate.Date = DateTimeOffset.Now.AddDays(-7);
+            EndDate.Date = DateTimeOffset.Now;
+
+            // Evita fechas futuras
+            StartDate.MaxDate = DateTimeOffset.Now;
+            EndDate.MaxDate = DateTimeOffset.Now;
+
+            SetupNavigation();
+
             LoadData();
         }
 
-        // Carga los datos desde el JSON y llena la lista y el filtro de empleados
+        private void SetupNavigation()
+        {
+            StartDate.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    EndDate.Focus(FocusState.Programmatic);
+                }
+            };
+
+            EndDate.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    EmployeeFilter.Focus(FocusState.Programmatic);
+                }
+            };
+
+            EmployeeFilter.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    Filter_Click(null, null);
+                }
+            };
+        }
+
+        // Carga los datos desde el JSON y llena la lista y el filtro
         private async void LoadData()
         {
             var data = await JsonService.LoadAsync<DiferenciaCaja>("diferenciasCaja.json");
@@ -31,7 +71,7 @@ namespace PuntoVenta.Views
 
             DifferencesList.ItemsSource = allData;
 
-            // Crear lista de empleados únicos para el filtro
+            // Lista de empleados únicos
             var empleados = allData
                 .Select(d => d.Empleado)
                 .Distinct()
@@ -48,16 +88,16 @@ namespace PuntoVenta.Views
             var filtered = allData.AsEnumerable();
 
             // Filtro fecha inicio
-            if (StartDate.Date != default(DateTimeOffset))
+            if (StartDate.Date != null)
             {
-                var start = StartDate.Date.Date;
+                var start = StartDate.Date.Value.Date;
                 filtered = filtered.Where(d => d.Fecha >= start);
             }
 
-            // Filtro fecha fin 
-            if (EndDate.Date != default(DateTimeOffset))
+            // Filtro fecha fin
+            if (EndDate.Date != null)
             {
-                var end = EndDate.Date.Date.AddDays(1);
+                var end = EndDate.Date.Value.Date.AddDays(1);
                 filtered = filtered.Where(d => d.Fecha < end);
             }
 

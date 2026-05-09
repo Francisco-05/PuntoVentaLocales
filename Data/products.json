@@ -1,17 +1,7 @@
 [
   {
-    "Id": 1,
-    "Nombre": "iPhone 16",
-    "Marca": "Apple",
-    "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
-    "Costo": 10000.0,
-    "PrecioVenta": 18499.99,
-    "Existencias": 11,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
-  },
-  {
     "Id": 2,
-    "Nombre": "Laptop Ultrabook 14\"",
+    "Nombre": "Laptop Ultrabook 14",
     "Marca": "Dell",
     "Descripcion": "Intel Core i5, 16GB RAM, 512GB SSD, pantalla FHD 14\"",
     "Costo": 11700.0,
@@ -48,5 +38,15 @@
     "PrecioVenta": 1070.0,
     "Existencias": 10,
     "Imagen": ""
+  },
+  {
+    "Id": 6,
+    "Nombre": "dskjhdskjjkdsdkjs",
+    "Marca": "kjsdjkdsjkdskjdskjds",
+    "Descripcion": "lkdskjdsjkldskjdsjk",
+    "Costo": 54.0,
+    "PrecioVenta": 5000.0,
+    "Existencias": 20,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8bf6d543-7fb3-4db1-976d-8e46d80d1fd8.jpg"
   }
 ]

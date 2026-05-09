@@ -24,7 +24,10 @@
                 <TextBox x:Name="NameBox" PlaceholderText="Nombre completo" Height="40"/>
                 <TextBox x:Name="PhoneBox" PlaceholderText="Teléfono" Height="40" MaxLength="10" BeforeTextChanging="PhoneBox_BeforeTextChanging"/>
 
-                <DatePicker x:Name="BirthDatePicker"/>
+                <CalendarDatePicker
+                     x:Name="BirthDatePicker"
+                     PlaceholderText="Fecha de nacimiento"
+                     HorizontalAlignment="Stretch"/>
 
                 <ComboBox x:Name="RoleBox">
                     <ComboBoxItem Content="Empleado"/>
