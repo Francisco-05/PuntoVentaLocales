@@ -15,9 +15,66 @@ namespace PuntoVenta.Views
         public CreateUserWindow()
         {
             this.InitializeComponent();
+            SetupEnterNavigation();
         }
 
-        
+        private void SetupEnterNavigation()
+        {
+            UsernameBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    PasswordBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            PasswordBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    NameBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            NameBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    PhoneBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            PhoneBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    BirthDatePicker.Focus(FocusState.Programmatic);
+                }
+            };
+
+            BirthDatePicker.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    RoleBox.Focus(FocusState.Programmatic);
+                }
+            };
+
+            RoleBox.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    Save_Click(null, null);
+                }
+            };
+        }
+
         private void PhoneBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));

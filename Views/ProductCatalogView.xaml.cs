@@ -44,6 +44,32 @@ namespace PuntoVenta.Views
 
             TotalText.Text = $"Total: {currentSale.TotalBruto:C2}";
         }
+
+        private async Task ShowError(string message)
+        {
+            await new ContentDialog
+            {
+                Title = "Error",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            }.ShowAsync();
+        }
+
+        private int GetAvailableStock(int productId)
+        {
+            var product = products?.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                return 0;
+            }
+
+            var inCart = currentSale.Details
+                .Where(d => d.ProductId == productId)
+                .Sum(d => d.Cantidad);
+
+            return Math.Max(0, product.Existencias - inCart);
+        }
         // Agregar producto al carrito
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
@@ -55,10 +81,22 @@ namespace PuntoVenta.Views
             // Si ya está en el carrito, solo aumentamos cantidad
             if (existing != null)
             {
+                if (GetAvailableStock(product.Id) <= 0)
+                {
+                    _ = ShowError("No hay existencias suficientes para agregar más unidades");
+                    return;
+                }
+
                 existing.Cantidad++;
             }
             else
             {
+                if (GetAvailableStock(product.Id) <= 0)
+                {
+                    _ = ShowError("No hay existencias disponibles para este producto");
+                    return;
+                }
+
                 currentSale.Details.Add(new SaleDetail
                 {
                     ProductId = product.Id,
@@ -78,6 +116,12 @@ namespace PuntoVenta.Views
         {
             var item = (sender as Button).DataContext as SaleDetail;
             if (item == null) return;
+
+            if (GetAvailableStock(item.ProductId) <= 0)
+            {
+                _ = ShowError("No hay existencias suficientes para agregar más unidades");
+                return;
+            }
 
             item.Cantidad++;
             RefreshCart();
@@ -222,6 +266,35 @@ namespace PuntoVenta.Views
 
             currentSale.Empleado = SessionService.CurrentUser?.NombreCompleto ?? "Desconocido";
             currentSale.Fecha = DateTime.Now;
+
+            var updatedProducts = await JsonService.LoadAsync<Product>("products.json");
+
+            foreach (var detail in currentSale.Details)
+            {
+                var product = updatedProducts.FirstOrDefault(p => p.Id == detail.ProductId);
+                if (product == null)
+                {
+                    await ShowError("Producto no encontrado en el inventario");
+                    return;
+                }
+
+                if (product.Existencias < detail.Cantidad)
+                {
+                    await ShowError("No hay existencias suficientes para completar la venta");
+                    return;
+                }
+            }
+
+            foreach (var detail in currentSale.Details)
+            {
+                var product = updatedProducts.First(p => p.Id == detail.ProductId);
+                product.Existencias -= detail.Cantidad;
+            }
+
+            await JsonService.SaveAsync("products.json", updatedProducts);
+            products = updatedProducts;
+            ProductsList.ItemsSource = null;
+            ProductsList.ItemsSource = products;
 
             await SaleService.AddAsync(currentSale);
 

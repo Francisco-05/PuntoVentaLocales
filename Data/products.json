@@ -1,6 +1,7 @@
 [
   {
     "Id": 1,
+<<<<<<< HEAD
     "Nombre": "iPhone 15",
     "Marca": "apple",
     "Descripcion": "iPhone 15 128gb",
@@ -34,5 +35,54 @@
     "Costo": 100.0,
     "PrecioVenta": 500.0,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\6adc1545-2dc4-468d-a42e-42cea8fa972a.jpg"
+=======
+    "Nombre": "iPhone 16",
+    "Marca": "Apple",
+    "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
+    "Costo": 10000.0,
+    "PrecioVenta": 18499.99,
+    "Existencias": 11,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Laptop Ultrabook 14\"",
+    "Marca": "Dell",
+    "Descripcion": "Intel Core i5, 16GB RAM, 512GB SSD, pantalla FHD 14\"",
+    "Costo": 11700.0,
+    "PrecioVenta": 16200.0,
+    "Existencias": 40,
+    "Imagen": ""
+  },
+  {
+    "Id": 3,
+    "Nombre": "Smartphone 5G 128GB",
+    "Marca": "Smartphone 5G 128GB",
+    "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
+    "Costo": 5800.0,
+    "PrecioVenta": 9100.0,
+    "Existencias": 12,
+    "Imagen": ""
+  },
+  {
+    "Id": 4,
+    "Nombre": "Impresora multifuncional",
+    "Marca": "HP",
+    "Descripcion": "Impresión, copia y escaneo, Wi‑Fi, tinta negra",
+    "Costo": 1200.0,
+    "PrecioVenta": 2000.0,
+    "Existencias": 10,
+    "Imagen": ""
+  },
+  {
+    "Id": 5,
+    "Nombre": "Cámara web 1080p",
+    "Marca": "Logitech",
+    "Descripcion": "Full HD, enfoque automático, micrófono dual",
+    "Costo": 590.0,
+    "PrecioVenta": 1070.0,
+    "Existencias": 10,
+    "Imagen": ""
+>>>>>>> 92d392f15d5282491fd533c52164b95586c050ed
   }
 ]

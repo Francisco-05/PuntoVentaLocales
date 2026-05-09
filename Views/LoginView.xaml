@@ -58,6 +58,30 @@
                     HorizontalAlignment="Center"
                     Click="Login_Click"/>
 
+                <Button 
+                    Content="Administrador"
+                    Height="45"
+                    FontSize="16"
+                    FontFamily="Arial"
+                    Background="WhiteSmoke"
+                    Foreground="Black"
+                    CornerRadius="8"
+                    Padding="20,10,20,10"
+                    HorizontalAlignment="Center"
+                    Click="AdminLogin_Click"/>
+
+                <Button 
+                    Content="Empleado"
+                    Height="45"
+                    FontSize="16"
+                    FontFamily="Arial"
+                    Background="WhiteSmoke"
+                    Foreground="Black"
+                    CornerRadius="8"
+                    Padding="20,10,20,10"
+                    HorizontalAlignment="Center"
+                    Click="EmployeeLogin_Click"/>
+
                 <TextBlock 
                     x:Name="ErrorText"
                     Foreground="DarkRed"

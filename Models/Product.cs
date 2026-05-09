@@ -9,6 +9,7 @@
         public string Descripcion { get; set; } = "";
         public double Costo { get; set; }
         public double PrecioVenta { get; set; }
+        public int Existencias { get; set; }
         public string Imagen { get; set; } = "";
     }
 }
