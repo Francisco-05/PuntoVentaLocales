@@ -32,12 +32,12 @@
 
             <StackPanel>
                 <TextBlock Text="Desde"/>
-                <DatePicker x:Name="StartDate"/>
+                <CalendarDatePicker x:Name="StartDate"/>
             </StackPanel>
 
             <StackPanel>
                 <TextBlock Text="Hasta"/>
-                <DatePicker x:Name="EndDate"/>
+                <CalendarDatePicker x:Name="EndDate"/>
             </StackPanel>
 
             <StackPanel>

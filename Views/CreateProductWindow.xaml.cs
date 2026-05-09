@@ -157,7 +157,7 @@ namespace PuntoVenta.Views
                     "PuntoVenta",
                     "Products"
                 );
-
+                
                 if (!Directory.Exists(assetsFolder))
                     Directory.CreateDirectory(assetsFolder);
 

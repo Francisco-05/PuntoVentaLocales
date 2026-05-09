@@ -5,8 +5,8 @@ using PuntoVenta.Models;
 using PuntoVenta.Services;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PuntoVenta.Views
 {
@@ -15,43 +15,6 @@ namespace PuntoVenta.Views
         public CreateUserWindow()
         {
             this.InitializeComponent();
-
-            // 🔥 BLOQUEAR ESPACIOS AL INICIO
-            UsernameBox.TextChanging += (s, e) =>
-            {
-                if (UsernameBox.Text.StartsWith(" "))
-                {
-                    UsernameBox.Text = UsernameBox.Text.TrimStart();
-                    UsernameBox.SelectionStart = UsernameBox.Text.Length;
-                }
-            };
-
-            PasswordBox.PasswordChanged += (s, e) =>
-            {
-                if (PasswordBox.Password.StartsWith(" "))
-                {
-                    PasswordBox.Password = PasswordBox.Password.TrimStart();
-                }
-            };
-
-            NameBox.TextChanging += (s, e) =>
-            {
-                if (NameBox.Text.StartsWith(" "))
-                {
-                    NameBox.Text = NameBox.Text.TrimStart();
-                    NameBox.SelectionStart = NameBox.Text.Length;
-                }
-            };
-
-            PhoneBox.TextChanging += (s, e) =>
-            {
-                if (PhoneBox.Text.StartsWith(" "))
-                {
-                    PhoneBox.Text = PhoneBox.Text.TrimStart();
-                    PhoneBox.SelectionStart = PhoneBox.Text.Length;
-                }
-            };
-
             SetupEnterNavigation();
         }
 
@@ -150,12 +113,21 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            if (!ValidationHelper.IsValidDateOfBirth(BirthDatePicker.Date.DateTime))
+            // Verifica que exista fecha seleccionada
+            if (BirthDatePicker.Date == null)
+            {
+                await ShowError("Selecciona una fecha de nacimiento.");
+                return;
+            }
+
+            DateTime birthDate = BirthDatePicker.Date.Value.DateTime;
+
+            if (!ValidationHelper.IsValidDateOfBirth(birthDate))
             {
                 await ShowError("La fecha no puede ser posterior a la actual.");
                 return;
             }
-            else if (!ValidationHelper.IsAdult(BirthDatePicker.Date.DateTime))
+            else if (!ValidationHelper.IsAdult(birthDate))
             {
                 await ShowError("El usuario debe ser mayor de edad.");
                 return;
@@ -175,7 +147,7 @@ namespace PuntoVenta.Views
                 Password = password,
                 NombreCompleto = NameBox.Text,
                 Telefono = PhoneBox.Text,
-                FechaNacimiento = BirthDatePicker.Date.DateTime,
+                FechaNacimiento = birthDate,
                 Rol = (RoleBox.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Empleado"
             };
 
