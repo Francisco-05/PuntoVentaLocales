@@ -20,6 +20,62 @@ namespace PuntoVenta.Views
         public CreateProductWindow()
         {
             this.InitializeComponent();
+
+            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER
+            NameBox.TextChanging += (s, e) =>
+            {
+                if (NameBox.Text.StartsWith(" "))
+                {
+                    NameBox.Text = NameBox.Text.TrimStart();
+                    NameBox.SelectionStart = NameBox.Text.Length;
+                }
+            };
+
+            BrandBox.TextChanging += (s, e) =>
+            {
+                if (BrandBox.Text.StartsWith(" "))
+                {
+                    BrandBox.Text = BrandBox.Text.TrimStart();
+                    BrandBox.SelectionStart = BrandBox.Text.Length;
+                }
+            };
+
+            DescBox.TextChanging += (s, e) =>
+            {
+                if (DescBox.Text.StartsWith(" "))
+                {
+                    DescBox.Text = DescBox.Text.TrimStart();
+                    DescBox.SelectionStart = DescBox.Text.Length;
+                }
+            };
+
+            CostBox.TextChanging += (s, e) =>
+            {
+                if (CostBox.Text.StartsWith(" "))
+                {
+                    CostBox.Text = CostBox.Text.TrimStart();
+                    CostBox.SelectionStart = CostBox.Text.Length;
+                }
+            };
+
+            PriceBox.TextChanging += (s, e) =>
+            {
+                if (PriceBox.Text.StartsWith(" "))
+                {
+                    PriceBox.Text = PriceBox.Text.TrimStart();
+                    PriceBox.SelectionStart = PriceBox.Text.Length;
+                }
+            };
+
+            ImageBox.TextChanging += (s, e) =>
+            {
+                if (ImageBox.Text.StartsWith(" "))
+                {
+                    ImageBox.Text = ImageBox.Text.TrimStart();
+                    ImageBox.SelectionStart = ImageBox.Text.Length;
+                }
+            };
+
             SetupEnterNavigation();
         }
 
@@ -96,7 +152,6 @@ namespace PuntoVenta.Views
 
             if (file != null)
             {
-                // Ruta segura: Guardar en carpeta de documentos del usuario
                 string assetsFolder = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     "PuntoVenta",
@@ -109,41 +164,38 @@ namespace PuntoVenta.Views
                 string newFileName = Guid.NewGuid() + Path.GetExtension(file.Name);
                 string destinationPath = Path.Combine(assetsFolder, newFileName);
 
-                // Copiar imagen de forma segura
                 using (var stream = await file.OpenStreamForReadAsync())
                 using (var fileStream = File.Create(destinationPath))
                 {
                     await stream.CopyToAsync(fileStream);
                 }
 
-              
-                selectedImagePath = destinationPath; 
-                ImageBox.Text = newFileName;         
+                selectedImagePath = destinationPath;
+                ImageBox.Text = newFileName;
             }
         }
+
         private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             string text = args.NewText;
 
-            // Permitir solo números y punto
             if (text.Any(c => !char.IsDigit(c) && c != '.'))
             {
                 args.Cancel = true;
                 return;
             }
 
-            // Permitir solo un punto decimal
             if (text.Count(c => c == '.') > 1)
             {
                 args.Cancel = true;
             }
         }
-        // guardar producto
+
+        // Guardar producto
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             var products = await JsonService.LoadAsync<Product>("products.json");
 
-            // Campos obligatorios
             if (string.IsNullOrWhiteSpace(NameBox.Text) ||
                 string.IsNullOrWhiteSpace(BrandBox.Text) ||
                 string.IsNullOrWhiteSpace(CostBox.Text) ||
@@ -159,7 +211,6 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // numeros válidos
             if (!double.TryParse(CostBox.Text, out double costo))
             {
                 await ShowError("Costo inválido");
@@ -183,13 +234,13 @@ namespace PuntoVenta.Views
                 await ShowError("El precio de venta no puede ser igual o menor al costo");
                 return;
             }
+
             if (costo < 1)
             {
                 await ShowError("El costo no puede ser menor a $1.00");
                 return;
             }
 
-            // Verificar duplicados (nombre + marca)
             bool exists = products.Exists(p =>
                 p.Nombre.ToLower() == NameBox.Text.ToLower() &&
                 p.Marca.ToLower() == BrandBox.Text.ToLower()
@@ -220,7 +271,6 @@ namespace PuntoVenta.Views
             this.Close();
         }
 
-     
         private async Task ShowError(string message)
         {
             ContentDialog dialog = new ContentDialog

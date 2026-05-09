@@ -48,5 +48,26 @@
     "PrecioVenta": 1070.0,
     "Existencias": 10,
     "Imagen": ""
+  },
+  {
+    "Id": 6,
+    "Nombre": "AirPods Pro 3",
+    "Marca": "Apple",
+    "Descripcion": "Audio tridimensional de alta definición para una experiencia espacial fuera de serie en tus oídos",
+    "Costo": 800.0,
+    "PrecioVenta": 5799.0,
+    "Existencias": 3,
+    "Imagen": ""
+  },
+  {
+    "Id": 7,
+    "Nombre": "Teclado mecanico",
+    "Marca": "Redragon",
+    "Descripcion": "reconocidos por su excelente relación calidad-precio, ofreciendo durabilidad, switches mecánicos",
+    "Costo": 300.0,
+    "PrecioVenta": 599.0,
+    "Existencias": 5,
+    "Imagen": ""
   }
+
 ]

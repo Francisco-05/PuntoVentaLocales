@@ -11,9 +11,12 @@ namespace PuntoVenta.Views
 {
     public sealed partial class ProductCatalogView : Page
     {
-        private List<Product> products;
+        private List<Product> products = new List<Product>();
 
-        //Venta actual (carrito)
+        private int currentPage = 1;
+        private int productsPerPage = 6;
+
+        // Venta actual (carrito)
         private Sale currentSale = new Sale
         {
             Details = new List<SaleDetail>(),
@@ -32,8 +35,41 @@ namespace PuntoVenta.Views
         // Cargar productos desde JSON
         private async void LoadProducts()
         {
-            products = await JsonService.LoadAsync<Product>("products.json");
-            ProductsList.ItemsSource = products;
+            products = await JsonService.LoadAsync<Product>("products.json") ?? new List<Product>();
+            currentPage = 1;
+            ShowProductsPage();
+        }
+
+        // Mostrar productos por página
+        private void ShowProductsPage()
+        {
+            var paginatedProducts = products
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
+                .ToList();
+
+            ProductsList.ItemsSource = paginatedProducts;
+
+            PreviousPageButton.IsEnabled = currentPage > 1;
+            NextPageButton.IsEnabled = currentPage * productsPerPage < products.Count;
+        }
+
+        private void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                ShowProductsPage();
+            }
+        }
+
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage * productsPerPage < products.Count)
+            {
+                currentPage++;
+                ShowProductsPage();
+            }
         }
 
         // Refrescar vista del carrito
@@ -70,15 +106,16 @@ namespace PuntoVenta.Views
 
             return Math.Max(0, product.Existencias - inCart);
         }
+
         // Agregar producto al carrito
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
-            var product = (sender as Button).DataContext as Product;
+            var product = (sender as Button)?.DataContext as Product;
             if (product == null) return;
 
             var existing = currentSale.Details
                 .FirstOrDefault(d => d.ProductId == product.Id);
-            // Si ya está en el carrito, solo aumentamos cantidad
+
             if (existing != null)
             {
                 if (GetAvailableStock(product.Id) <= 0)
@@ -111,10 +148,10 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // Aumentar o disminuir cantidad desde el carrito
+        // Aumentar cantidad desde el carrito
         private void Increase_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as Button).DataContext as SaleDetail;
+            var item = (sender as Button)?.DataContext as SaleDetail;
             if (item == null) return;
 
             if (GetAvailableStock(item.ProductId) <= 0)
@@ -130,7 +167,7 @@ namespace PuntoVenta.Views
         // Disminuir cantidad o eliminar del carrito
         private void Decrease_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as Button).DataContext as SaleDetail;
+            var item = (sender as Button)?.DataContext as SaleDetail;
             if (item == null) return;
 
             item.Cantidad--;
@@ -143,7 +180,7 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // confirmar venta
+        // Confirmar venta
         private async void ConfirmSale_Click(object sender, RoutedEventArgs e)
         {
             if (!currentSale.Details.Any())
@@ -176,7 +213,6 @@ namespace PuntoVenta.Views
             double efectivoRecibidoFinal = 0;
             double cambioFinal = 0;
 
-            // Si elige efectivo, pedir monto recibido y calcular cambio
             if (result == ContentDialogResult.Primary)
             {
                 currentSale.MetodoPago = "Efectivo";
@@ -188,12 +224,10 @@ namespace PuntoVenta.Views
 
                 var cambioText = new TextBlock
                 {
-                    // Iniciar con cambio en $0.00
                     Text = "Cambio: $0.00",
                     FontWeight = Microsoft.UI.Text.FontWeights.Bold
                 };
 
-                // Validación: solo números y un punto decimal
                 efectivoBox.BeforeTextChanging += (s, e2) =>
                 {
                     string text = e2.NewText;
@@ -205,6 +239,11 @@ namespace PuntoVenta.Views
                     }
 
                     if (text.Count(c => c == '.') > 1)
+                    {
+                        e2.Cancel = true;
+                    }
+
+                    if (text.StartsWith("."))
                     {
                         e2.Cancel = true;
                     }
@@ -224,7 +263,6 @@ namespace PuntoVenta.Views
                     IsPrimaryButtonEnabled = false
                 };
 
-                // Calcular cambio en tiempo real
                 efectivoBox.TextChanged += (s, ev) =>
                 {
                     if (double.TryParse(efectivoBox.Text, out double efectivo))
@@ -238,7 +276,6 @@ namespace PuntoVenta.Views
 
                         efectivoDialog.IsPrimaryButtonEnabled = efectivo >= currentSale.TotalBruto;
 
-                        // guardar directo aquí (ya válido)
                         if (efectivo >= currentSale.TotalBruto)
                         {
                             efectivoRecibidoFinal = efectivo;
@@ -247,7 +284,6 @@ namespace PuntoVenta.Views
                     }
                     else
                     {
-                        // Si no es un número válido, resetear cambio y deshabilitar botón
                         cambioText.Text = "Cambio: $0.00";
                         efectivoDialog.IsPrimaryButtonEnabled = false;
                     }
@@ -260,14 +296,13 @@ namespace PuntoVenta.Views
             }
             else
             {
-                // Si elige tarjeta, solo asignar método de pago
                 currentSale.MetodoPago = "Tarjeta";
             }
 
             currentSale.Empleado = SessionService.CurrentUser?.NombreCompleto ?? "Desconocido";
             currentSale.Fecha = DateTime.Now;
 
-            var updatedProducts = await JsonService.LoadAsync<Product>("products.json");
+            var updatedProducts = await JsonService.LoadAsync<Product>("products.json") ?? new List<Product>();
 
             foreach (var detail in currentSale.Details)
             {
@@ -293,12 +328,10 @@ namespace PuntoVenta.Views
 
             await JsonService.SaveAsync("products.json", updatedProducts);
             products = updatedProducts;
-            ProductsList.ItemsSource = null;
-            ProductsList.ItemsSource = products;
+            ShowProductsPage();
 
             await SaleService.AddAsync(currentSale);
 
-            // Mostrar resumen de venta
             string mensaje = $"Total: {currentSale.TotalBruto:C2}\nPago: {currentSale.MetodoPago}";
 
             if (currentSale.MetodoPago == "Efectivo")
@@ -323,20 +356,32 @@ namespace PuntoVenta.Views
 
             RefreshCart();
         }
+
         private async void CashCut_Click(object sender, RoutedEventArgs e)
         {
             var currentUser = SessionService.CurrentUser;
 
-            // Validar contraseña antes de corte de caja
+            if (currentUser == null)
+            {
+                await ShowError("No hay usuario en sesión.");
+                return;
+            }
+
             var passwordBox = new PasswordBox();
 
             var authDialog = new ContentDialog
             {
-                Title = "Confirmar identidad (ingresa tu contraseña)",
+                Title = "Confirmar identidad",
                 Content = passwordBox,
                 PrimaryButtonText = "Continuar",
                 CloseButtonText = "Cancelar",
-                XamlRoot = this.XamlRoot
+                XamlRoot = this.XamlRoot,
+                IsPrimaryButtonEnabled = false
+            };
+
+            passwordBox.PasswordChanged += (s, ev) =>
+            {
+                authDialog.IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(passwordBox.Password);
             };
 
             var authResult = await authDialog.ShowAsync();
@@ -344,22 +389,14 @@ namespace PuntoVenta.Views
             if (authResult != ContentDialogResult.Primary)
                 return;
 
-            
             var user = await UserService.Login(currentUser.Username, passwordBox.Password);
 
             if (user == null)
             {
-                await new ContentDialog
-                {
-                    Title = "Error",
-                    Content = "Contraseña incorrecta",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.XamlRoot
-                }.ShowAsync();
+                await ShowError("Contraseña incorrecta");
                 return;
             }
 
-            // Cargar todas las ventas del sistema para el corte de caja
             var sales = await JsonService.LoadAsync<Sale>("sales.json") ?? new List<Sale>();
 
             var inicio = SessionService.LoginTime;
@@ -377,13 +414,11 @@ namespace PuntoVenta.Views
                 .Where(v => v.MetodoPago == "Efectivo")
                 .Sum(v => v.TotalBruto);
 
-            // Pedir efectivo real en caja
             var efectivoBox = new TextBox
             {
                 PlaceholderText = "Ingrese efectivo en caja"
             };
 
-            // solo números y un punto decimal
             efectivoBox.BeforeTextChanging += (s, e2) =>
             {
                 string text = e2.NewText;
@@ -405,7 +440,6 @@ namespace PuntoVenta.Views
                 }
             };
 
-            // Validación: no permitir confirmar si el campo está vacío o no es un número válido
             var panel = new StackPanel();
             panel.Children.Add(efectivoBox);
 
@@ -415,7 +449,16 @@ namespace PuntoVenta.Views
                 Content = panel,
                 PrimaryButtonText = "Confirmar corte",
                 CloseButtonText = "Cancelar",
-                XamlRoot = this.XamlRoot
+                XamlRoot = this.XamlRoot,
+                IsPrimaryButtonEnabled = false
+            };
+
+            efectivoBox.TextChanged += (s, ev) =>
+            {
+                cashDialog.IsPrimaryButtonEnabled =
+                    !string.IsNullOrWhiteSpace(efectivoBox.Text) &&
+                    double.TryParse(efectivoBox.Text, out double efectivoReal) &&
+                    efectivoReal >= 0;
             };
 
             var cashResult = await cashDialog.ShowAsync();
@@ -423,13 +466,14 @@ namespace PuntoVenta.Views
             if (cashResult != ContentDialogResult.Primary)
                 return;
 
-            // Validar que el valor ingresado sea un número válido
-            if (!double.TryParse(efectivoBox.Text, out double efectivoReal))
-                efectivoReal = 0;
+            if (!double.TryParse(efectivoBox.Text, out double efectivoRealFinal))
+            {
+                await ShowError("Debes ingresar el efectivo en caja.");
+                return;
+            }
 
-            double diferenciaFinal = efectivoReal - efectivoSistema;
+            double diferenciaFinal = efectivoRealFinal - efectivoSistema;
 
-            // Guardar diferencia en JSON
             var diferencias = await JsonService.LoadAsync<DiferenciaCaja>("diferenciasCaja.json")
                               ?? new List<DiferenciaCaja>();
 
@@ -441,7 +485,7 @@ namespace PuntoVenta.Views
                 InicioSesion = inicio,
                 FinSesion = fin,
                 EfectivoSistema = efectivoSistema,
-                EfectivoReal = efectivoReal,
+                EfectivoReal = efectivoRealFinal,
                 Diferencia = diferenciaFinal
             };
 
@@ -449,7 +493,6 @@ namespace PuntoVenta.Views
 
             await JsonService.SaveAsync("diferenciasCaja.json", diferencias);
 
-            // Mostrar reporte de corte
             string reporte =
                 $"Empleado: {currentUser.NombreCompleto}\n" +
                 $"Inicio: {inicio}\n" +
@@ -458,7 +501,7 @@ namespace PuntoVenta.Views
                 $"Total vendido: {totalBruto:C2}\n" +
                 $"Utilidad: {utilidad:C2}\n\n" +
                 $"Efectivo en caja (Sistema): {efectivoSistema:C2}\n" +
-                $"Efectivo en caja (Físico): {efectivoReal:C2}\n" +
+                $"Efectivo en caja (Físico): {efectivoRealFinal:C2}\n" +
                 $"Diferencia: {diferenciaFinal:C2}";
 
             await new ContentDialog
@@ -469,13 +512,10 @@ namespace PuntoVenta.Views
                 XamlRoot = this.XamlRoot
             }.ShowAsync();
 
-            // cerrar sesión después del corte de caja
             SessionService.CurrentUser = null;
             SessionService.LoginTime = DateTime.MinValue;
 
-            // redireccionar a login
             MainWindow.Instance.MainFrameControl.Navigate(typeof(LoginView));
         }
-
     }
 }

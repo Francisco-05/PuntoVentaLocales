@@ -20,8 +20,9 @@
                        Foreground="White"
                        FontSize="14"
                        FontWeight="SemiBold"
-                       HorizontalAlignment="Right"/>
-            
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+
             <Button Content="Cortar Caja"
                     Width="200"
                     Height="45"
@@ -38,56 +39,100 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer Grid.Column="0">
-                <ItemsControl x:Name="ProductsList">
+            <!-- PRODUCTOS -->
+            <Grid Grid.Column="0">
 
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapGrid />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                <ScrollViewer Grid.Row="0">
+                    <ItemsControl x:Name="ProductsList">
 
-                            <Border Margin="10"
-                                    Padding="10"
-                                    Background="White"
-                                    CornerRadius="12"
-                                    Width="200">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Horizontal"
+                                          MaximumRowsOrColumns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                                <StackPanel Spacing="8">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
 
-                                    <Image Source="{Binding Imagen}"
-                                           Height="120"
-                                           Stretch="UniformToFill"/>
+                                <Border Margin="10"
+                                        Padding="10"
+                                        Background="White"
+                                        BorderBrush="#D1D5DB"
+                                        BorderThickness="1"
+                                        CornerRadius="10"
+                                        Width="200"
+                                        Height="260">
 
-                                    <TextBlock Text="{Binding Nombre}"
-                                               FontWeight="Bold"/>
+                                    <StackPanel Spacing="6">
 
-                                    <TextBlock Text="{Binding Marca}"
-                                               Foreground="Gray"/>
+                                        <Image Source="{Binding Imagen}"
+                                               Height="110"
+                                               Stretch="UniformToFill"/>
 
-                                    <TextBlock Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
-                                               Foreground="Green"
-                                               FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding Nombre}"
+                                                   FontWeight="Bold"
+                                                   TextWrapping="Wrap"/>
 
-                                    <Button Content="Agregar"
-                                            Click="AddToCart_Click"
-                                            Background="#10B981"
-                                            Foreground="White"/>
+                                        <TextBlock Text="{Binding Marca}"
+                                                   Foreground="Gray"/>
 
-                                </StackPanel>
+                                        <TextBlock Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
+                                                   Foreground="#10B981"
+                                                   FontWeight="SemiBold"/>
 
-                            </Border>
+                                        <Button Content="Agregar"
+                                                Height="32"
+                                                Click="AddToCart_Click"
+                                                Background="#10B981"
+                                                Foreground="White"
+                                                CornerRadius="6"/>
 
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                                    </StackPanel>
 
-                </ItemsControl>
-            </ScrollViewer>
+                                </Border>
 
-            <Grid Grid.Column="1" Background="White" Padding="10">
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <!-- PAGINACIÓN -->
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Spacing="40"
+                            Margin="0,10">
+
+                    <Button x:Name="PreviousPageButton"
+                            Content="&lt;"
+                            Width="45"
+                            Height="45"
+                            FontSize="20"
+                            CornerRadius="25"
+                            Click="PreviousPage_Click"/>
+
+                    <Button x:Name="NextPageButton"
+                            Content="&gt;"
+                            Width="45"
+                            Height="45"
+                            FontSize="20"
+                            CornerRadius="25"
+                            Click="NextPage_Click"/>
+                </StackPanel>
+
+            </Grid>
+
+            <!-- CARRITO -->
+            <Grid Grid.Column="1"
+                  Background="White"
+                  Padding="10">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -100,41 +145,69 @@
                            FontWeight="Bold"
                            Margin="0,0,0,10"/>
 
+
                 <ListView x:Name="CartList"
-                          Grid.Row="1">
+                          Grid.Row="1"
+                          HorizontalContentAlignment="Stretch">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
 
-                            <Grid Margin="5">
+                            <Grid Margin="6"
+                                  HorizontalAlignment="Stretch">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="40"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel>
+                                <!-- PRODUCTO -->
+                                <StackPanel Grid.Column="0"
+                                            VerticalAlignment="Center">
+
                                     <TextBlock Text="{Binding Nombre}"
-                                               FontWeight="SemiBold"/>
+                                               FontWeight="SemiBold"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="CharacterEllipsis"/>
 
                                     <TextBlock Text="{Binding PrecioUnitario, Converter={StaticResource CurrencyConverter}}"
                                                Foreground="Gray"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="1"
-                                            Orientation="Horizontal"
-                                            Spacing="5"
-                                            VerticalAlignment="Center">
+                                <!-- MENOS -->
+                                <Button Grid.Column="1"
+                                        Content="-"
+                                        Width="30"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Click="Decrease_Click"/>
 
-                                    <Button Content="-" Width="30" Click="Decrease_Click"/>
+                                <!-- CANTIDAD -->
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Cantidad}"
+                                           Width="30"
+                                           TextAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Bold"/>
 
-                                    <TextBlock Text="{Binding Cantidad}"
-                                               Width="30"
-                                               TextAlignment="Center"/>
-
-                                    <Button Content="+" Width="30" Click="Increase_Click"/>
-
-                                </StackPanel>
+                                <!-- MÁS -->
+                                <Button Grid.Column="3"
+                                        Content="+"
+                                        Width="30"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Click="Increase_Click"/>
 
                             </Grid>
 
@@ -143,9 +216,11 @@
 
                 </ListView>
 
-                <StackPanel Grid.Row="2" Margin="0,10,0,0">
+                <StackPanel Grid.Row="2"
+                            Margin="0,10,0,0">
 
                     <TextBlock x:Name="TotalText"
+                               Text="Total: $0.00"
                                FontSize="18"
                                FontWeight="Bold"
                                Margin="0,0,0,10"/>
@@ -154,6 +229,7 @@
                             Background="#2563EB"
                             Foreground="White"
                             Height="40"
+                            CornerRadius="6"
                             Click="ConfirmSale_Click"/>
                 </StackPanel>
 

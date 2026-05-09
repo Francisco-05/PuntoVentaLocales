@@ -15,6 +15,43 @@ namespace PuntoVenta.Views
         public CreateUserWindow()
         {
             this.InitializeComponent();
+
+            // 🔥 BLOQUEAR ESPACIOS AL INICIO
+            UsernameBox.TextChanging += (s, e) =>
+            {
+                if (UsernameBox.Text.StartsWith(" "))
+                {
+                    UsernameBox.Text = UsernameBox.Text.TrimStart();
+                    UsernameBox.SelectionStart = UsernameBox.Text.Length;
+                }
+            };
+
+            PasswordBox.PasswordChanged += (s, e) =>
+            {
+                if (PasswordBox.Password.StartsWith(" "))
+                {
+                    PasswordBox.Password = PasswordBox.Password.TrimStart();
+                }
+            };
+
+            NameBox.TextChanging += (s, e) =>
+            {
+                if (NameBox.Text.StartsWith(" "))
+                {
+                    NameBox.Text = NameBox.Text.TrimStart();
+                    NameBox.SelectionStart = NameBox.Text.Length;
+                }
+            };
+
+            PhoneBox.TextChanging += (s, e) =>
+            {
+                if (PhoneBox.Text.StartsWith(" "))
+                {
+                    PhoneBox.Text = PhoneBox.Text.TrimStart();
+                    PhoneBox.SelectionStart = PhoneBox.Text.Length;
+                }
+            };
+
             SetupEnterNavigation();
         }
 
@@ -84,7 +121,7 @@ namespace PuntoVenta.Views
         {
             string username = UsernameBox.Text;
             string password = PasswordBox.Password;
-          
+
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(NameBox.Text) ||

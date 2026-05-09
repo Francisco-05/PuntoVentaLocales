@@ -1,10 +1,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using PuntoVenta.Helpers;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
 using System;
-using System.Collections.Generic;
 
 namespace PuntoVenta.Views
 {
@@ -13,6 +11,26 @@ namespace PuntoVenta.Views
         public LoginView()
         {
             this.InitializeComponent();
+
+            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER (USERNAME)
+            UsernameBox.TextChanging += (s, e) =>
+            {
+                if (UsernameBox.Text.StartsWith(" "))
+                {
+                    UsernameBox.Text = UsernameBox.Text.TrimStart();
+                    UsernameBox.SelectionStart = UsernameBox.Text.Length;
+                }
+            };
+
+            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER (PASSWORD)
+            PasswordBox.PasswordChanged += (s, e) =>
+            {
+                if (PasswordBox.Password.StartsWith(" "))
+                {
+                    PasswordBox.Password = PasswordBox.Password.TrimStart();
+                }
+            };
+
             Init();
         }
 
@@ -57,6 +75,7 @@ namespace PuntoVenta.Views
 
             // Guardar usuario en sesión
             SessionService.CurrentUser = user;
+
             // Guardar hora de login
             SessionService.LoginTime = DateTime.Now;
 
@@ -67,7 +86,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // EMPLEADO 
+            // EMPLEADO
             if (user.Rol == "Empleado")
             {
                 MainWindow.Instance.MainFrameControl.Navigate(typeof(ProductCatalogView));
