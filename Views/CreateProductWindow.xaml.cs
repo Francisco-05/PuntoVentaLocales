@@ -21,7 +21,7 @@ namespace PuntoVenta.Views
         {
             this.InitializeComponent();
 
-            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER
+           
             NameBox.TextChanging += (s, e) =>
             {
                 if (NameBox.Text.StartsWith(" "))
