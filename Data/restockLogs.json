@@ -106,5 +106,23 @@
     "ExistenciasFinales": 52,
     "FechaModificacion": "2026-05-10T03:15:14.6127439-06:00",
     "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "c70f722d-d210-4e79-8f58-86a58d3e07d3",
+    "Producto": "Smartphone 5G 128GB1",
+    "ExistenciasIniciales": 12,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 22,
+    "FechaModificacion": "2026-05-10T16:55:34.0783362-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "7bc3bfcf-1098-458c-bb96-0f13dec54d03",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 52,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 53,
+    "FechaModificacion": "2026-05-10T16:55:45.9530224-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   }
 ]

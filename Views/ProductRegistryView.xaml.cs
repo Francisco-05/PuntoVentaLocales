@@ -3,8 +3,8 @@ using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Helpers;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,108 +12,400 @@ namespace PuntoVenta.Views
 {
     public sealed partial class ProductRegistryView : Page
     {
+        // =========================================
+        // LISTAS
+        // =========================================
+
         private List<Product> products = new();
+
+        private List<User> users = new();
 
         public ProductRegistryView()
         {
             this.InitializeComponent();
+
             LoadProducts();
+
+            LoadUsers();
         }
+
+        // =========================================
+        // CARGAR PRODUCTOS
+        // =========================================
 
         private async void LoadProducts()
         {
-            products = await JsonService.LoadAsync<Product>("products.json");
+            products =
+                await JsonService.LoadAsync<Product>(
+                    "products.json"
+                );
+
             ProductsList.ItemsSource = products;
         }
 
-        private void Modify_Click(object sender, RoutedEventArgs e)
+        // =========================================
+        // CARGAR USUARIOS
+        // =========================================
+
+        private async void LoadUsers()
         {
-            if (sender is Button button && button.DataContext is Product product)
+            users =
+                await JsonService.LoadAsync<User>(
+                    "users.json"
+                );
+
+            UsersList.ItemsSource = users;
+        }
+
+        // =========================================
+        // CAMBIAR A PRODUCTOS
+        // =========================================
+
+        private void ProductsButton_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            ProductsSection.Visibility =
+                Visibility.Visible;
+
+            UsersSection.Visibility =
+                Visibility.Collapsed;
+
+            TitleText.Text =
+                "Registro de productos";
+
+            SubtitleText.Text =
+                "Consulta y administra productos";
+        }
+
+        // =========================================
+        // CAMBIAR A USUARIOS
+        // =========================================
+
+        private void UsersButton_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            ProductsSection.Visibility =
+                Visibility.Collapsed;
+
+            UsersSection.Visibility =
+                Visibility.Visible;
+
+            TitleText.Text =
+                "Registro de usuarios";
+
+            SubtitleText.Text =
+                "Consulta y administra usuarios";
+        }
+
+        // =========================================
+        // MODIFICAR PRODUCTO
+        // =========================================
+
+        private void Modify_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            if (
+                sender is Button button &&
+                button.DataContext is Product product
+            )
             {
-                var win = new EditProductWindow(product);
+                var win =
+                    new EditProductWindow(product);
+
                 win.Activate();
             }
         }
 
-        private async void Restock_Click(object sender, RoutedEventArgs e)
+        // =========================================
+        // REABASTECIMIENTO
+        // =========================================
+
+        private async void Restock_Click(
+            object sender,
+            RoutedEventArgs e
+        )
         {
-            if (sender is not Button button || button.DataContext is not Product product)
+            if (
+                sender is not Button button ||
+                button.DataContext is not Product product
+            )
             {
                 return;
             }
 
             var amountBox = new TextBox
             {
-                PlaceholderText = "Cantidad a añadir"
+                PlaceholderText =
+                    "Cantidad a añadir"
             };
 
-            amountBox.BeforeTextChanging += (s, e2) =>
-            {
-                string text = e2.NewText;
-
-                if (text.Any(c => !char.IsDigit(c)))
-                {
-                    e2.Cancel = true;
-                }
-            };
+            amountBox.BeforeTextChanging +=
+                OnlyNumbers_BeforeTextChanging;
 
             var dialog = new ContentDialog
             {
                 Title = "Reabastecimiento",
+
                 Content = amountBox,
+
                 PrimaryButtonText = "Agregar",
+
                 CloseButtonText = "Cancelar",
+
                 XamlRoot = this.XamlRoot
             };
 
-            var result = await dialog.ShowAsync();
+            var result =
+                await dialog.ShowAsync();
 
-            if (result != ContentDialogResult.Primary)
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
             {
                 return;
             }
 
-            if (!int.TryParse(amountBox.Text, out int amount) || amount <= 0)
+            if (
+                !int.TryParse(
+                    amountBox.Text,
+                    out int amount
+                ) ||
+                amount <= 0
+            )
             {
-                await new ContentDialog
-                {
-                    Title = "Error",
-                    Content = "Ingresa una cantidad válida mayor a 0",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.XamlRoot
-                }.ShowAsync();
+                await ShowError(
+                    "Ingresa una cantidad válida mayor a 0"
+                );
 
                 return;
             }
 
-            if (!await ConfirmAdminPasswordAsync())
+            if (
+                !await ConfirmAdminPasswordAsync()
+            )
             {
                 return;
             }
 
-            // =========================================
-            // EXISTENCIAS
-            // =========================================
-
-            int existenciasIniciales = product.Existencias;
+            int existenciasIniciales =
+                product.Existencias;
 
             product.Existencias += amount;
 
-            int existenciasFinales = product.Existencias;
-
-            // =========================================
-            // GUARDAR PRODUCTOS
-            // =========================================
+            int existenciasFinales =
+                product.Existencias;
 
             await JsonService.SaveAsync(
                 "products.json",
                 products
             );
 
-            // =========================================
-            // GUARDAR LOG
-            // =========================================
+            await SaveRestockLog(
+                product,
+                existenciasIniciales,
+                amount,
+                existenciasFinales
+            );
 
+            RefreshProductsTable();
+        }
+
+        // =========================================
+        // ELIMINAR PRODUCTO
+        // =========================================
+
+        private async void Delete_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            if (
+                sender is not Button button ||
+                button.DataContext is not Product product
+            )
+            {
+                return;
+            }
+
+            var dialog = new ContentDialog
+            {
+                Title = "Eliminar producto",
+
+                Content =
+                    $"¿Deseas eliminar el producto {product.Nombre}?",
+
+                PrimaryButtonText = "Eliminar",
+
+                CloseButtonText = "Cancelar",
+
+                XamlRoot = this.XamlRoot
+            };
+
+            var result =
+                await dialog.ShowAsync();
+
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
+            {
+                return;
+            }
+
+            if (
+                !await ConfirmAdminPasswordAsync()
+            )
+            {
+                return;
+            }
+
+            products.Remove(product);
+
+            await JsonService.SaveAsync(
+                "products.json",
+                products
+            );
+
+            RefreshProductsTable();
+        }
+
+        // =========================================
+        // MODIFICAR USUARIO
+        // =========================================
+
+        private void ModifyUser_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            if (
+                sender is Button button &&
+                button.DataContext is User user
+            )
+            {
+                var win =
+                    new EditUserWindow(user);
+
+                win.Activate();
+            }
+        }
+
+        // =========================================
+        // ELIMINAR USUARIO
+        // =========================================
+
+        private async void DeleteUser_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            if (
+                sender is not Button button ||
+                button.DataContext is not User user
+            )
+            {
+                return;
+            }
+
+            var dialog = new ContentDialog
+            {
+                Title = "Eliminar usuario",
+
+                Content =
+                    $"¿Deseas eliminar el usuario {user.Username}?",
+
+                PrimaryButtonText = "Eliminar",
+
+                CloseButtonText = "Cancelar",
+
+                XamlRoot = this.XamlRoot
+            };
+
+            var result =
+                await dialog.ShowAsync();
+
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
+            {
+                return;
+            }
+
+            if (
+                !await ConfirmAdminPasswordAsync()
+            )
+            {
+                return;
+            }
+
+            users.Remove(user);
+
+            await JsonService.SaveAsync(
+                "users.json",
+                users
+            );
+
+            RefreshUsersTable();
+        }
+
+        // =========================================
+        // REFRESCAR TABLAS
+        // =========================================
+
+        private void RefreshProductsTable()
+        {
+            ProductsList.ItemsSource = null;
+
+            ProductsList.ItemsSource = products;
+        }
+
+        private void RefreshUsersTable()
+        {
+            UsersList.ItemsSource = null;
+
+            UsersList.ItemsSource = users;
+        }
+
+        // =========================================
+        // SOLO NÚMEROS
+        // =========================================
+
+        private void OnlyNumbers_BeforeTextChanging(
+            TextBox sender,
+            TextBoxBeforeTextChangingEventArgs args
+        )
+        {
+            string text = args.NewText;
+
+            if (
+                text.Any(c =>
+                    !char.IsDigit(c)
+                )
+            )
+            {
+                args.Cancel = true;
+            }
+        }
+
+        // =========================================
+        // GUARDAR LOG
+        // =========================================
+
+        private async Task SaveRestockLog(
+            Product product,
+            int existenciasIniciales,
+            int cantidadAgregada,
+            int existenciasFinales
+        )
+        {
             var restockLogs =
                 await JsonService.LoadAsync<RestockLog>(
                     "restockLogs.json"
@@ -129,7 +421,7 @@ namespace PuntoVenta.Views
                     existenciasIniciales,
 
                 ExistenciasAgregadas =
-                    amount,
+                    cantidadAgregada,
 
                 ExistenciasFinales =
                     existenciasFinales,
@@ -145,103 +437,131 @@ namespace PuntoVenta.Views
                 "restockLogs.json",
                 restockLogs
             );
-
-            // =========================================
-            // REFRESCAR TABLA
-            // =========================================
-
-            ProductsList.ItemsSource = null;
-
-            ProductsList.ItemsSource = products;
         }
 
-        private async void Delete_Click(object sender, RoutedEventArgs e)
+        // =========================================
+        // CONFIRMAR ADMIN
+        // =========================================
+
+        private async Task<bool>
+            ConfirmAdminPasswordAsync()
         {
-            if (sender is not Button button || button.DataContext is not Product product)
-            {
-                return;
-            }
+            var passwordBox =
+                new PasswordBox();
 
-            var confirmDialog = new ContentDialog
-            {
-                Title = "Eliminar producto",
-                Content = $"¿Deseas eliminar el producto {product.Nombre}?",
-                PrimaryButtonText = "Eliminar",
-                CloseButtonText = "Cancelar",
-                XamlRoot = this.XamlRoot
-            };
+            var dialog =
+                new ContentDialog
+                {
+                    Title =
+                        "Confirmar administrador",
 
-            var result = await confirmDialog.ShowAsync();
-            if (result != ContentDialogResult.Primary)
-            {
-                return;
-            }
+                    Content =
+                        passwordBox,
 
-            products.Remove(product);
-            await JsonService.SaveAsync("products.json", products);
+                    PrimaryButtonText =
+                        "Confirmar",
 
-            ProductsList.ItemsSource = null;
-            ProductsList.ItemsSource = products;
-        }
+                    CloseButtonText =
+                        "Cancelar",
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
-        }
+                    XamlRoot =
+                        this.XamlRoot
+                };
 
-        private async Task<bool> ConfirmAdminPasswordAsync()
-        {
-            var passwordBox = new PasswordBox();
+            var result =
+                await dialog.ShowAsync();
 
-            var dialog = new ContentDialog
-            {
-                Title = "Confirmar administrador",
-                Content = passwordBox,
-                PrimaryButtonText = "Confirmar",
-                CloseButtonText = "Cancelar",
-                XamlRoot = this.XamlRoot
-            };
-
-            var result = await dialog.ShowAsync();
-            if (result != ContentDialogResult.Primary)
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
             {
                 return false;
             }
 
-            string password = passwordBox.Password;
-            if (string.IsNullOrWhiteSpace(password))
+            string password =
+                passwordBox.Password;
+
+            if (
+                string.IsNullOrWhiteSpace(
+                    password
+                )
+            )
             {
-                await ShowError("Todos los campos son obligatorios");
+                await ShowError(
+                    "Todos los campos son obligatorios"
+                );
+
                 return false;
             }
 
-            if (!ValidationHelper.IsValidPassword(password))
+            if (
+                !ValidationHelper
+                    .IsValidPassword(password)
+            )
             {
-                await ShowError("Contraseña incorrecta");
+                await ShowError(
+                    "Contraseña incorrecta"
+                );
+
                 return false;
             }
 
-            var users = await JsonService.LoadAsync<User>("users.json");
-            bool isAdmin = users.Any(u => u.Rol == "Admin" && u.Password == password);
+            var users =
+                await JsonService.LoadAsync<User>(
+                    "users.json"
+                );
+
+            bool isAdmin = users.Any(u =>
+                u.Rol == "Admin" &&
+                u.Password == password
+            );
 
             if (!isAdmin)
             {
-                await ShowError("Contraseña incorrecta");
+                await ShowError(
+                    "Contraseña incorrecta"
+                );
+
                 return false;
             }
 
             return true;
         }
 
-        private async Task ShowError(string message)
+        // =========================================
+        // VOLVER
+        // =========================================
+
+        private void Back_Click(
+            object sender,
+            RoutedEventArgs e
+        )
         {
-            ContentDialog dialog = new ContentDialog
-            {
-                Title = "Error",
-                Content = message,
-                CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
-            };
+            MainWindow.Instance
+                .MainFrameControl
+                .Navigate(typeof(AdminView));
+        }
+
+        // =========================================
+        // ERROR
+        // =========================================
+
+        private async Task ShowError(
+            string message
+        )
+        {
+            var dialog =
+                new ContentDialog
+                {
+                    Title = "Error",
+
+                    Content = message,
+
+                    CloseButtonText = "OK",
+
+                    XamlRoot = this.XamlRoot
+                };
 
             await dialog.ShowAsync();
         }

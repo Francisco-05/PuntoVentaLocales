@@ -64,6 +64,11 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\EditUserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\RestockReportView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -43,5 +43,14 @@
     "Telefono": "8152456523",
     "FechaNacimiento": "1983-02-11T13:16:35.0395514",
     "Rol": "Empleado"
+  },
+  {
+    "Id": 6,
+    "Username": "EstebanQuito",
+    "Password": "Esteban123",
+    "NombreCompleto": "Esteban Quito Robles",
+    "Telefono": "1234567890",
+    "FechaNacimiento": "2008-02-05T15:32:34.9885445",
+    "Rol": "Empleado"
   }
 ]

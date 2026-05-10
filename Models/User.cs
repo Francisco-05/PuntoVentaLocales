@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using System;
 
 namespace PuntoVenta.Models
 {
@@ -11,5 +12,16 @@ namespace PuntoVenta.Models
         public string Telefono { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Rol { get; set; } = "Empleado";
+
+
+
+
+        public bool IsNotAdmin =>
+            Rol != "Admin";
+
+        public Visibility IsAdminVisibility =>
+            Rol == "Admin"
+                ? Visibility.Visible
+                : Visibility.Collapsed;
     }
 }

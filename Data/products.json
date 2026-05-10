@@ -5,8 +5,8 @@
     "Marca": "Apple",
     "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
     "Costo": 10000.0,
-    "PrecioVenta": 18499.99,
-    "Existencias": 52,
+    "PrecioVenta": 184500.0,
+    "Existencias": 53,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
   },
   {
@@ -26,7 +26,7 @@
     "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
     "Costo": 5800.0,
     "PrecioVenta": 9100.0,
-    "Existencias": 12,
+    "Existencias": 22,
     "Imagen": ""
   },
   {

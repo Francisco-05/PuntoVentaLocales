@@ -9,44 +9,18 @@
     </Page.Resources>
 
     <Grid>
-        <!-- Fondo tipo oscuro / blur -->
+
+        <!-- FONDO -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#111827" Offset="0.00"/>
-                <GradientStop Color="#1E293B" Offset="0.35"/>
-                <GradientStop Color="#334155" Offset="0.65"/>
-                <GradientStop Color="#0F172A" Offset="1.00"/>
+                <GradientStop Color="#111827" Offset="0"/>
+                <GradientStop Color="#1E293B" Offset="0.4"/>
+                <GradientStop Color="#0F172A" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
-        <!-- Figuras decorativas -->
-        <Canvas>
-            <Ellipse Width="430"
-                     Height="430"
-                     Fill="#182563EB"
-                     Canvas.Left="-120"
-                     Canvas.Top="-100"/>
-
-            <Ellipse Width="380"
-                     Height="380"
-                     Fill="#2238BDF8"
-                     Canvas.Left="920"
-                     Canvas.Top="20"/>
-
-            <Ellipse Width="300"
-                     Height="300"
-                     Fill="#1822C55E"
-                     Canvas.Left="140"
-                     Canvas.Top="500"/>
-
-            <Ellipse Width="300"
-                     Height="300"
-                     Fill="#15FFFFFF"
-                     Canvas.Left="520"
-                     Canvas.Top="150"/>
-        </Canvas>
-
         <Grid Padding="35">
+
             <Border Background="#38FFFFFF"
                     CornerRadius="28"
                     BorderBrush="#55FFFFFF"
@@ -54,214 +28,454 @@
                     Padding="28">
 
                 <Grid>
+
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Encabezado -->
+                    <!-- HEADER -->
                     <Grid>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel>
-                            <TextBlock Text="Registro de productos"
+
+                            <TextBlock x:Name="TitleText"
+                                       Text="Registro de productos"
                                        FontSize="34"
                                        FontWeight="Bold"
                                        Foreground="White"/>
 
-                            <TextBlock Text="Consulta, modifica y administra el inventario registrado"
+                            <TextBlock x:Name="SubtitleText"
+                                       Text="Consulta y administra productos"
                                        FontSize="14"
-                                       Foreground="#DCE7F5"
-                                       Margin="0,5,0,0"/>
+                                       Foreground="#DCE7F5"/>
+
                         </StackPanel>
 
                         <Button Grid.Column="1"
                                 Content="Volver"
                                 Background="#EF4444"
                                 Foreground="White"
-                                Padding="24,11"
-                                FontWeight="SemiBold"
-                                Click="Back_Click"
-                                VerticalAlignment="Top"
-                                MinWidth="110"/>
+                                Padding="20,10"
+                                Click="Back_Click"/>
                     </Grid>
 
-                    <!-- Tabla -->
-                    <ScrollViewer Grid.Row="1"
-                                  Margin="0,28,0,0"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Auto">
+                    <!-- BOTONES -->
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                Spacing="15"
+                                Margin="0,25,0,20">
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <Button x:Name="ProductsButton"
+                                Content="📦 Productos"
+                                Background="#2563EB"
+                                Foreground="White"
+                                Padding="20,10"
+                                Click="ProductsButton_Click"/>
 
-                            <!-- Encabezado tabla -->
-                            <Border Background="#202A3A"
-                                    CornerRadius="18,18,0,0"
-                                    BorderBrush="#3B4658"
-                                    BorderThickness="1">
+                        <Button x:Name="UsersButton"
+                                Content="👤 Usuarios"
+                                Background="#334155"
+                                Foreground="White"
+                                Padding="20,10"
+                                Click="UsersButton_Click"/>
 
-                                <Grid Height="48">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="250"/>
-                                        <ColumnDefinition Width="120"/>
-                                        <ColumnDefinition Width="140"/>
-                                        <ColumnDefinition Width="130"/>
-                                        <ColumnDefinition Width="390"/>
-                                    </Grid.ColumnDefinitions>
+                    </StackPanel>
 
-                                    <Border BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="ID" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                    </Border>
+                    <!-- ===================================================== -->
+                    <!-- PRODUCTOS -->
+                    <!-- ===================================================== -->
 
-                                    <Border Grid.Column="1" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="NOMBRE" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                    </Border>
+                    <Grid x:Name="ProductsSection"
+                          Grid.Row="2">
 
-                                    <Border Grid.Column="2" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="MARCA" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                    </Border>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto">
 
-                                    <Border Grid.Column="3" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="DESCRIPCIÓN" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                    </Border>
+                            <Grid>
 
-                                    <Border Grid.Column="4" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="COSTO" FontWeight="SemiBold" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                                    <Border Grid.Column="5" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="PRECIO VENTA" FontWeight="SemiBold" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
+                                <!-- HEADER TABLA -->
+                                <Border Background="#202A3A"
+                                        CornerRadius="18,18,0,0"
+                                        BorderBrush="#3B4658"
+                                        BorderThickness="1">
 
-                                    <Border Grid.Column="6" BorderBrush="#334155" BorderThickness="0,0,1,0" Padding="10,0">
-                                        <TextBlock Text="EXISTENCIAS" FontWeight="SemiBold" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
+                                    <Grid Height="48">
 
-                                    <Border Grid.Column="7" Padding="10,0">
-                                        <TextBlock Text="ACCIONES" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70"/>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="160"/>
+                                            <ColumnDefinition Width="260"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="370"/>
+                                        </Grid.ColumnDefinitions>
 
-                            <!-- Filas -->
-                            <ItemsControl x:Name="ProductsList" Grid.Row="1">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Background="#EEF3FA"
-                                                BorderBrush="#D7DEE8"
-                                                BorderThickness="1,0,1,1">
+                                        <Border BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="ID"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                            <Grid Height="44">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="60"/>
-                                                    <ColumnDefinition Width="160"/>
-                                                    <ColumnDefinition Width="150"/>
-                                                    <ColumnDefinition Width="250"/>
-                                                    <ColumnDefinition Width="120"/>
-                                                    <ColumnDefinition Width="140"/>
-                                                    <ColumnDefinition Width="130"/>
-                                                    <ColumnDefinition Width="390"/>
-                                                </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="1" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="NOMBRE"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Id}"
-                                                               Foreground="#111827"
-                                                               VerticalAlignment="Center"/>
-                                                </Border>
+                                        <Border Grid.Column="2" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="MARCA"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="1" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Nombre}"
-                                                               Foreground="#111827"
-                                                               FontWeight="SemiBold"
-                                                               VerticalAlignment="Center"
-                                                               TextTrimming="CharacterEllipsis"/>
-                                                </Border>
+                                        <Border Grid.Column="3" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="DESCRIPCIÓN"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="2" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Marca}"
-                                                               Foreground="#111827"
-                                                               VerticalAlignment="Center"
-                                                               TextTrimming="CharacterEllipsis"/>
-                                                </Border>
+                                        <Border Grid.Column="4" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="COSTO"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="3" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Descripcion}"
-                                                               Foreground="#111827"
-                                                               VerticalAlignment="Center"
-                                                               TextTrimming="CharacterEllipsis"/>
-                                                </Border>
+                                        <Border Grid.Column="5" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="PRECIO"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="4" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Costo, Converter={StaticResource CurrencyConverter}}"
-                                                               TextAlignment="Right"
-                                                               Foreground="#111827"
-                                                               VerticalAlignment="Center"/>
-                                                </Border>
+                                        <Border Grid.Column="6" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="STOCK"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="5" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
-                                                               TextAlignment="Right"
-                                                               Foreground="#2563EB"
-                                                               FontWeight="SemiBold"
-                                                               VerticalAlignment="Center"/>
-                                                </Border>
+                                        <Border Grid.Column="7">
+                                            <TextBlock Text="ACCIONES"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       Margin="10,0"/>
+                                        </Border>
 
-                                                <Border Grid.Column="6" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0" Padding="10,0">
-                                                    <TextBlock Text="{Binding Existencias}"
-                                                               TextAlignment="Right"
-                                                               Foreground="#059669"
-                                                               FontWeight="SemiBold"
-                                                               VerticalAlignment="Center"/>
-                                                </Border>
+                                    </Grid>
 
-                                                <Border Grid.Column="7" Padding="6" VerticalAlignment="Center">
-                                                    <StackPanel Orientation="Horizontal" Spacing="7">
+                                </Border>
 
-                                                        <Button Content="Modificar"
+                                <!-- FILAS PRODUCTOS -->
+                                <ItemsControl x:Name="ProductsList"
+                                              Grid.Row="1">
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Border Background="#EEF3FA"
+                                                    BorderBrush="#D7DEE8"
+                                                    BorderThickness="1,0,1,1">
+
+                                                <Grid Height="48">
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="70"/>
+                                                        <ColumnDefinition Width="180"/>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="260"/>
+                                                        <ColumnDefinition Width="120"/>
+                                                        <ColumnDefinition Width="130"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition Width="370"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Border BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Id}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="1" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Nombre}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   FontWeight="SemiBold"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="2" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Marca}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="3" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Descripcion}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   TextTrimming="CharacterEllipsis"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="4" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Costo, Converter={StaticResource CurrencyConverter}}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="5" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#2563EB"
+                                                                   FontWeight="SemiBold"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="6" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Existencias}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#059669"
+                                                                   FontWeight="Bold"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="7">
+
+                                                        <StackPanel Orientation="Horizontal"
+                                                                    Spacing="8"
+                                                                    Margin="5">
+
+                                                            <Button Content="Modificar"
+                                                                    Background="#2563EB"
+                                                                    Foreground="White"
+                                                                    Click="Modify_Click"/>
+
+                                                            <Button Content="Reabastecer"
+                                                                    Background="#10B981"
+                                                                    Foreground="White"
+                                                                    Click="Restock_Click"/>
+
+                                                            <Button Content="Eliminar"
+                                                                    Background="#EF4444"
+                                                                    Foreground="White"
+                                                                    Click="Delete_Click"/>
+
+                                                        </StackPanel>
+
+                                                    </Border>
+
+                                                </Grid>
+
+                                            </Border>
+
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                </ItemsControl>
+
+                            </Grid>
+
+                        </ScrollViewer>
+
+                    </Grid>
+
+                    <!-- ===================================================== -->
+                    <!-- USUARIOS -->
+                    <!-- ===================================================== -->
+
+                    <Grid x:Name="UsersSection"
+                          Grid.Row="2"
+                          Visibility="Collapsed">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Auto">
+
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- HEADER -->
+                                <Border Background="#202A3A"
+                                        CornerRadius="18,18,0,0"
+                                        BorderBrush="#3B4658"
+                                        BorderThickness="1">
+
+                                    <Grid Height="48">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="230"/>
+                                            <ColumnDefinition Width="170"/>
+                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="260"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="USERNAME"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       Margin="10,0"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="1" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="NOMBRE"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       Margin="10,0"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="2" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="TELÉFONO"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       Margin="10,0"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="3" BorderBrush="#334155" BorderThickness="0,0,1,0">
+                                            <TextBlock Text="ROL"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       Margin="10,0"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="4">
+                                            <TextBlock Text="ACCIONES"
+                                                       Foreground="White"
+                                                       FontWeight="SemiBold"
+                                                       Margin="10,0"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+
+                                    </Grid>
+
+                                </Border>
+
+                                <!-- FILAS USUARIOS -->
+                                <ItemsControl x:Name="UsersList"
+                                              Grid.Row="1">
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Border Background="#EEF3FA"
+                                                    BorderBrush="#D7DEE8"
+                                                    BorderThickness="1,0,1,1">
+
+                                                <Grid Height="48">
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="180"/>
+                                                        <ColumnDefinition Width="230"/>
+                                                        <ColumnDefinition Width="170"/>
+                                                        <ColumnDefinition Width="140"/>
+                                                        <ColumnDefinition Width="260"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Border BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Username}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="1" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding NombreCompleto}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   FontWeight="SemiBold"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="2" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Telefono}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="3" BorderBrush="#D7DEE8" BorderThickness="0,0,1,0">
+                                                        <TextBlock Text="{Binding Rol}"
+                                                                   Margin="10,0"
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#2563EB"
+                                                                   FontWeight="SemiBold"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="4">
+
+                                                        <StackPanel Orientation="Horizontal"
+                                                                Spacing="8"
+                                                                Margin="5">
+
+                                                            <!-- MODIFICAR -->
+                                                            <Button Content="Modificar"
                                                                 Background="#2563EB"
                                                                 Foreground="White"
-                                                                FontSize="12"
-                                                                Padding="10,4"
-                                                                MinWidth="84"
-                                                                Click="Modify_Click"/>
+                                                                Click="ModifyUser_Click"
+                                                                IsEnabled="{Binding IsNotAdmin}"/>                      
 
-                                                        <Button Content="Reabastecimiento"
-                                                                Background="#10B981"
-                                                                Foreground="White"
-                                                                FontSize="12"
-                                                                Padding="10,4"
-                                                                MinWidth="118"
-                                                                Click="Restock_Click"/>
-
-                                                        <Button Content="Eliminar"
+                                                            <!-- ELIMINAR -->
+                                                            <Button Content="Eliminar"
                                                                 Background="#EF4444"
                                                                 Foreground="White"
-                                                                FontSize="12"
-                                                                Padding="10,4"
-                                                                MinWidth="84"
-                                                                Click="Delete_Click"/>
+                                                                Click="DeleteUser_Click"
+                                                                IsEnabled="{Binding IsNotAdmin}"/>
 
-                                                    </StackPanel>
-                                                </Border>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </ScrollViewer>
+
+
+                                                        </StackPanel>
+
+                                                    </Border>
+
+                                                </Grid>
+
+                                            </Border>
+
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                </ItemsControl>
+
+                            </Grid>
+
+                        </ScrollViewer>
+
+                    </Grid>
+
                 </Grid>
+
             </Border>
+
         </Grid>
+
     </Grid>
 </Page>
