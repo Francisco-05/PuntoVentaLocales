@@ -70,5 +70,41 @@
     "ExistenciasFinales": 51,
     "FechaModificacion": "2026-05-10T02:54:57.9038843-06:00",
     "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "4cf549ea-b0cf-46c6-8f7d-fd9c677a835b",
+    "Producto": "Laptop Ultrabook 14\"",
+    "ExistenciasIniciales": 40,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 50,
+    "FechaModificacion": "2026-05-10T02:57:42.5786155-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "2411c159-c1ec-4559-a4ec-ee759d9234ec",
+    "Producto": "Teclado mecanico",
+    "ExistenciasIniciales": 5,
+    "ExistenciasAgregadas": 5,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-10T02:58:00.0427004-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "22ff89fc-2ed8-45b1-a23f-e037f848d3cc",
+    "Producto": "Teclado mecanico",
+    "ExistenciasIniciales": 10,
+    "ExistenciasAgregadas": -2,
+    "ExistenciasFinales": 8,
+    "FechaModificacion": "2026-05-10T02:58:17.7765781-06:00",
+    "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": "92f63572-4686-4cd7-bdaa-e67dd29c37c1",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 51,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 52,
+    "FechaModificacion": "2026-05-10T03:15:14.6127439-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   }
 ]
