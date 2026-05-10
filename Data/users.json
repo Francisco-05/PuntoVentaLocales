@@ -34,5 +34,14 @@
     "Telefono": "5152623548",
     "FechaNacimiento": "2007-07-27T01:13:30.306546",
     "Rol": "Empleado"
+  },
+  {
+    "Id": 5,
+    "Username": "Emerson183",
+    "Password": "Emerson123",
+    "NombreCompleto": "Emerson",
+    "Telefono": "8152456523",
+    "FechaNacimiento": "1983-02-11T13:16:35.0395514",
+    "Rol": "Empleado"
   }
 ]

@@ -8,234 +8,371 @@
         <helpers:CurrencyConverter x:Key="CurrencyConverter"/>
     </Page.Resources>
 
-    <Grid Background="#F5F6FA">
+    <Grid>
+        <!-- Fondo café/dorado como inicio administrativo -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1B120F" Offset="0"/>
+                <GradientStop Color="#3A241A" Offset="0.45"/>
+                <GradientStop Color="#8B5E34" Offset="0.78"/>
+                <GradientStop Color="#D6A75A" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <!-- Líneas decorativas -->
+        <Canvas Opacity="0.16">
+            <Line X1="0" Y1="120" X2="1920" Y2="120"
+                  Stroke="#F5E6C8"
+                  StrokeThickness="2"/>
 
-        <Grid Background="#1F2937" Padding="10">
-            <TextBlock x:Name="UserText"
-                       Foreground="White"
-                       FontSize="14"
-                       FontWeight="SemiBold"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"/>
+            <Line X1="330" Y1="0" X2="330" Y2="1080"
+                  Stroke="#E0B56C"
+                  StrokeThickness="1"/>
 
-            <Button Content="Cortar Caja"
-                    Width="200"
-                    Height="45"
-                    Background="#EF4444"
-                    Foreground="White"
-                    CornerRadius="8"
-                    Click="CashCut_Click"/>
-        </Grid>
+            <Line X1="0" Y1="0" X2="1920" Y2="1080"
+                  Stroke="#F5E6C8"
+                  StrokeThickness="2"/>
 
-        <Grid Grid.Row="1">
+            <Ellipse Width="420"
+                     Height="420"
+                     Fill="#18F5E6C8"
+                     Canvas.Left="-130"
+                     Canvas.Top="-90"/>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
+            <Ellipse Width="360"
+                     Height="360"
+                     Fill="#20D6A75A"
+                     Canvas.Left="930"
+                     Canvas.Top="70"/>
+        </Canvas>
 
-            <!-- PRODUCTOS -->
-            <Grid Grid.Column="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- Barra superior -->
+            <Border Background="#2A1A14"
+                    Padding="18"
+                    BorderBrush="#D6A75A"
+                    BorderThickness="0,0,0,1.5">
 
-                <ScrollViewer Grid.Row="0">
-                    <ItemsControl x:Name="ProductsList">
+                <Grid>
+                    <Button Content="Cortar Caja"
+                            Width="210"
+                            Height="48"
+                            Background="#7A2E2E"
+                            Foreground="#FFF7E8"
+                            FontWeight="SemiBold"
+                            CornerRadius="18"
+                            Click="CashCut_Click"/>
 
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapGrid Orientation="Horizontal"
-                                          MaximumRowsOrColumns="3"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                    <TextBlock x:Name="UserText"
+                               Foreground="#FFF7E8"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+            <!-- Contenido -->
+            <Grid Grid.Row="1"
+                  Padding="25"
+                  ColumnSpacing="25">
 
-                                <Border Margin="10"
-                                        Padding="10"
-                                        Background="White"
-                                        BorderBrush="#D1D5DB"
-                                        BorderThickness="1"
-                                        CornerRadius="10"
-                                        Width="200"
-                                        Height="260">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
 
-                                    <StackPanel Spacing="6">
+                <!-- PRODUCTOS -->
+                <Border Grid.Column="0"
+                        Background="#35FFF7E8"
+                        CornerRadius="28"
+                        BorderBrush="#D6A75A"
+                        BorderThickness="1.5"
+                        Padding="20">
 
-                                        <Image Source="{Binding Imagen}"
-                                               Height="110"
-                                               Stretch="UniformToFill"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Nombre}"
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="Productos disponibles"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#FFF7E8"/>
+
+                            <TextBlock Text="Selecciona productos para agregarlos al carrito"
+                                       Foreground="#F2D7A6"
+                                       FontSize="14"/>
+                        </StackPanel>
+
+                        <ScrollViewer Grid.Row="1">
+                            <ItemsControl x:Name="ProductsList">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid Orientation="Horizontal"
+                                                  MaximumRowsOrColumns="3"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Border Margin="10"
+                                            Padding="14"
+                                            Background="#FFF7E8"
+                                            BorderBrush="#D6A75A"
+                                            BorderThickness="1.5"
+                                            CornerRadius="22"
+                                            Width="210"
+                                            Height="270">           
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="105"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Border Grid.Row="0"
+                                                    Background="#F5E6C8"
+                                                    CornerRadius="16"
+                                                    Height="105"
+                                                    Margin="0,0,0,8">
+                                                    <Image Source="{Binding Imagen}"
+                                                       Height="100"
+                                                       Stretch="Uniform"/>      
+                                                </Border>
+
+                                                <TextBlock Grid.Row="1"
+                                                   Text="{Binding Nombre}"
                                                    FontWeight="Bold"
-                                                   TextWrapping="Wrap"/>
+                                                   FontSize="15"
+                                                   Foreground="#1B120F"
+                                                   TextWrapping="Wrap"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   MaxLines="2"/>
 
-                                        <TextBlock Text="{Binding Marca}"
-                                                   Foreground="Gray"/>
+                                                <TextBlock Grid.Row="2"
+                                                   Text="{Binding Marca}"
+                                                   Foreground="#6B4A32"
+                                                   FontSize="13"
+                                                   Margin="0,4,0,0"/>
 
-                                        <TextBlock Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
-                                                   Foreground="#10B981"
-                                                   FontWeight="SemiBold"/>
+                                                <TextBlock Grid.Row="3"
+                                                   Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
+                                                   Foreground="#8B5E34"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Margin="0,6,0,0"/>
 
-                                        <Button Content="Agregar"
-                                                Height="32"
-                                                Click="AddToCart_Click"
-                                                Background="#10B981"
-                                                Foreground="White"
-                                                CornerRadius="6"/>
+                                                <Button Grid.Row="5"
+                                                    Content="Agregar"
+                                                    Height="36"
+                                                    Width="95"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="0,8,0,0"
+                                                    Click="AddToCart_Click"
+                                                    Background="#8B5E34"
+                                                    Foreground="#FFF7E8"
+                                                    FontWeight="SemiBold"
+                                                    CornerRadius="14"/>
+                                            </Grid>
 
-                                    </StackPanel>
+                                        </Border>
 
-                                </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
 
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
 
-                    </ItemsControl>
-                </ScrollViewer>
+                        <!-- PAGINACIÓN -->
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Spacing="40"
+                                    Margin="0,15,0,0">
 
-                <!-- PAGINACIÓN -->
-                <StackPanel Grid.Row="1"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Spacing="40"
-                            Margin="0,10">
+                            <Button x:Name="PreviousPageButton"
+                                    Content="&lt;"
+                                    Width="48"
+                                    Height="48"
+                                    FontSize="20"
+                                    CornerRadius="25"
+                                    Background="#F5E6C8"
+                                    Foreground="#3A241A"
+                                    FontWeight="Bold"
+                                    Click="PreviousPage_Click"/>
 
-                    <Button x:Name="PreviousPageButton"
-                            Content="&lt;"
-                            Width="45"
-                            Height="45"
-                            FontSize="20"
-                            CornerRadius="25"
-                            Click="PreviousPage_Click"/>
+                            <Button x:Name="NextPageButton"
+                                    Content="&gt;"
+                                    Width="48"
+                                    Height="48"
+                                    FontSize="20"
+                                    CornerRadius="25"
+                                    Background="#F5E6C8"
+                                    Foreground="#3A241A"
+                                    FontWeight="Bold"
+                                    Click="NextPage_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
-                    <Button x:Name="NextPageButton"
-                            Content="&gt;"
-                            Width="45"
-                            Height="45"
-                            FontSize="20"
-                            CornerRadius="25"
-                            Click="NextPage_Click"/>
-                </StackPanel>
+                <!-- CARRITO -->
+                <Border Grid.Column="1"
+                        Background="#FFF7E8"
+                        CornerRadius="28"
+                        BorderBrush="#D6A75A"
+                        BorderThickness="1.5"
+                        Padding="22">
 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="Carrito"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="#1B120F"/>
+
+                            <TextBlock Text="Resumen de compra"
+                                       FontSize="14"
+                                       Foreground="#6B4A32"/>
+                        </StackPanel>
+
+                        <ListView x:Name="CartList"
+                                  Grid.Row="1"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  HorizontalContentAlignment="Stretch">
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="Margin" Value="0,0,0,10"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Border Background="White"
+                                            CornerRadius="18"
+                                            Padding="12"
+                                            BorderBrush="#E0B56C"
+                                            BorderThickness="1">
+
+                                        <Grid HorizontalAlignment="Stretch">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="42"/>
+                                                <ColumnDefinition Width="42"/>
+                                                <ColumnDefinition Width="42"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0"
+                                                        VerticalAlignment="Center">
+
+                                                <TextBlock Text="{Binding Nombre}"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#1B120F"
+                                                           TextWrapping="NoWrap"
+                                                           TextTrimming="CharacterEllipsis"/>
+
+                                                <TextBlock Text="{Binding PrecioUnitario, Converter={StaticResource CurrencyConverter}}"
+                                                           Foreground="#8B5E34"
+                                                           FontWeight="SemiBold"/>
+                                            </StackPanel>
+
+                                            <Button Grid.Column="1"
+                                                    Content="-"
+                                                    Width="32"
+                                                    Height="32"
+                                                    Background="#F5E6C8"
+                                                    Foreground="#3A241A"
+                                                    FontWeight="Bold"
+                                                    CornerRadius="16"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Click="Decrease_Click"/>
+
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding Cantidad}"
+                                                       Width="32"
+                                                       TextAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="Bold"
+                                                       Foreground="#1B120F"/>
+
+                                            <Button Grid.Column="3"
+                                                    Content="+"
+                                                    Width="32"
+                                                    Height="32"
+                                                    Background="#8B5E34"
+                                                    Foreground="#FFF7E8"
+                                                    FontWeight="Bold"
+                                                    CornerRadius="16"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Click="Increase_Click"/>
+
+                                        </Grid>
+                                    </Border>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <!-- Total -->
+                        <Border Grid.Row="2"
+                                Background="#2A1A14"
+                                CornerRadius="22"
+                                Padding="18"
+                                Margin="0,15,0,0"
+                                BorderBrush="#D6A75A"
+                                BorderThickness="1.5">
+
+                            <StackPanel>
+
+                                <TextBlock x:Name="TotalText"
+                                           Text="Total: $0.00"
+                                           FontSize="22"
+                                           FontWeight="Bold"
+                                           Foreground="#FFF7E8"
+                                           Margin="0,0,0,12"/>
+
+                                <Button Content="Confirmar compra"
+                                        Background="#D6A75A"
+                                        Foreground="#1B120F"
+                                        Height="45"
+                                        FontWeight="Bold"
+                                        CornerRadius="16"
+                                        Click="ConfirmSale_Click"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
-
-            <!-- CARRITO -->
-            <Grid Grid.Column="1"
-                  Background="White"
-                  Padding="10">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Carrito"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Margin="0,0,0,10"/>
-
-
-                <ListView x:Name="CartList"
-                          Grid.Row="1"
-                          HorizontalContentAlignment="Stretch">
-
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-
-                            <Grid Margin="6"
-                                  HorizontalAlignment="Stretch">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="40"/>
-                                </Grid.ColumnDefinitions>
-
-                                <!-- PRODUCTO -->
-                                <StackPanel Grid.Column="0"
-                                            VerticalAlignment="Center">
-
-                                    <TextBlock Text="{Binding Nombre}"
-                                               FontWeight="SemiBold"
-                                               TextWrapping="NoWrap"
-                                               TextTrimming="CharacterEllipsis"/>
-
-                                    <TextBlock Text="{Binding PrecioUnitario, Converter={StaticResource CurrencyConverter}}"
-                                               Foreground="Gray"/>
-                                </StackPanel>
-
-                                <!-- MENOS -->
-                                <Button Grid.Column="1"
-                                        Content="-"
-                                        Width="30"
-                                        Height="30"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Click="Decrease_Click"/>
-
-                                <!-- CANTIDAD -->
-                                <TextBlock Grid.Column="2"
-                                           Text="{Binding Cantidad}"
-                                           Width="30"
-                                           TextAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontWeight="Bold"/>
-
-                                <!-- MÁS -->
-                                <Button Grid.Column="3"
-                                        Content="+"
-                                        Width="30"
-                                        Height="30"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Click="Increase_Click"/>
-
-                            </Grid>
-
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
-
-                <StackPanel Grid.Row="2"
-                            Margin="0,10,0,0">
-
-                    <TextBlock x:Name="TotalText"
-                               Text="Total: $0.00"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Margin="0,0,0,10"/>
-
-                    <Button Content="Confirmar compra"
-                            Background="#2563EB"
-                            Foreground="White"
-                            Height="40"
-                            CornerRadius="6"
-                            Click="ConfirmSale_Click"/>
-                </StackPanel>
-
-            </Grid>
-
         </Grid>
-
     </Grid>
 </Page>

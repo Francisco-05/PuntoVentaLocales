@@ -1,36 +1,88 @@
 <Page x:Class="PuntoVenta.Views.AdminView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="#E0F7FA"
+      Background="#1B120F"
       Loaded="Page_Loaded">
 
-    <Grid Background="DarkOliveGreen">
-        <!-- Fondo morado -->
+    <Grid>
 
-        <!-- Fondo animado -->
-        <Canvas>
-            <Line X1="0" Y1="0" X2="1920" Y2="1080" Stroke="Cornsilk" StrokeThickness="4">
-                <Line.RenderTransform>
-                    <TranslateTransform X="0" Y="0" />
-                </Line.RenderTransform>
-            </Line>
+        <!-- Fondo elegante café/dorado -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1B120F" Offset="0"/>
+                <GradientStop Color="#3A241A" Offset="0.45"/>
+                <GradientStop Color="#8B5E34" Offset="0.78"/>
+                <GradientStop Color="#D6A75A" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Líneas decorativas -->
+        <Canvas Opacity="0.18">
+            <Line X1="0"
+                  Y1="120"
+                  X2="1920"
+                  Y2="120"
+                  Stroke="#F5E6C8"
+                  StrokeThickness="2"/>
+
+            <Line X1="330"
+                  Y1="0"
+                  X2="330"
+                  Y2="1080"
+                  Stroke="#E0B56C"
+                  StrokeThickness="1"/>
+
+            <Line X1="0"
+                  Y1="720"
+                  X2="1920"
+                  Y2="720"
+                  Stroke="#F2D7A6"
+                  StrokeThickness="1"/>
+
+            <Line X1="0"
+                  Y1="0"
+                  X2="1920"
+                  Y2="1080"
+                  Stroke="#F5E6C8"
+                  StrokeThickness="2"/>
         </Canvas>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Padding="30"
+
+            <StackPanel Padding="40"
                         Spacing="40"
                         HorizontalAlignment="Center">
 
-                <!-- Título -->
-                <TextBlock Text="INICIO ADMINISTRATIVO"
-                          FontFamily="Segoe UI, Arial, sans-serif"
-                          FontSize="40"
-                          FontWeight="Bold"
-                          Foreground="White"
-                          HorizontalAlignment="Center"/>
+                <!-- TÍTULO -->
+                <StackPanel HorizontalAlignment="Center">
 
-                <!-- Cuadros de información -->
-                <Grid RowSpacing="60" ColumnSpacing="50" HorizontalAlignment="Center">
+                    <TextBlock Text="INICIO ADMINISTRATIVO"
+                               FontSize="42"
+                               FontWeight="Bold"
+                               Foreground="#FFF7E8"
+                               HorizontalAlignment="Center"
+                               FontFamily="Segoe UI"/>
+                </StackPanel>
+
+                <!-- BIENVENIDA -->
+                <Border Background="#3B2A24"
+                        CornerRadius="20"
+                        Padding="20"
+                        Width="1200"
+                        Opacity="0.92"
+                        BorderBrush="#D6A75A"
+                        BorderThickness="1.5">
+
+                    <TextBlock Text="Bienvenido(a) Administrador"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Foreground="#FFF7E8"/>
+                </Border>
+
+                <!-- GRID BOTONES -->
+                <Grid RowSpacing="35"
+                      ColumnSpacing="35"
+                      HorizontalAlignment="Center">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -40,144 +92,174 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Empleados -->
+                    <!-- EMPLEADOS -->
                     <Button x:Name="BtnEmpleados"
                             Grid.Row="0"
                             Grid.Column="0"
-                            Content="📊 Empleados"
-                            Width="350"
-                            Height="180"
-                            Background="#7B1FA2" 
-                        Foreground="White"
-                            FontSize="18"
+                            Content="👤 Crear Empleado"
+                            Width="320"
+                            Height="170"
+                            Background="#2A1A14"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#D6A75A"
+                            BorderThickness="2"
                             Click="CreateUser_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
-                    <!-- Productos -->
+                    <!-- PRODUCTOS -->
                     <Button x:Name="BtnProductos"
                             Grid.Row="0"
                             Grid.Column="1"
-                            Content="📦 Productos"
-                            Width="350"
-                            Height="180"
-                            Background="#00897B" 
-                        Foreground="White"
-                            FontSize="18"
+                            Content="🛍️ Productos"
+                            Width="320"
+                            Height="170"
+                            Background="#3A241A"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#E0B56C"
+                            BorderThickness="2"
                             Click="CreateProduct_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
-                    <!-- Reportes -->
+                    <!-- REPORTES -->
                     <Button x:Name="BtnReportes"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Content="📋 Ver Reportes de ventas"
-                            Width="350"
-                            Height="180"
-                            Background="#F39C12" 
-                        Foreground="White"
-                            FontSize="18"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Content="📋 Reportes"
+                            Width="320"
+                            Height="170"
+                            Background="#4A2E1F"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#F2D7A6"
+                            BorderThickness="2"
                             Click="ReportView_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
-                    <!-- Reporte Diferencias -->
+                    <!-- DIFERENCIAS -->
                     <Button x:Name="BtnDiferencias"
                             Grid.Row="1"
-                            Grid.Column="1"
-                            Content="📊 Reporte Diferencias"
-                            Width="350"
-                            Height="180"
-                            Background="#8E24AA" 
-                        Foreground="White"
-                            FontSize="18"
+                            Grid.Column="0"
+                            Content="📊 Diferencias"
+                            Width="320"
+                            Height="170"
+                            Background="#5A3424"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#D6A75A"
+                            BorderThickness="2"
                             Click="DifView_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
-                    <!-- Registro de productos -->
+                    <!-- REGISTRO -->
                     <Button x:Name="BtnRegistroProductos"
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Content="📦 Registro de productos"
-                            Width="350"
-                            Height="180"
-                            Background="#27ae60" 
-                        Foreground="White"
-                            FontSize="18"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Content="📦 Registro"
+                            Width="320"
+                            Height="170"
+                            Background="#6B3F27"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#E0B56C"
+                            BorderThickness="2"
                             Click="ProductRegistry_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
-                    <!-- Reporte de Reabastecimientos -->
+                    <!-- REABASTECIMIENTO -->
                     <Button x:Name="BtnRestockReport"
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Content="📦 Reporte de Reabastecimientos"
-                            Width="350"
-                            Height="180"
-                            Background="#009688" 
-                        Foreground="White"
-                            FontSize="18"
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Content="📥 Reabastecimientos"
+                            Width="320"
+                            Height="170"
+                            Background="#7A4A2A"
+                            Foreground="#FFF7E8"
+                            FontSize="22"
                             FontWeight="Bold"
-                            CornerRadius="12"
+                            CornerRadius="25"
+                            BorderBrush="#F2D7A6"
+                            BorderThickness="2"
                             Click="RestockReport_Click"
                             Opacity="0">
+
                         <Button.RenderTransform>
                             <TranslateTransform Y="60"/>
                         </Button.RenderTransform>
+
                     </Button>
 
                 </Grid>
 
-                <!-- Botón de cerrar sesión -->
+                <!-- BOTÓN CERRAR SESIÓN -->
                 <Button x:Name="BtnCerrarSesion"
-                        Content="Cerrar sesión"
-                        Width="250"
-                        Height="50"
-                        Background="DarkRed"
-                        Foreground="White"
+                        Content="↩️ Cerrar sesión"
+                        Width="260"
+                        Height="55"
+                        Background="#2A1A14"
+                        Foreground="#FFF7E8"
                         FontWeight="Bold"
-                        CornerRadius="8"
+                        FontSize="16"
+                        CornerRadius="25"
+                        BorderBrush="#D6A75A"
+                        BorderThickness="2"
                         HorizontalAlignment="Center"
+                        Margin="0,20,0,30"
                         Click="Logout_Click"
                         Opacity="0">
+
                     <Button.RenderTransform>
                         <TranslateTransform Y="40"/>
                     </Button.RenderTransform>
+
                 </Button>
 
             </StackPanel>
+
         </ScrollViewer>
 
     </Grid>

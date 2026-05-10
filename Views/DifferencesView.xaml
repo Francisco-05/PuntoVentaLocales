@@ -8,93 +8,254 @@
         <helpers:CurrencyConverter x:Key="CurrencyConverter"/>
     </Page.Resources>
 
-    <Grid Padding="20" Background="#F5F6FA">
+    <Grid>
+        <!-- Fondo degradado -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#E8B28E" Offset="0.0"/>
+                <GradientStop Color="#EEA95D" Offset="0.45"/>
+                <GradientStop Color="#F2A13B" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <!-- Figuras decorativas -->
+        <Canvas>
+            <Ellipse Width="260"
+                     Height="260"
+                     Fill="#25FFFFFF"
+                     Canvas.Left="-60"
+                     Canvas.Top="-20"/>
 
-        <Grid>
-            <TextBlock Text="Reporte de diferencias de caja"
-                       FontSize="22"
-                       FontWeight="Bold"/>
+            <Ellipse Width="240"
+                     Height="240"
+                     Fill="#18FFD7B8"
+                     Canvas.Left="1080"
+                     Canvas.Top="40"/>
 
-            <Button Content="Volver"
-                    HorizontalAlignment="Right"
-                    Background="#EF4444"
-                    Foreground="White"
-                    Click="Back_Click"/>
-        </Grid>
+            <Ellipse Width="180"
+                     Height="180"
+                     Fill="#15FFFFFF"
+                     Canvas.Left="140"
+                     Canvas.Top="560"/>
+        </Canvas>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="15" Margin="0,15,0,10">
+        <!-- Contenedor general -->
+        <Grid Padding="35">
 
-            <StackPanel>
-                <TextBlock Text="Desde"/>
-                <CalendarDatePicker x:Name="StartDate"/>
-            </StackPanel>
+            <!-- Tarjeta principal -->
+            <Border Background="#F8F8F8"
+                    CornerRadius="26"
+                    BorderBrush="#E8C6A7"
+                    BorderThickness="1.5"
+                    Padding="28">
 
-            <StackPanel>
-                <TextBlock Text="Hasta"/>
-                <CalendarDatePicker x:Name="EndDate"/>
-            </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            <StackPanel>
-                <TextBlock Text="Empleado"/>
-                <ComboBox x:Name="EmployeeFilter" Width="200"/>
-            </StackPanel>
+                    <!-- Encabezado -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-            <StackPanel VerticalAlignment="Bottom">
-                <Button Content="Filtrar"
-                        Background="#2563EB"
-                        Foreground="White"
-                        Click="Filter_Click"/>
-            </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Reporte de diferencias de caja"
+                                       FontSize="32"
+                                       FontWeight="Bold"
+                                       Foreground="#1F1F1F"/>
 
-        </StackPanel>
-
-        <ListView x:Name="DifferencesList"
-                  Grid.Row="2"
-                  Margin="0,10,0,0">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-
-                    <Border Padding="12"
-                            Margin="5"
-                            Background="White"
-                            CornerRadius="10">
-
-                        <StackPanel Spacing="5">
-
-                            <TextBlock Text="{Binding Empleado}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Fecha}"/>
-
-                            <TextBlock Text="{Binding InicioSesion}" FontSize="12" Foreground="Gray"/>
-                            <TextBlock Text="{Binding FinSesion}" FontSize="12" Foreground="Gray"/>
-
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <TextBlock Text="Sistema:" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"/>
-
-                                <TextBlock Text="Fisico:" Margin="10,0,0,0" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"/>
-                            </StackPanel>
-
-                            <TextBlock FontWeight="Bold">
-                                <Run Text="Diferencia: "/>
-                                <Run Text="{Binding Diferencia, Converter={StaticResource CurrencyConverter}}"/>
-                            </TextBlock>
-
+                            <TextBlock Text="Consulta las diferencias entre efectivo del sistema y efectivo físico"
+                                       FontSize="14"
+                                       Foreground="#666666"
+                                       Margin="0,5,0,0"/>
                         </StackPanel>
 
+                        <Button Grid.Column="1"
+                                Content="Volver"
+                                Background="#E74C3C"
+                                Foreground="White"
+                                Padding="22,10"
+                                FontWeight="SemiBold"
+                                Click="Back_Click"
+                                VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <!-- Filtros -->
+                    <Border Grid.Row="1"
+                            Margin="0,24,0,18"
+                            Background="#F2E4D7"
+                            CornerRadius="20"
+                            Padding="18">
+
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="190"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Desde -->
+                            <StackPanel Grid.Column="0" Spacing="6">
+                                <TextBlock Text="Desde"
+                                           FontWeight="SemiBold"
+                                           Foreground="#4A4A4A"/>
+                                <Border Background="White"
+                                        CornerRadius="14"
+                                        Padding="10,4">
+                                    <CalendarDatePicker x:Name="StartDate"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"/>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Hasta -->
+                            <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Text="Hasta"
+                                           FontWeight="SemiBold"
+                                           Foreground="#4A4A4A"/>
+                                <Border Background="White"
+                                        CornerRadius="14"
+                                        Padding="10,4">
+                                    <CalendarDatePicker x:Name="EndDate"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"/>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Empleado -->
+                            <StackPanel Grid.Column="2" Spacing="6">
+                                <TextBlock Text="Empleado"
+                                           FontWeight="SemiBold"
+                                           Foreground="#4A4A4A"/>
+                                <Border Background="White"
+                                        CornerRadius="14"
+                                        Padding="10,2">
+                                    <ComboBox x:Name="EmployeeFilter"
+                                              Width="200"
+                                              Background="Transparent"
+                                              BorderThickness="0"/>
+                                </Border>
+                            </StackPanel>
+
+                            <!-- Botón -->
+                            <StackPanel Grid.Column="3"
+                                        VerticalAlignment="Bottom">
+                                <Button Content="Filtrar"
+                                        Background="#2F6BFF"
+                                        Foreground="White"
+                                        Padding="24,12"
+                                        FontWeight="SemiBold"
+                                        Click="Filter_Click"/>
+                            </StackPanel>
+                        </Grid>
                     </Border>
 
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                    <!-- Lista -->
+                    <ListView x:Name="DifferencesList"
+                              Grid.Row="2"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Margin="0,5,0,0">
 
-        </ListView>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="0,0,0,14"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
 
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White"
+                                        CornerRadius="18"
+                                        Padding="18"
+                                        BorderBrush="#E8D7C8"
+                                        BorderThickness="1">
+
+                                    <StackPanel Spacing="8">
+
+                                        <!-- Empleado -->
+                                        <TextBlock Text="{Binding Empleado}"
+                                                   FontSize="20"
+                                                   FontWeight="Bold"
+                                                   Foreground="#222222"/>
+
+                                        <!-- Fecha -->
+                                        <TextBlock Text="{Binding Fecha}"
+                                                   FontSize="14"
+                                                   Foreground="#444444"/>
+
+                                        <!-- Horarios -->
+                                        <StackPanel Spacing="2">
+                                            <TextBlock Text="{Binding InicioSesion}"
+                                                       FontSize="12"
+                                                       Foreground="Gray"/>
+                                            <TextBlock Text="{Binding FinSesion}"
+                                                       FontSize="12"
+                                                       Foreground="Gray"/>
+                                        </StackPanel>
+
+                                        <!-- Montos -->
+                                        <Grid Margin="0,6,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0"
+                                                       Text="Sistema:"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#333333"/>
+
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"
+                                                       Foreground="#2F6BFF"
+                                                       FontWeight="Bold"
+                                                       Margin="6,0,0,0"/>
+
+                                            <TextBlock Grid.Column="3"
+                                                       Text="Físico:"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="#333333"/>
+
+                                            <TextBlock Grid.Column="4"
+                                                       Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"
+                                                       Foreground="#00A86B"
+                                                       FontWeight="Bold"
+                                                       Margin="6,0,0,0"/>
+                                        </Grid>
+
+                                        <!-- Diferencia -->
+                                        <Border Background="#FFF2E8"
+                                                CornerRadius="12"
+                                                Padding="10"
+                                                Margin="0,6,0,0">
+                                            <TextBlock FontSize="16"
+                                                       FontWeight="Bold"
+                                                       Foreground="#1F1F1F">
+                                                <Run Text="Diferencia: "/>
+                                                <Run Text="{Binding Diferencia, Converter={StaticResource CurrencyConverter}}"/>
+                                            </TextBlock>
+                                        </Border>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>
