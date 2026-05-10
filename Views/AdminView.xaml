@@ -11,7 +11,7 @@
                         Spacing="40"
                         HorizontalAlignment="Center">
 
-            <TextBlock 
+                <TextBlock 
                 Text="INICIO ADMINISTRATIVO"
                 FontFamily="Arial Black"
                 FontSize="50"
@@ -19,22 +19,22 @@
                 Foreground="White"
                 HorizontalAlignment="Center"/>
 
-            <Grid RowSpacing="100"
+                <Grid RowSpacing="100"
                   ColumnSpacing="70"
                   HorizontalAlignment="Center">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button x:Name="BtnCrearEmpleado"
+                    <Button x:Name="BtnCrearEmpleado"
                         Grid.Row="0"
                         Grid.Column="0"
                         Content="👤 Crear Empleado"
@@ -47,12 +47,12 @@
                         CornerRadius="16"
                         Click="CreateUser_Click"
                         Opacity="0">
-                    <Button.RenderTransform>
-                        <TranslateTransform Y="60"/>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
 
-                <Button x:Name="BtnCrearProducto"
+                    <Button x:Name="BtnCrearProducto"
                         Grid.Row="0"
                         Grid.Column="1"
                         Content="📦 Crear Producto"
@@ -65,12 +65,12 @@
                         CornerRadius="16"
                         Click="CreateProduct_Click"
                         Opacity="0">
-                    <Button.RenderTransform>
-                        <TranslateTransform Y="60"/>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
 
-                <Button x:Name="BtnReportes"
+                    <Button x:Name="BtnReportes"
                         Grid.Row="1"
                         Grid.Column="0"
                         Content="📋 Ver Reportes de ventas"
@@ -83,12 +83,12 @@
                         CornerRadius="16"
                         Click="ReportView_Click"
                         Opacity="0">
-                    <Button.RenderTransform>
-                        <TranslateTransform Y="60"/>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
 
-                <Button x:Name="BtnDiferencias"
+                    <Button x:Name="BtnDiferencias"
                         Grid.Row="1"
                         Grid.Column="1"
                         Content="📊 Reporte Diferencias"
@@ -101,12 +101,12 @@
                         CornerRadius="16"
                         Click="DifView_Click"
                         Opacity="0">
-                    <Button.RenderTransform>
-                        <TranslateTransform Y="60"/>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
 
-                <Button x:Name="BtnRegistroProductos"
+                    <Button x:Name="BtnRegistroProductos"
                         Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
@@ -120,14 +120,14 @@
                         CornerRadius="16"
                         Click="ProductRegistry_Click"
                         Opacity="0">
-                    <Button.RenderTransform>
-                        <TranslateTransform Y="60"/>
-                    </Button.RenderTransform>
-                </Button>
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
 
-            </Grid>
+                </Grid>
 
-            <Button x:Name="BtnCerrarSesion"
+                <Button x:Name="BtnCerrarSesion"
                     Content="Cerrar sesión"
                     Width="250"
                     Height="50"
@@ -138,10 +138,10 @@
                     HorizontalAlignment="Center"
                     Click="Logout_Click"
                     Opacity="0">
-                <Button.RenderTransform>
-                    <TranslateTransform Y="40"/>
-                </Button.RenderTransform>
-            </Button>
+                    <Button.RenderTransform>
+                        <TranslateTransform Y="40"/>
+                    </Button.RenderTransform>
+                </Button>
 
             </StackPanel>
         </ScrollViewer>

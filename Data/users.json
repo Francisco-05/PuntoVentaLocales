@@ -25,5 +25,14 @@
     "Telefono": "1234567890",
     "FechaNacimiento": "2002-05-04T19:04:36.6347801",
     "Rol": "Empleado"
+  },
+  {
+    "Id": 4,
+    "Username": "Marcelo177",
+    "Password": "Macha177",
+    "NombreCompleto": "Marcelo",
+    "Telefono": "5152623548",
+    "FechaNacimiento": "2007-07-27T01:13:30.306546",
+    "Rol": "Empleado"
   }
 ]
