@@ -43,6 +43,13 @@ namespace PuntoVenta.Views
             MainWindow.Instance.MainFrameControl.Navigate(typeof(ProductRegistryView));
         }
 
+        private void RestockReport_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrameControl.Navigate(
+                typeof(RestockReportView)
+            );
+        }
+
         // Función para cerrar sesión
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +63,8 @@ namespace PuntoVenta.Views
             AnimarBoton(BtnReportes, 300);
             AnimarBoton(BtnDiferencias, 450);
             AnimarBoton(BtnRegistroProductos, 600);
-            AnimarBoton(BtnCerrarSesion, 750);
+            AnimarBoton(BtnRestockReport, 750);
+            AnimarBoton(BtnCerrarSesion, 900);
         }
 
         private void AnimarBoton(Button boton, int delay)

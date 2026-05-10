@@ -27,12 +27,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
                     <Button x:Name="BtnCrearEmpleado"
                         Grid.Row="0"
@@ -125,7 +126,7 @@
                         </Button.RenderTransform>
                     </Button>
 
-                </Grid>
+            </Grid>
 
                 <Button x:Name="BtnCerrarSesion"
                     Content="Cerrar sesión"

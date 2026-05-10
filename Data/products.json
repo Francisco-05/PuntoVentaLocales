@@ -6,7 +6,7 @@
     "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
     "Costo": 10000.0,
     "PrecioVenta": 18499.99,
-    "Existencias": 11,
+    "Existencias": 51,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "Id": 3,
-    "Nombre": "Smartphone 5G 128GB",
+    "Nombre": "Smartphone 5G 128GB1",
     "Marca": "Smartphone 5G 128GB",
     "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
     "Costo": 5800.0,
@@ -69,5 +69,4 @@
     "Existencias": 5,
     "Imagen": ""
   }
-
 ]

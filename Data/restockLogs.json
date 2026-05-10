@@ -1,0 +1,74 @@
+[
+  {
+    "Id": "c0049250-ae30-4da4-bd98-97c8c85bdb1d",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 11,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 12,
+    "FechaModificacion": "2026-05-10T02:10:01.9331565-06:00",
+    "TipoMovimiento": "Entrada"
+  },
+  {
+    "Id": "b2c856be-8878-4f58-b33c-36465021ff49",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 12,
+    "ExistenciasAgregadas": -2,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-10T02:10:33.3776265-06:00",
+    "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": "391a7c05-8976-4fd5-925f-65c95993242d",
+    "Producto": "Smartphone 5G 128GB1",
+    "ExistenciasIniciales": 12,
+    "ExistenciasAgregadas": 0,
+    "ExistenciasFinales": 12,
+    "FechaModificacion": "2026-05-10T02:15:03.6161741-06:00",
+    "TipoMovimiento": "Entrada"
+  },
+  {
+    "Id": "5b2ebd3d-7681-458d-8051-e2e81aa492de",
+    "Producto": "iPhone 161",
+    "ExistenciasIniciales": 30,
+    "ExistenciasAgregadas": -10,
+    "ExistenciasFinales": 20,
+    "FechaModificacion": "2026-05-10T02:19:22.0617718-06:00",
+    "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": "0c733981-4ab5-43d5-b57c-2428cf5b7cfe",
+    "Producto": "iPhone 161",
+    "ExistenciasIniciales": 20,
+    "ExistenciasAgregadas": -20,
+    "ExistenciasFinales": 0,
+    "FechaModificacion": "2026-05-10T02:19:46.6056296-06:00",
+    "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": "01f98b97-0187-4c68-853c-9248b528e315",
+    "Producto": "iPhone 161",
+    "ExistenciasIniciales": 71,
+    "ExistenciasAgregadas": 20,
+    "ExistenciasFinales": 91,
+    "FechaModificacion": "2026-05-10T02:39:25.5880632-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "9531d959-432a-4048-b17d-a2c0f7c382b4",
+    "Producto": "iPhone 161",
+    "ExistenciasIniciales": 91,
+    "ExistenciasAgregadas": -41,
+    "ExistenciasFinales": 50,
+    "FechaModificacion": "2026-05-10T02:54:39.9028868-06:00",
+    "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": "7fa2e67e-c84f-40e7-b174-e39a4ef691e2",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 50,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 51,
+    "FechaModificacion": "2026-05-10T02:54:57.9038843-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  }
+]

@@ -1,0 +1,191 @@
+<Page
+    x:Class="PuntoVenta.Views.RestockReportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="20"
+          Background="#F5F6FA">
+
+        <!-- ===================================== -->
+        <!-- ROWS -->
+        <!-- ===================================== -->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===================================== -->
+        <!-- HEADER -->
+        <!-- ===================================== -->
+
+        <Grid>
+
+            <TextBlock Text="Reporte de reabastecimientos"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+
+            <Button Content="Volver"
+                    HorizontalAlignment="Right"
+                    Background="#EF4444"
+                    Foreground="White"
+                    Padding="14,6"
+                    CornerRadius="6"
+                    Click="Back_Click"/>
+
+        </Grid>
+
+        <!-- ===================================== -->
+        <!-- FILTROS -->
+        <!-- ===================================== -->
+
+        <Border Grid.Row="1"
+                Background="White"
+                CornerRadius="12"
+                Padding="15"
+                Margin="0,20,0,10">
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="20">
+
+                <StackPanel>
+                    <TextBlock Text="Desde"
+                               Margin="0,0,0,5"/>
+                    <CalendarDatePicker x:Name="StartDate"
+                                        Width="180"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Hasta"
+                               Margin="0,0,0,5"/>
+                    <CalendarDatePicker x:Name="EndDate"
+                                        Width="180"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Tipo movimiento"
+                               Margin="0,0,0,5"/>
+
+                    <ComboBox x:Name="MovementFilter"
+                              Width="180">
+
+                        <ComboBoxItem Content="Todos"
+                                      IsSelected="True"/>
+
+                        <ComboBoxItem Content="Reabastecimiento"/>
+
+                        <ComboBoxItem Content="Ajuste"/>
+
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Bottom">
+
+                    <Button Content="Filtrar"
+                            Background="#2563EB"
+                            Foreground="White"
+                            Padding="20,8"
+                            CornerRadius="6"
+                            Click="Filter_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Border>
+
+        <!-- ===================================== -->
+        <!-- LISTA -->
+        <!-- ===================================== -->
+
+        <ListView x:Name="RestockList"
+                  Grid.Row="2"
+                  Margin="0,10,0,0">
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border Background="White"
+                            CornerRadius="12"
+                            Padding="15"
+                            Margin="5">
+
+                        <StackPanel Spacing="8">
+
+                            <!-- PRODUCTO -->
+
+                            <TextBlock Text="{Binding Producto}"
+                                       FontSize="18"
+                                       FontWeight="Bold"/>
+
+                            <!-- FECHA -->
+
+                            <TextBlock FontSize="13"
+                                       Foreground="Gray">
+
+                                <Run Text="Fecha: "/>
+
+                                <Run Text="{Binding FechaModificacion}"/>
+
+                            </TextBlock>
+
+                            <!-- TIPO -->
+
+                            <TextBlock FontWeight="SemiBold"
+                                       Foreground="#2563EB">
+
+                                <Run Text="Movimiento: "/>
+
+                                <Run Text="{Binding TipoMovimiento}"/>
+
+                            </TextBlock>
+
+                            <!-- EXISTENCIAS -->
+
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="20">
+
+                                <StackPanel>
+                                    <TextBlock Text="Inicial"
+                                               FontSize="12"
+                                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding ExistenciasIniciales}"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Cambio"
+                                               FontSize="12"
+                                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding ExistenciasAgregadas}"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Final"
+                                               FontSize="12"
+                                               Foreground="Gray"/>
+
+                                    <TextBlock Text="{Binding ExistenciasFinales}"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+</Page>
