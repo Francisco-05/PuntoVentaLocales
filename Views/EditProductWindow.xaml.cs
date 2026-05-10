@@ -16,71 +16,32 @@ namespace PuntoVenta.Views
     public sealed partial class EditProductWindow : Window
     {
         private readonly Product product;
+
         private string selectedImagePath = "";
 
         public EditProductWindow(Product product)
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
             this.product = product;
+
             LoadProduct();
+
             SetupEnterNavigation();
         }
 
+        // =========================================
+        // ENTER NAVIGATION
+        // =========================================
+
         private void SetupEnterNavigation()
         {
-            NameBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    BrandBox.Focus(FocusState.Programmatic);
-                }
-            };
-
-            BrandBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    DescBox.Focus(FocusState.Programmatic);
-                }
-            };
-
-            DescBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    CostBox.Focus(FocusState.Programmatic);
-                }
-            };
-
-            CostBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    PriceBox.Focus(FocusState.Programmatic);
-                }
-            };
-
-            PriceBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    StockBox.Focus(FocusState.Programmatic);
-                }
-            };
-
-            StockBox.KeyDown += (s, e) =>
-            {
-                if (e.Key == Windows.System.VirtualKey.Enter)
-                {
-                    e.Handled = true;
-                    ImageBox.Focus(FocusState.Programmatic);
-                }
-            };
+            SetEnterFocus(NameBox, BrandBox);
+            SetEnterFocus(BrandBox, DescBox);
+            SetEnterFocus(DescBox, CostBox);
+            SetEnterFocus(CostBox, PriceBox);
+            SetEnterFocus(PriceBox, StockBox);
+            SetEnterFocus(StockBox, ImageBox);
 
             ImageBox.KeyDown += (s, e) =>
             {
@@ -92,6 +53,22 @@ namespace PuntoVenta.Views
             };
         }
 
+        private void SetEnterFocus(Control current, Control next)
+        {
+            current.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    next.Focus(FocusState.Programmatic);
+                }
+            };
+        }
+
+        // =========================================
+        // CARGAR PRODUCTO
+        // =========================================
+
         private void LoadProduct()
         {
             NameBox.Text = product.Nombre;
@@ -100,159 +77,147 @@ namespace PuntoVenta.Views
             CostBox.Text = product.Costo.ToString();
             PriceBox.Text = product.PrecioVenta.ToString();
             StockBox.Text = product.Existencias.ToString();
+
             selectedImagePath = product.Imagen;
-            ImageBox.Text = Path.GetFileName(product.Imagen);
+
+            ImageBox.Text =
+                Path.GetFileName(product.Imagen);
         }
 
-        private async void SelectImage_Click(object sender, RoutedEventArgs e)
+        // =========================================
+        // SELECCIONAR IMAGEN
+        // =========================================
+
+        private async void SelectImage_Click(
+            object sender,
+            RoutedEventArgs e
+        )
         {
             var picker = new FileOpenPicker();
 
-            var hwnd = WindowNative.GetWindowHandle(this);
-            InitializeWithWindow.Initialize(picker, hwnd);
+            InitializeWithWindow.Initialize(
+                picker,
+                WindowNative.GetWindowHandle(this)
+            );
 
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".png");
             picker.FileTypeFilter.Add(".jpeg");
 
-            StorageFile file = await picker.PickSingleFileAsync();
+            StorageFile file =
+                await picker.PickSingleFileAsync();
 
-            if (file != null)
-            {
-                string assetsFolder = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    "PuntoVenta",
-                    "Products"
-                );
-
-                if (!Directory.Exists(assetsFolder))
-                    Directory.CreateDirectory(assetsFolder);
-
-                string newFileName = Guid.NewGuid() + Path.GetExtension(file.Name);
-                string destinationPath = Path.Combine(assetsFolder, newFileName);
-
-                using (var stream = await file.OpenStreamForReadAsync())
-                using (var fileStream = File.Create(destinationPath))
-                {
-                    await stream.CopyToAsync(fileStream);
-                }
-
-                selectedImagePath = destinationPath;
-                ImageBox.Text = newFileName;
-            }
-        }
-
-        private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
-        {
-            string text = args.NewText;
-
-            if (text.Any(c => !char.IsDigit(c) && c != '.'))
-            {
-                args.Cancel = true;
+            if (file == null)
                 return;
-            }
 
-            if (text.Count(c => c == '.') > 1)
-            {
-                args.Cancel = true;
-            }
-        }
-
-        private void OnlyNumbers_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
-        {
-            string text = args.NewText;
-
-            if (text.Any(c => !char.IsDigit(c)))
-            {
-                args.Cancel = true;
-            }
-        }
-
-        private async void Save_Click(object sender, RoutedEventArgs e)
-        {
-            var products = await JsonService.LoadAsync<Product>("products.json");
-
-            if (string.IsNullOrWhiteSpace(NameBox.Text) ||
-                string.IsNullOrWhiteSpace(BrandBox.Text) ||
-                string.IsNullOrWhiteSpace(CostBox.Text) ||
-                string.IsNullOrWhiteSpace(PriceBox.Text) ||
-                string.IsNullOrWhiteSpace(StockBox.Text))
-            {
-                await ShowError("Todos los campos son obligatorios");
-                return;
-            }
-
-            if (NameBox.Text.Trim().Length < 5)
-            {
-                await ShowError("El nombre del producto debe tener al menos 5 caracteres");
-                return;
-            }
-
-            if (!double.TryParse(CostBox.Text, out double costo))
-            {
-                await ShowError("Costo inválido");
-                return;
-            }
-
-            if (!double.TryParse(PriceBox.Text, out double precio))
-            {
-                await ShowError("Precio inválido");
-                return;
-            }
-
-            if (!int.TryParse(StockBox.Text, out int existencias))
-            {
-                await ShowError("Existencias inválidas");
-                return;
-            }
-
-            if (costo < 0 || precio < 0)
-            {
-                await ShowError("No se permiten valores negativos");
-                return;
-            }
-
-            if (existencias < 0)
-            {
-                await ShowError("No se permiten valores negativos");
-                return;
-            }
-
-            if (precio <= costo)
-            {
-                await ShowError("El precio de venta no puede ser igual o menor al costo");
-                return;
-            }
-
-            if (costo < 1)
-            {
-                await ShowError("El costo no puede ser menor a $1.00");
-                return;
-            }
-
-            bool exists = products.Exists(p =>
-                p.Id != product.Id &&
-                p.Nombre.ToLower() == NameBox.Text.ToLower() &&
-                p.Marca.ToLower() == BrandBox.Text.ToLower()
+            string folder = Path.Combine(
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.MyDocuments
+                ),
+                "PuntoVenta",
+                "Products"
             );
 
-            if (exists)
+            Directory.CreateDirectory(folder);
+
+            string fileName =
+                Guid.NewGuid() +
+                Path.GetExtension(file.Name);
+
+            string destination =
+                Path.Combine(folder, fileName);
+
+            using var stream =
+                await file.OpenStreamForReadAsync();
+
+            using var fileStream =
+                File.Create(destination);
+
+            await stream.CopyToAsync(fileStream);
+
+            selectedImagePath = destination;
+
+            ImageBox.Text = fileName;
+        }
+
+        // =========================================
+        // VALIDACIONES NUMÉRICAS
+        // =========================================
+
+        private void OnlyNumbersDecimal_BeforeTextChanging(
+            TextBox sender,
+            TextBoxBeforeTextChangingEventArgs args
+        )
+        {
+            string text = args.NewText;
+
+            bool invalid =
+                text.Any(c =>
+                    !char.IsDigit(c) &&
+                    c != '.')
+                ||
+                text.Count(c => c == '.') > 1;
+
+            args.Cancel = invalid;
+        }
+
+        private void OnlyNumbers_BeforeTextChanging(
+            TextBox sender,
+            TextBoxBeforeTextChangingEventArgs args
+        )
+        {
+            args.Cancel =
+                args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        // =========================================
+        // GUARDAR
+        // =========================================
+
+        private async void Save_Click(
+            object sender,
+            RoutedEventArgs e
+        )
+        {
+            var products =
+                await JsonService.LoadAsync<Product>(
+                    "products.json"
+                );
+
+            // VALIDACIONES
+
+            if (!ValidateFields(
+                products,
+                out double costo,
+                out double precio,
+                out int existencias))
             {
-                await ShowError("Ya existe un producto con ese nombre y marca");
                 return;
             }
 
-            var index = products.FindIndex(p => p.Id == product.Id);
+            int index = products.FindIndex(
+                p => p.Id == product.Id
+            );
+
             if (index < 0)
             {
-                await ShowError("Producto no encontrado");
+                await ShowError(
+                    "Producto no encontrado"
+                );
+
                 return;
             }
 
             if (!await ConfirmAdminPasswordAsync())
-            {
                 return;
-            }
+
+            int existenciasIniciales =
+                product.Existencias;
+
+            int diferencia =
+                existencias - existenciasIniciales;
+
+            // ACTUALIZAR PRODUCTO
 
             product.Nombre = NameBox.Text;
             product.Marca = BrandBox.Text;
@@ -264,66 +229,228 @@ namespace PuntoVenta.Views
 
             products[index] = product;
 
-            await JsonService.SaveAsync("products.json", products);
+            await JsonService.SaveAsync(
+                "products.json",
+                products
+            );
 
-            this.Close();
+            // GUARDAR LOG
+
+            if (diferencia != 0)
+            {
+                await SaveRestockLog(
+                    existenciasIniciales,
+                    diferencia,
+                    existencias
+                );
+            }
+
+            Close();
         }
 
-        private async Task ShowError(string message)
+        // =========================================
+        // VALIDAR CAMPOS
+        // =========================================
+
+        private bool ValidateFields(
+            System.Collections.Generic.List<Product> products,
+            out double costo,
+            out double precio,
+            out int existencias
+        )
         {
-            ContentDialog dialog = new ContentDialog
+            costo = 0;
+            precio = 0;
+            existencias = 0;
+
+            if (
+                string.IsNullOrWhiteSpace(NameBox.Text) ||
+                string.IsNullOrWhiteSpace(BrandBox.Text) ||
+                string.IsNullOrWhiteSpace(CostBox.Text) ||
+                string.IsNullOrWhiteSpace(PriceBox.Text) ||
+                string.IsNullOrWhiteSpace(StockBox.Text)
+            )
             {
-                Title = "Error",
-                Content = message,
-                CloseButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
-            };
+                _ = ShowError(
+                    "Todos los campos son obligatorios"
+                );
 
-            await dialog.ShowAsync();
-        }
-
-        private async Task<bool> ConfirmAdminPasswordAsync()
-        {
-            var passwordBox = new PasswordBox();
-
-            var dialog = new ContentDialog
-            {
-                Title = "Confirmar administrador",
-                Content = passwordBox,
-                PrimaryButtonText = "Confirmar",
-                CloseButtonText = "Cancelar",
-                XamlRoot = this.Content.XamlRoot
-            };
-
-            var result = await dialog.ShowAsync();
-            if (result != ContentDialogResult.Primary)
-            {
                 return false;
             }
 
-            string password = passwordBox.Password;
-            if (string.IsNullOrWhiteSpace(password))
+            if (NameBox.Text.Trim().Length < 5)
             {
-                await ShowError("Todos los campos son obligatorios");
+                _ = ShowError(
+                    "El nombre debe tener al menos 5 caracteres"
+                );
+
                 return false;
             }
 
-            if (!ValidationHelper.IsValidPassword(password))
+            if (
+                !double.TryParse(CostBox.Text, out costo) ||
+                !double.TryParse(PriceBox.Text, out precio) ||
+                !int.TryParse(StockBox.Text, out existencias)
+            )
             {
-                await ShowError("Contraseña incorrecta");
+                _ = ShowError(
+                    "Valores numéricos inválidos"
+                );
+
                 return false;
             }
 
-            var users = await JsonService.LoadAsync<User>("users.json");
-            bool isAdmin = users.Any(u => u.Rol == "Admin" && u.Password == password);
-
-            if (!isAdmin)
+            if (
+                costo < 1 ||
+                precio <= costo ||
+                existencias < 0
+            )
             {
-                await ShowError("Contraseña incorrecta");
+                _ = ShowError(
+                    "Valores inválidos"
+                );
+
+                return false;
+            }
+
+            bool exists = products.Exists(p =>
+                p.Id != product.Id &&
+                p.Nombre.Equals(
+                    NameBox.Text,
+                    StringComparison.OrdinalIgnoreCase
+                ) &&
+                p.Marca.Equals(
+                    BrandBox.Text,
+                    StringComparison.OrdinalIgnoreCase
+                )
+            );
+
+            if (exists)
+            {
+                _ = ShowError(
+                    "Ya existe un producto igual"
+                );
+
                 return false;
             }
 
             return true;
+        }
+
+        // =========================================
+        // GUARDAR LOG
+        // =========================================
+
+        private async Task SaveRestockLog(
+            int inicial,
+            int diferencia,
+            int final
+        )
+        {
+            var logs =
+                await JsonService.LoadAsync<RestockLog>(
+                    "restockLogs.json"
+                );
+
+            logs.Add(new RestockLog
+            {
+                Id = Guid.NewGuid(),
+
+                Producto = product.Nombre,
+
+                ExistenciasIniciales = inicial,
+
+                ExistenciasAgregadas = diferencia,
+
+                ExistenciasFinales = final,
+
+                FechaModificacion = DateTime.Now,
+
+                TipoMovimiento =
+                    diferencia > 0
+                        ? "Reabastecimiento"
+                        : "Ajuste"
+            });
+
+            await JsonService.SaveAsync(
+                "restockLogs.json",
+                logs
+            );
+        }
+
+        // =========================================
+        // ERROR
+        // =========================================
+
+        private async Task ShowError(
+            string message
+        )
+        {
+            await new ContentDialog
+            {
+                Title = "Error",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = Content.XamlRoot
+            }.ShowAsync();
+        }
+
+        // =========================================
+        // CONFIRMAR ADMIN
+        // =========================================
+
+        private async Task<bool>
+            ConfirmAdminPasswordAsync()
+        {
+            var passwordBox =
+                new PasswordBox();
+
+            var result =
+                await new ContentDialog
+                {
+                    Title = "Confirmar administrador",
+
+                    Content = passwordBox,
+
+                    PrimaryButtonText = "Confirmar",
+
+                    CloseButtonText = "Cancelar",
+
+                    XamlRoot = Content.XamlRoot
+                }.ShowAsync();
+
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
+            {
+                return false;
+            }
+
+            string password =
+                passwordBox.Password;
+
+            if (
+                string.IsNullOrWhiteSpace(password) ||
+                !ValidationHelper.IsValidPassword(password)
+            )
+            {
+                await ShowError(
+                    "Contraseña incorrecta"
+                );
+
+                return false;
+            }
+
+            var users =
+                await JsonService.LoadAsync<User>(
+                    "users.json"
+                );
+
+            return users.Any(u =>
+                u.Rol == "Admin" &&
+                u.Password == password
+            );
         }
     }
 }

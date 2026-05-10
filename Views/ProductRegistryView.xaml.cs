@@ -67,6 +67,7 @@ namespace PuntoVenta.Views
             };
 
             var result = await dialog.ShowAsync();
+
             if (result != ContentDialogResult.Primary)
             {
                 return;
@@ -81,6 +82,7 @@ namespace PuntoVenta.Views
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 }.ShowAsync();
+
                 return;
             }
 
@@ -89,11 +91,67 @@ namespace PuntoVenta.Views
                 return;
             }
 
+            // =========================================
+            // EXISTENCIAS
+            // =========================================
+
+            int existenciasIniciales = product.Existencias;
+
             product.Existencias += amount;
 
-            await JsonService.SaveAsync("products.json", products);
+            int existenciasFinales = product.Existencias;
+
+            // =========================================
+            // GUARDAR PRODUCTOS
+            // =========================================
+
+            await JsonService.SaveAsync(
+                "products.json",
+                products
+            );
+
+            // =========================================
+            // GUARDAR LOG
+            // =========================================
+
+            var restockLogs =
+                await JsonService.LoadAsync<RestockLog>(
+                    "restockLogs.json"
+                );
+
+            restockLogs.Add(new RestockLog
+            {
+                Id = Guid.NewGuid(),
+
+                Producto = product.Nombre,
+
+                ExistenciasIniciales =
+                    existenciasIniciales,
+
+                ExistenciasAgregadas =
+                    amount,
+
+                ExistenciasFinales =
+                    existenciasFinales,
+
+                FechaModificacion =
+                    DateTime.Now,
+
+                TipoMovimiento =
+                    "Reabastecimiento"
+            });
+
+            await JsonService.SaveAsync(
+                "restockLogs.json",
+                restockLogs
+            );
+
+            // =========================================
+            // REFRESCAR TABLA
+            // =========================================
 
             ProductsList.ItemsSource = null;
+
             ProductsList.ItemsSource = products;
         }
 

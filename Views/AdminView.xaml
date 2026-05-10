@@ -23,13 +23,14 @@
                   ColumnSpacing="70"
                   HorizontalAlignment="Center">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
@@ -125,7 +126,26 @@
                     </Button.RenderTransform>
                 </Button>
 
-            </Grid>
+                    <Button x:Name="BtnRestockReport"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Content="📦 Reporte de Reabastecimientos"
+                        Width="500"
+                        Height="150"
+                        Background="Cornsilk"
+                        Foreground="Black"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        CornerRadius="16"
+                        Click="RestockReport_Click"
+                        Opacity="0">    
+                        <Button.RenderTransform>
+                            <TranslateTransform Y="60"/>
+                        </Button.RenderTransform>
+                    </Button>
+
+                </Grid>
 
             <Button x:Name="BtnCerrarSesion"
                     Content="Cerrar sesión"
