@@ -85,7 +85,7 @@
                                      BorderThickness="0"
                                      Height="25"
                                      MaxWidth="540"
-                                     Padding="15,0"
+                                     Padding="35,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
                         </Border>
@@ -103,7 +103,7 @@
                                          BorderThickness="0"
                                          Height="25"
                                          MaxWidth="540"
-                                         Padding="15,0"
+                                         Padding="35,0"
                                          FontSize="16"/>
                         </Border>
 
@@ -120,7 +120,7 @@
                                      BorderThickness="0"
                                      Height="25"
                                      MaxWidth="540"
-                                     Padding="15,0"
+                                     Padding="35,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
                         </Border>
@@ -139,7 +139,7 @@
                                      BorderThickness="0"
                                      Height="25"
                                      MaxWidth="540"
-                                     Padding="15,0"
+                                     Padding="35,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
                         </Border>
