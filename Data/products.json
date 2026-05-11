@@ -1,72 +1,192 @@
 [
   {
     "Id": 1,
-    "Nombre": "iPhone 16",
-    "Marca": "Apple",
-    "Descripcion": "iPhone 16, 256gb interno, 8gb ram",
-    "Costo": 10000.0,
-    "PrecioVenta": 184500.0,
-    "Existencias": 51,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\8847028f-ece8-478d-9ded-f2162f928a09.jpg"
+    "Nombre": "Laptop Lenovo Ideapad Slim 3",
+    "Marca": "Lenovo",
+    "Descripcion": "AMD Ryzen 5 5625U 8GB 512 SSD Windows 11",
+    "Costo": 6000.0,
+    "PrecioVenta": 9499.99,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\48908230-64d3-4635-bc49-1d4f3ebdde78.jpg"
   },
   {
     "Id": 2,
-    "Nombre": "Laptop Ultrabook 14\"",
+    "Nombre": "Laptop Dell Inspiron 15 ",
     "Marca": "Dell",
-    "Descripcion": "Intel Core i5, 16GB RAM, 512GB SSD, pantalla FHD 14\"",
-    "Costo": 11700.0,
-    "PrecioVenta": 16200.0,
-    "Existencias": 38,
-    "Imagen": ""
+    "Descripcion": "Intel Core i5-1334U, 16GB, 1TB SSD, Windows 11",
+    "Costo": 7345.0,
+    "PrecioVenta": 12839.0,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\db945b47-090d-4446-bf64-42bb1c6c1c3f.jpg"
   },
   {
     "Id": 3,
-    "Nombre": "Smartphone 5G 128GB1",
-    "Marca": "Smartphone 5G 128GB",
-    "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
-    "Costo": 5800.0,
-    "PrecioVenta": 9100.0,
-    "Existencias": 13,
-    "Imagen": ""
+    "Nombre": "Apple MacBook Air Retina",
+    "Marca": "Apple",
+    "Descripcion": "Apple M3 (CPU Núcleos y GPU 10 Núcleos), 24GB, 512GB SSD, Español, Plata",
+    "Costo": 18265.0,
+    "PrecioVenta": 30099.0,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\7b6336f5-1e56-44c0-8d26-2530e6843a06.jpg"
   },
   {
     "Id": 4,
-    "Nombre": "Impresora multifuncional",
-    "Marca": "HP",
-    "Descripcion": "Impresión, copia y escaneo, Wi‑Fi, tinta negra",
-    "Costo": 1200.0,
-    "PrecioVenta": 2000.0,
-    "Existencias": 9,
-    "Imagen": ""
+    "Nombre": "ASUS Laptop Vivobook 16",
+    "Marca": "Asus",
+    "Descripcion": "MD RYZEN 7-7730U /16GB /512 SSD/Resistencia Grado Militar",
+    "Costo": 7000.0,
+    "PrecioVenta": 12899.0,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\62329863-e2c1-4758-944d-e06b4dcd0203.jpg"
   },
   {
     "Id": 5,
-    "Nombre": "Cámara web 1080p",
-    "Marca": "Logitech",
-    "Descripcion": "Full HD, enfoque automático, micrófono dual",
-    "Costo": 590.0,
-    "PrecioVenta": 1070.0,
-    "Existencias": 10,
-    "Imagen": ""
+    "Nombre": "iPhone 15",
+    "Marca": "Apple",
+    "Descripcion": "128gb interno, 6gb ram",
+    "Costo": 5000.0,
+    "PrecioVenta": 8499.0,
+    "Existencias": 15,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\f5f683bd-d7da-45f7-b886-e8f92111a42e.jpg"
   },
   {
     "Id": 6,
-    "Nombre": "AirPods Pro 3",
+    "Nombre": "iPhone 15 PRO",
     "Marca": "Apple",
-    "Descripcion": "Audio tridimensional de alta definición para una experiencia espacial fuera de serie en tus oídos",
-    "Costo": 800.0,
-    "PrecioVenta": 5799.0,
-    "Existencias": 2,
-    "Imagen": ""
+    "Descripcion": "256gb interno, 8gb RAM",
+    "Costo": 7000.0,
+    "PrecioVenta": 10500.0,
+    "Existencias": 15,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\21949ffc-7d51-43e6-9928-08f0fe8f97ed.jpg"
   },
   {
     "Id": 7,
-    "Nombre": "Teclado mecanico",
-    "Marca": "Redragon",
-    "Descripcion": "reconocidos por su excelente relación calidad-precio, ofreciendo durabilidad, switches mecánicos",
-    "Costo": 300.0,
-    "PrecioVenta": 599.0,
-    "Existencias": 8,
-    "Imagen": ""
+    "Nombre": "iPhone 16",
+    "Marca": "Apple",
+    "Descripcion": "128gb interno, 6gb ram",
+    "Costo": 8000.0,
+    "PrecioVenta": 12599.0,
+    "Existencias": 15,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\257a878b-c3f7-4a5e-b9c7-972e4dfb344a.jpg"
+  },
+  {
+    "Id": 8,
+    "Nombre": "iPhone 16 PRO ",
+    "Marca": "Apple",
+    "Descripcion": "256gb interno, 8gb ram",
+    "Costo": 10000.0,
+    "PrecioVenta": 15399.0,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\a19ae5db-d00b-41e2-a8eb-72645af08d1c.jpg"
+  },
+  {
+    "Id": 9,
+    "Nombre": "iPhone 16 PRO MAX",
+    "Marca": "Apple ",
+    "Descripcion": "256gb interno, 8gb ram",
+    "Costo": 13000.0,
+    "PrecioVenta": 16699.0,
+    "Existencias": 10,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\52330ad0-d362-4cdc-967d-05e8fbf5dbaf.jpg"
+  },
+  {
+    "Id": 10,
+    "Nombre": "Galaxy S23",
+    "Marca": "Samsung ",
+    "Descripcion": "256gb interno, 12RAM, 120Hz",
+    "Costo": 13000.0,
+    "PrecioVenta": 18000.0,
+    "Existencias": 20,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\25343dfe-e29d-4756-b69d-5b0868825f36.jpg"
+  },
+  {
+    "Id": 11,
+    "Nombre": "Galaxy S23 ULTRA",
+    "Marca": "Samsung",
+    "Descripcion": "256gb interno, 12 RAM, 120Hz",
+    "Costo": 14600.0,
+    "PrecioVenta": 19000.0,
+    "Existencias": 20,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\18eb11d1-816e-4d0e-8253-3e807605a894.jpg"
+  },
+  {
+    "Id": 12,
+    "Nombre": "Galaxy S24 ULTRA",
+    "Marca": "Samsung",
+    "Descripcion": "512gb interno, 12 ram, 120Hz",
+    "Costo": 16000.0,
+    "PrecioVenta": 24500.0,
+    "Existencias": 15,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\fe3ae975-6a9d-4fd4-88b5-3d2e10219da8.jpg"
+  },
+  {
+    "Id": 13,
+    "Nombre": "Airpods 4",
+    "Marca": "Apple ",
+    "Descripcion": "4 horas por carga, cancelacion de ruido",
+    "Costo": 1300.0,
+    "PrecioVenta": 2200.0,
+    "Existencias": 25,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\7a80ed36-12b8-4c00-967d-81a1cf046759.jpg"
+  },
+  {
+    "Id": 14,
+    "Nombre": "Galaxy Buds 3",
+    "Marca": "Samsung ",
+    "Descripcion": "6 horas por carga, cancelacion de ruido",
+    "Costo": 1900.0,
+    "PrecioVenta": 3100.0,
+    "Existencias": 20,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\80d18e18-3b48-44a5-ab6c-f3031282eee5.jpg"
+  },
+  {
+    "Id": 15,
+    "Nombre": "Audifonos Bluetooth Generico",
+    "Marca": "Generico",
+    "Descripcion": "3 horas por carga",
+    "Costo": 200.0,
+    "PrecioVenta": 450.0,
+    "Existencias": 60,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\43b14fe2-60ca-4fbd-b45b-af58e74088d0.jpg"
+  },
+  {
+    "Id": 16,
+    "Nombre": "Cargador iPhone",
+    "Marca": "Apple",
+    "Descripcion": "Cargador tipo C",
+    "Costo": 480.0,
+    "PrecioVenta": 1200.0,
+    "Existencias": 40,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\fdae670d-0836-4ad2-885b-9da1fb51bdfd.jpg"
+  },
+  {
+    "Id": 17,
+    "Nombre": "Cargador iPhone USB",
+    "Marca": "Apple",
+    "Descripcion": "Cargador USB a C",
+    "Costo": 400.0,
+    "PrecioVenta": 1100.0,
+    "Existencias": 40,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\9074f86e-0c6a-4005-b8b6-b1d19ec728b0.jpg"
+  },
+  {
+    "Id": 18,
+    "Nombre": "Cargador carga rapida",
+    "Marca": "UVolt",
+    "Descripcion": "Carga rapida 60W",
+    "Costo": 180.0,
+    "PrecioVenta": 350.0,
+    "Existencias": 50,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\d42d8858-2e7c-41f3-b0b9-0af7b3eaa01b.jpg"
+  },
+  {
+    "Id": 19,
+    "Nombre": "Cargador Generico",
+    "Marca": "Generico",
+    "Descripcion": "Cargador generic USB a C",
+    "Costo": 80.0,
+    "PrecioVenta": 250.0,
+    "Existencias": 100,
+    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\ecb40c48-806c-4eec-af78-637f4cd91360.jpg"
   }
 ]

@@ -1,9 +1,11 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using PuntoVenta.Helpers;
+using PuntoVenta.Models;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
 using System;
+using System.Linq;
 
 namespace PuntoVenta.Views
 {
@@ -112,11 +114,32 @@ namespace PuntoVenta.Views
             MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
         }
 
-        private void EmployeeLogin_Click(object sender, RoutedEventArgs e)
+        private async void EmployeeLogin_Click(
+            object sender,
+            RoutedEventArgs e)
         {
-            SessionService.CurrentUser = null;
-            SessionService.LoginTime = DateTime.Now;
-            MainWindow.Instance.MainFrameControl.Navigate(typeof(ProductCatalogView));
+            var users =
+                await JsonService.LoadAsync<User>(
+                    "users.json"
+                );
+
+            var devUser =
+                users.FirstOrDefault(u =>
+                    u.Rol == "Empleado"
+                );
+
+            if (devUser == null)
+                return;
+
+            SessionService.CurrentUser =
+                devUser;
+
+            SessionService.LoginTime =
+                DateTime.Now;
+
+            MainWindow.Instance
+                .MainFrameControl
+                .Navigate(typeof(ProductCatalogView));
         }
     }
 }

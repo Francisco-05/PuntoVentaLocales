@@ -294,8 +294,9 @@ namespace PuntoVenta.Views
 
                 win.Activate();
             }
+        }
 
-            //Eliminar usuario
+        //Eliminar usuario
 
         private async void DeleteUser_Click(
             object sender,

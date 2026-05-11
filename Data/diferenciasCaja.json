@@ -1,80 +1,20 @@
 [
   {
     "Id": 1,
-    "Empleado": "Packo123",
-    "Fecha": "2026-05-04T18:29:04.7446992-06:00",
-    "InicioSesion": "2026-05-04T18:28:40.1327131-06:00",
-    "FinSesion": "2026-05-04T18:29:01.8277633-06:00",
-    "EfectivoSistema": 16000.0,
-    "EfectivoReal": 50000.0,
-    "Diferencia": 34000.0
-  },
-  {
-    "Id": 2,
-    "Empleado": "Packo123",
-    "Fecha": "2026-05-04T18:45:06.1669017-06:00",
-    "InicioSesion": "2026-05-04T18:41:05.7049016-06:00",
-    "FinSesion": "2026-05-04T18:44:56.4331409-06:00",
-    "EfectivoSistema": 0.0,
-    "EfectivoReal": 5000.0,
-    "Diferencia": 5000.0
-  },
-  {
-    "Id": 3,
-    "Empleado": "Renata Michelle",
-    "Fecha": "2026-05-04T19:06:58.2462863-06:00",
-    "InicioSesion": "2026-05-04T19:05:21.2596628-06:00",
-    "FinSesion": "2026-05-04T19:06:50.1968281-06:00",
-    "EfectivoSistema": 0.0,
-    "EfectivoReal": 5000.0,
-    "Diferencia": 5000.0
-  },
-  {
-    "Id": 4,
     "Empleado": "Francisco Ibarra",
-    "Fecha": "2026-05-04T19:09:49.2817789-06:00",
-    "InicioSesion": "2026-05-04T19:08:56.9712949-06:00",
-    "FinSesion": "2026-05-04T19:09:44.850653-06:00",
-    "EfectivoSistema": 2600.0,
-    "EfectivoReal": 5000.0,
-    "Diferencia": 2400.0
-  },
-  {
-    "Id": 5,
-    "Empleado": "Francisco Ibarra",
-    "Fecha": "2026-05-10T15:32:30.2068563-06:00",
-    "InicioSesion": "2026-05-10T15:27:24.2815617-06:00",
-    "FinSesion": "2026-05-10T15:32:25.0159085-06:00",
+    "Fecha": "2026-05-11T15:31:09.5547694-06:00",
+    "InicioSesion": "2026-05-11T15:30:54.893426-06:00",
+    "FinSesion": "2026-05-11T15:31:07.0731086-06:00",
     "EfectivoSistema": 0.0,
     "EfectivoReal": 0.0,
     "Diferencia": 0.0
   },
   {
-    "Id": 6,
+    "Id": 2,
     "Empleado": "Francisco Ibarra",
-    "Fecha": "2026-05-11T08:31:39.1601472-06:00",
-    "InicioSesion": "2026-05-11T08:28:02.4512104-06:00",
-    "FinSesion": "2026-05-11T08:31:33.6922862-06:00",
-    "EfectivoSistema": 9100.0,
-    "EfectivoReal": 500.0,
-    "Diferencia": -8600.0
-  },
-  {
-    "Id": 7,
-    "Empleado": "Francisco Ibarra",
-    "Fecha": "2026-05-11T08:31:56.2457095-06:00",
-    "InicioSesion": "2026-05-11T08:31:46.4080423-06:00",
-    "FinSesion": "2026-05-11T08:31:53.3954355-06:00",
-    "EfectivoSistema": 0.0,
-    "EfectivoReal": 10.0,
-    "Diferencia": 10.0
-  },
-  {
-    "Id": 8,
-    "Empleado": "Francisco Ibarra",
-    "Fecha": "2026-05-11T08:44:18.5802537-06:00",
-    "InicioSesion": "2026-05-11T08:44:02.19066-06:00",
-    "FinSesion": "2026-05-11T08:44:16.4475723-06:00",
+    "Fecha": "2026-05-11T16:06:03.6567263-06:00",
+    "InicioSesion": "2026-05-11T16:05:34.442995-06:00",
+    "FinSesion": "2026-05-11T16:05:59.9695749-06:00",
     "EfectivoSistema": 0.0,
     "EfectivoReal": 0.0,
     "Diferencia": 0.0

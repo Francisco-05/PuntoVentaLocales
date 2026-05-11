@@ -1,137 +1,182 @@
 [
   {
-    "Id": "c0049250-ae30-4da4-bd98-97c8c85bdb1d",
-    "Producto": "iPhone 16",
-    "ExistenciasIniciales": 11,
-    "ExistenciasAgregadas": 1,
-    "ExistenciasFinales": 12,
-    "FechaModificacion": "2026-05-10T02:10:01.9331565-06:00",
-    "TipoMovimiento": "Entrada"
-  },
-  {
-    "Id": "b2c856be-8878-4f58-b33c-36465021ff49",
-    "Producto": "iPhone 16",
-    "ExistenciasIniciales": 12,
-    "ExistenciasAgregadas": -2,
+    "Id": "46e6cc8d-2258-44c6-a69b-c044c2bccfd7",
+    "Producto": "Laptop Lenovo Ideapad Slim 3",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
     "ExistenciasFinales": 10,
-    "FechaModificacion": "2026-05-10T02:10:33.3776265-06:00",
-    "TipoMovimiento": "Ajuste"
+    "FechaModificacion": "2026-05-11T16:06:23.8363698-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "391a7c05-8976-4fd5-925f-65c95993242d",
-    "Producto": "Smartphone 5G 128GB1",
-    "ExistenciasIniciales": 12,
-    "ExistenciasAgregadas": 0,
-    "ExistenciasFinales": 12,
-    "FechaModificacion": "2026-05-10T02:15:03.6161741-06:00",
-    "TipoMovimiento": "Entrada"
+    "Id": "af61bbd0-a89d-4168-b94f-924d35c92bf7",
+    "Producto": "Laptop Dell Inspiron 15 ",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-11T16:06:32.5721648-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "5b2ebd3d-7681-458d-8051-e2e81aa492de",
-    "Producto": "iPhone 161",
-    "ExistenciasIniciales": 30,
-    "ExistenciasAgregadas": -10,
-    "ExistenciasFinales": 20,
-    "FechaModificacion": "2026-05-10T02:19:22.0617718-06:00",
-    "TipoMovimiento": "Ajuste"
+    "Id": "63d4537c-cb93-4522-b1de-dd9393c10953",
+    "Producto": "Apple MacBook Air Retina",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-11T16:06:39.9714092-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "0c733981-4ab5-43d5-b57c-2428cf5b7cfe",
-    "Producto": "iPhone 161",
-    "ExistenciasIniciales": 20,
-    "ExistenciasAgregadas": -20,
-    "ExistenciasFinales": 0,
-    "FechaModificacion": "2026-05-10T02:19:46.6056296-06:00",
-    "TipoMovimiento": "Ajuste"
+    "Id": "990e7a66-0dab-420c-a8aa-fc2d9da43563",
+    "Producto": "ASUS Laptop Vivobook 16",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-11T16:06:47.1379503-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "01f98b97-0187-4c68-853c-9248b528e315",
-    "Producto": "iPhone 161",
-    "ExistenciasIniciales": 71,
+    "Id": "9da08fd4-3b3a-430a-9488-90bfa565263b",
+    "Producto": "iPhone 15",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 15,
+    "ExistenciasFinales": 15,
+    "FechaModificacion": "2026-05-11T16:06:57.7043916-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "929e77db-af32-4452-833f-73d09f0eaac7",
+    "Producto": "iPhone 15 PRO",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 15,
+    "ExistenciasFinales": 15,
+    "FechaModificacion": "2026-05-11T16:07:03.3717067-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "f362de59-68ca-415c-97b0-3be2a5f6fa4f",
+    "Producto": "iPhone 16",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 15,
+    "ExistenciasFinales": 15,
+    "FechaModificacion": "2026-05-11T16:07:12.7557202-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "4c30b8c1-455c-4f56-a356-d24deee6a910",
+    "Producto": "iPhone 16 PRO ",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-11T16:07:20.0722848-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "6ade4bb6-497f-4d03-87c4-b79a6e94ae14",
+    "Producto": "iPhone 16 PRO MAX",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 10,
+    "ExistenciasFinales": 10,
+    "FechaModificacion": "2026-05-11T16:07:26.9718773-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "45ba510e-974d-407f-97b4-759075f10ebf",
+    "Producto": "Galaxy S23",
+    "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 20,
-    "ExistenciasFinales": 91,
-    "FechaModificacion": "2026-05-10T02:39:25.5880632-06:00",
+    "ExistenciasFinales": 20,
+    "FechaModificacion": "2026-05-11T16:07:38.2883124-06:00",
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "9531d959-432a-4048-b17d-a2c0f7c382b4",
-    "Producto": "iPhone 161",
-    "ExistenciasIniciales": 91,
-    "ExistenciasAgregadas": -41,
+    "Id": "73682f21-31b5-4341-adf2-ca2a0c9fa002",
+    "Producto": "Galaxy S23 ULTRA",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 20,
+    "ExistenciasFinales": 20,
+    "FechaModificacion": "2026-05-11T16:07:44.1561806-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "5ab08f63-71e4-499a-8969-aebdc29772d4",
+    "Producto": "Galaxy S24 ULTRA",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 15,
+    "ExistenciasFinales": 15,
+    "FechaModificacion": "2026-05-11T16:07:55.3564513-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "f8fd866b-4052-4c93-989d-4b6d7569af84",
+    "Producto": "Airpods 4",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 25,
+    "ExistenciasFinales": 25,
+    "FechaModificacion": "2026-05-11T16:08:03.2728945-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "81d82930-355d-4f46-a79d-63f6a725cc62",
+    "Producto": "Galaxy Buds 3",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 20,
+    "ExistenciasFinales": 20,
+    "FechaModificacion": "2026-05-11T16:08:11.690047-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "99f2581f-7683-442b-b3bc-8df15da45b85",
+    "Producto": "Audifonos Bluetooth Generico",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 20,
+    "ExistenciasFinales": 20,
+    "FechaModificacion": "2026-05-11T16:08:30.3901109-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "7f3f95fc-34a3-4fe0-a132-cd1b311c8e46",
+    "Producto": "Audifonos Bluetooth Generico",
+    "ExistenciasIniciales": 20,
+    "ExistenciasAgregadas": 40,
+    "ExistenciasFinales": 60,
+    "FechaModificacion": "2026-05-11T16:08:40.7737075-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "f88866c5-5173-41d0-a9ae-9fc9fbd08a4c",
+    "Producto": "Cargador iPhone",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 40,
+    "ExistenciasFinales": 40,
+    "FechaModificacion": "2026-05-11T16:08:47.8741912-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "59d2972c-fe44-413f-b510-e088a1a38ca1",
+    "Producto": "Cargador iPhone USB",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 40,
+    "ExistenciasFinales": 40,
+    "FechaModificacion": "2026-05-11T16:08:52.6230317-06:00",
+    "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "1ba44bf0-feeb-40d8-8338-5fd5edbcc21c",
+    "Producto": "Cargador carga rapida",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 50,
     "ExistenciasFinales": 50,
-    "FechaModificacion": "2026-05-10T02:54:39.9028868-06:00",
-    "TipoMovimiento": "Ajuste"
-  },
-  {
-    "Id": "7fa2e67e-c84f-40e7-b174-e39a4ef691e2",
-    "Producto": "iPhone 16",
-    "ExistenciasIniciales": 50,
-    "ExistenciasAgregadas": 1,
-    "ExistenciasFinales": 51,
-    "FechaModificacion": "2026-05-10T02:54:57.9038843-06:00",
+    "FechaModificacion": "2026-05-11T16:09:00.4076403-06:00",
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "4cf549ea-b0cf-46c6-8f7d-fd9c677a835b",
-    "Producto": "Laptop Ultrabook 14\"",
-    "ExistenciasIniciales": 40,
-    "ExistenciasAgregadas": 10,
-    "ExistenciasFinales": 50,
-    "FechaModificacion": "2026-05-10T02:57:42.5786155-06:00",
-    "TipoMovimiento": "Reabastecimiento"
-  },
-  {
-    "Id": "2411c159-c1ec-4559-a4ec-ee759d9234ec",
-    "Producto": "Teclado mecanico",
-    "ExistenciasIniciales": 5,
-    "ExistenciasAgregadas": 5,
-    "ExistenciasFinales": 10,
-    "FechaModificacion": "2026-05-10T02:58:00.0427004-06:00",
-    "TipoMovimiento": "Reabastecimiento"
-  },
-  {
-    "Id": "22ff89fc-2ed8-45b1-a23f-e037f848d3cc",
-    "Producto": "Teclado mecanico",
-    "ExistenciasIniciales": 10,
-    "ExistenciasAgregadas": -2,
-    "ExistenciasFinales": 8,
-    "FechaModificacion": "2026-05-10T02:58:17.7765781-06:00",
-    "TipoMovimiento": "Ajuste"
-  },
-  {
-    "Id": "92f63572-4686-4cd7-bdaa-e67dd29c37c1",
-    "Producto": "iPhone 16",
-    "ExistenciasIniciales": 51,
-    "ExistenciasAgregadas": 1,
-    "ExistenciasFinales": 52,
-    "FechaModificacion": "2026-05-10T03:15:14.6127439-06:00",
-    "TipoMovimiento": "Reabastecimiento"
-  },
-  {
-    "Id": "c70f722d-d210-4e79-8f58-86a58d3e07d3",
-    "Producto": "Smartphone 5G 128GB1",
-    "ExistenciasIniciales": 12,
-    "ExistenciasAgregadas": 10,
-    "ExistenciasFinales": 22,
-    "FechaModificacion": "2026-05-10T16:55:34.0783362-06:00",
-    "TipoMovimiento": "Reabastecimiento"
-  },
-  {
-    "Id": "7bc3bfcf-1098-458c-bb96-0f13dec54d03",
-    "Producto": "iPhone 16",
-    "ExistenciasIniciales": 52,
-    "ExistenciasAgregadas": 1,
-    "ExistenciasFinales": 53,
-    "FechaModificacion": "2026-05-10T16:55:45.9530224-06:00",
-    "TipoMovimiento": "Reabastecimiento"
-  },
-  {
-    "Id": "a428ae00-f44f-4cbc-baed-452c89fcc029",
-    "Producto": "Cámara web 1080p",
-    "ExistenciasIniciales": 10,
-    "ExistenciasAgregadas": 1,
-    "ExistenciasFinales": 11,
-    "FechaModificacion": "2026-05-10T22:39:54.4363459-06:00",
+    "Id": "24c3767a-e0c9-44c7-a078-4b8aafe19e0b",
+    "Producto": "Cargador Generico",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 100,
+    "ExistenciasFinales": 100,
+    "FechaModificacion": "2026-05-11T16:09:06.8244238-06:00",
     "TipoMovimiento": "Reabastecimiento"
   }
 ]
