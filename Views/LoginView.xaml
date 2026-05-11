@@ -179,7 +179,7 @@
                                              Foreground="#102A2F"
                                              VerticalContentAlignment="Center"
                                              FontSize="15"
-                                             MaxLength="30"
+                                             MaxLength="12"
                                              Padding="35,0,0,0"/>
                                             
                             </Grid>

@@ -98,7 +98,7 @@
                                 Height="52">
                             <PasswordBox x:Name="PasswordBox"
                                          PlaceholderText="Password"
-                                         MaxLength="30"
+                                         MaxLength="12"
                                          Background="Transparent"
                                          BorderThickness="0"
                                          Height="25"

@@ -26,7 +26,7 @@
     "Descripcion": "Pantalla 6.4\", 6GB RAM, 128GB, triple cámara",
     "Costo": 5800.0,
     "PrecioVenta": 9100.0,
-    "Existencias": 14,
+    "Existencias": 13,
     "Imagen": ""
   },
   {
@@ -68,15 +68,5 @@
     "PrecioVenta": 599.0,
     "Existencias": 8,
     "Imagen": ""
-  },
-  {
-    "Id": 8,
-    "Nombre": "EQDSFEDEFWF",
-    "Marca": "SDFSFDDFSDFS",
-    "Descripcion": "FSDFDSDSFDSF",
-    "Costo": 10.0,
-    "PrecioVenta": 50.0,
-    "Existencias": 0,
-    "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\6f910673-8b4f-409c-be79-f6c7878c175a.jpg"
   }
 ]

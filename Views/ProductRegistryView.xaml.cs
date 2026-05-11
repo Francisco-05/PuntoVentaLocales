@@ -46,12 +46,7 @@ namespace PuntoVenta.Views
             ProductsList.ItemsSource = products;
         }
 
-        private async void Refresh_Click(
-            object sender,
-            RoutedEventArgs e)
-                {
-            LoadProducts();
-        }
+
 
         // =========================================
         // CARGAR USUARIOS
@@ -65,6 +60,16 @@ namespace PuntoVenta.Views
                 );
 
             UsersList.ItemsSource = users;
+        }
+
+        private void Refresh_Click(
+            object sender,
+            RoutedEventArgs e)
+        {
+            LoadProducts();
+            LoadUsers();
+
+
         }
 
         // =========================================
@@ -459,7 +464,7 @@ namespace PuntoVenta.Views
             var passwordBox =
                  new PasswordBox
                  {
-                     MaxLength = 10,
+                     MaxLength = 12,
                      Padding= new Thickness(40, 6, 0, 0)
                  };
 

@@ -123,21 +123,6 @@
                                  VerticalContentAlignment="Center"/>
                     </Border>
 
-                    <!-- Rol -->
-                    <Border CornerRadius="16"
-                            Background="#E9EEF5"
-                            Height="46">
-                        <ComboBox x:Name="RoleBox"
-                                  Background="Transparent"
-                                  Height="42"
-                                  MaxWidth="450"
-                                  Padding="35,0,14,0"
-                                  BorderThickness="0"
-                                  FontSize="15"
-                                  HorizontalAlignment="Stretch">
-                            <ComboBoxItem Content="Empleado"/>
-                        </ComboBox>
-                    </Border>
 
                     <!-- Botón guardar -->
                     <Button Content="Guardar Cambios"

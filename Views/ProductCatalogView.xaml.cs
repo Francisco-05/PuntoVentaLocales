@@ -358,10 +358,17 @@ namespace PuntoVenta.Views
             var dialog = new ContentDialog
             {
                 Title = "Método de pago",
-                Content = "Selecciona cómo desea pagar el cliente",
+                Content = currentSale.TotalBruto > 100000
+                    ? "Pagos mayores a $100,000 deben realizarse con tarjeta."
+                    : "Selecciona cómo desea pagar el cliente",
+
                 PrimaryButtonText = "Efectivo",
                 SecondaryButtonText = "Tarjeta",
                 CloseButtonText = "Cancelar",
+
+                IsPrimaryButtonEnabled =
+                    currentSale.TotalBruto <= 100000,
+
                 XamlRoot = this.XamlRoot
             };
 
@@ -379,8 +386,48 @@ namespace PuntoVenta.Views
 
                 var efectivoBox = new TextBox
                 {
-                    PlaceholderText = $"Total: {currentSale.TotalBruto:C2}"
+                    PlaceholderText = $"Total: {currentSale.TotalBruto:C2}",
+                    MaxLength = 6
                 };
+
+                efectivoBox.BeforeTextChanging += (sender, args) =>
+                {
+                    string text = args.NewText;
+
+                    // No permitir punto al inicio
+                    if (text.StartsWith("."))
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
+
+                    // Solo permitir un punto decimal
+                    if (text.Count(c => c == '.') > 1)
+                    {
+                        args.Cancel = true;
+                        return;
+                    }
+
+                    // Solo números y punto decimal
+                    if (text.Any(c => !char.IsDigit(c) && c != '.'))
+                    {
+                        args.Cancel = true;
+                    }
+                };
+
+                efectivoBox.TextChanging += (s, e) =>
+                {
+                    if (efectivoBox.Text.Contains(" "))
+                    {
+                        efectivoBox.Text =
+                            efectivoBox.Text.Replace(" ", "");
+
+                        efectivoBox.SelectionStart =
+                            efectivoBox.Text.Length;
+                    }
+                };
+
+
 
                 var cambioText = new TextBlock
                 {
