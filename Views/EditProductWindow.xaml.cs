@@ -36,20 +36,22 @@ namespace PuntoVenta.Views
             StockBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             ImageBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
 
-            // Evitar espacios al inicio
+            // Nombre - no permitir espacios al inicio ni dobles espacios
             NameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(NameBox);
+                CleanTextBoxSpaces(NameBox);
             };
 
+            // Marca - no permitir espacios al inicio ni dobles espacios
             BrandBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(BrandBox);
+                CleanTextBoxSpaces(BrandBox);
             };
 
+            // Descripción - no permitir espacios al inicio ni dobles espacios
             DescBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(DescBox);
+                CleanTextBoxSpaces(DescBox);
             };
 
             CostBox.TextChanging += (s, e) =>
@@ -108,6 +110,28 @@ namespace PuntoVenta.Views
                     next.Focus(FocusState.Programmatic);
                 }
             };
+        }
+
+        private void CleanTextBoxSpaces(TextBox box)
+        {
+            int cursorPosition = box.SelectionStart;
+
+            string nuevoTexto = box.Text.TrimStart();
+
+            while (nuevoTexto.Contains("  "))
+            {
+                nuevoTexto = nuevoTexto.Replace("  ", " ");
+            }
+
+            if (box.Text != nuevoTexto)
+            {
+                box.Text = nuevoTexto;
+
+                if (cursorPosition > 0)
+                {
+                    box.SelectionStart = Math.Min(cursorPosition - 1, box.Text.Length);
+                }
+            }
         }
 
         // =========================================
@@ -264,9 +288,9 @@ namespace PuntoVenta.Views
 
             // ACTUALIZAR PRODUCTO
 
-            product.Nombre = NameBox.Text;
-            product.Marca = BrandBox.Text;
-            product.Descripcion = DescBox.Text;
+            product.Nombre = NameBox.Text.Trim();
+            product.Marca = BrandBox.Text.Trim();
+            product.Descripcion = DescBox.Text.Trim();
             product.Costo = costo;
             product.PrecioVenta = precio;
             product.Existencias = existencias;
@@ -361,11 +385,11 @@ namespace PuntoVenta.Views
             bool exists = products.Exists(p =>
                 p.Id != product.Id &&
                 p.Nombre.Equals(
-                    NameBox.Text,
+                    NameBox.Text.Trim(),
                     StringComparison.OrdinalIgnoreCase
                 ) &&
                 p.Marca.Equals(
-                    BrandBox.Text,
+                    BrandBox.Text.Trim(),
                     StringComparison.OrdinalIgnoreCase
                 )
             );

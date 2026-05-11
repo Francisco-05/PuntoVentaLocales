@@ -28,25 +28,50 @@ namespace PuntoVenta.Views
             NameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             PhoneBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
 
-            // Username
+            // Username - no permitir espacios
             UsernameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(UsernameBox);
-            };
-
-            // Password
-            PasswordBox.PasswordChanged += (s, e) =>
-            {
-                if (PasswordBox.Password.StartsWith(" "))
+                if (UsernameBox.Text.Contains(" "))
                 {
-                    PasswordBox.Password = PasswordBox.Password.TrimStart();
+                    int cursorPosition = UsernameBox.SelectionStart;
+
+                    UsernameBox.Text = UsernameBox.Text.Replace(" ", "");
+
+                    if (cursorPosition > 0)
+                        UsernameBox.SelectionStart = cursorPosition - 1;
                 }
             };
 
-            // Nombre
+            // Password - no permitir espacios
+            PasswordBox.PasswordChanged += (s, e) =>
+            {
+                if (PasswordBox.Password.Contains(" "))
+                {
+                    PasswordBox.Password = PasswordBox.Password.Replace(" ", "");
+                }
+            };
+
+            // Nombre completo - no permitir espacios al inicio ni dobles espacios
             NameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(NameBox);
+                int cursorPosition = NameBox.SelectionStart;
+
+                // Quita espacios al inicio
+                string nuevoTexto = NameBox.Text.TrimStart();
+
+                // Evita doble espacio
+                while (nuevoTexto.Contains("  "))
+                {
+                    nuevoTexto = nuevoTexto.Replace("  ", " ");
+                }
+
+                if (NameBox.Text != nuevoTexto)
+                {
+                    NameBox.Text = nuevoTexto;
+
+                    if (cursorPosition > 0)
+                        NameBox.SelectionStart = Math.Min(cursorPosition - 1, NameBox.Text.Length);
+                }
             };
 
             // Teléfono

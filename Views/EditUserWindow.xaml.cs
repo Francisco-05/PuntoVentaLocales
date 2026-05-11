@@ -26,26 +26,34 @@ namespace PuntoVenta.Views
             NameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             PhoneBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             PasswordBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
-            // Username
+
+            // Username - no permitir espacios
             UsernameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(UsernameBox);
-            };
-
-            // Password
-            PasswordBox.PasswordChanged += (s, e) =>
-            {
-                if (PasswordBox.Password.StartsWith(" "))
+                if (UsernameBox.Text.Contains(" "))
                 {
-                    PasswordBox.Password =
-                        PasswordBox.Password.TrimStart();
+                    int cursorPosition = UsernameBox.SelectionStart;
+
+                    UsernameBox.Text = UsernameBox.Text.Replace(" ", "");
+
+                    if (cursorPosition > 0)
+                        UsernameBox.SelectionStart = Math.Min(cursorPosition - 1, UsernameBox.Text.Length);
                 }
             };
 
-            // Nombre
+            // Password - no permitir espacios
+            PasswordBox.PasswordChanged += (s, e) =>
+            {
+                if (PasswordBox.Password.Contains(" "))
+                {
+                    PasswordBox.Password = PasswordBox.Password.Replace(" ", "");
+                }
+            };
+
+            // Nombre completo - no permitir espacios al inicio ni dobles espacios
             NameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(NameBox);
+                CleanTextBoxSpaces(NameBox);
             };
 
             // Teléfono
@@ -54,7 +62,11 @@ namespace PuntoVenta.Views
                 InputValidationHelper.PreventLeadingSpaces(PhoneBox);
             };
 
+
+
             SetupEnterNavigation();
+
+
         }
 
         // =========================================
@@ -133,6 +145,28 @@ namespace PuntoVenta.Views
             };
         }
 
+        private void CleanTextBoxSpaces(TextBox box)
+        {
+            int cursorPosition = box.SelectionStart;
+
+            string nuevoTexto = box.Text.TrimStart();
+
+            while (nuevoTexto.Contains("  "))
+            {
+                nuevoTexto = nuevoTexto.Replace("  ", " ");
+            }
+
+            if (box.Text != nuevoTexto)
+            {
+                box.Text = nuevoTexto;
+
+                if (cursorPosition > 0)
+                {
+                    box.SelectionStart = Math.Min(cursorPosition - 1, box.Text.Length);
+                }
+            }
+        }
+
         // =========================================
         // SOLO NÚMEROS TELÉFONO
         // =========================================
@@ -158,10 +192,10 @@ namespace PuntoVenta.Views
         )
         {
             string username =
-                UsernameBox.Text;
+                UsernameBox.Text.Trim();
 
             string password =
-                PasswordBox.Password;
+                PasswordBox.Password.Trim();
 
             // =========================================
             // CAMPOS VACÍOS
@@ -277,10 +311,10 @@ namespace PuntoVenta.Views
                 password;
 
             user.NombreCompleto =
-                NameBox.Text;
+                NameBox.Text.Trim();
 
             user.Telefono =
-                PhoneBox.Text;
+                PhoneBox.Text.Trim();
 
             users[index] = user;
 

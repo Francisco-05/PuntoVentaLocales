@@ -17,19 +17,26 @@ namespace PuntoVenta.Views
             UsernameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             PasswordBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
 
-            // Username
+            // Username - no permitir espacios
             UsernameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(UsernameBox);
+                if (UsernameBox.Text.Contains(" "))
+                {
+                    int cursorPosition = UsernameBox.SelectionStart;
+
+                    UsernameBox.Text = UsernameBox.Text.Replace(" ", "");
+
+                    if (cursorPosition > 0)
+                        UsernameBox.SelectionStart = cursorPosition - 1;
+                }
             };
 
-            // Password
+            // Password - no permitir espacios
             PasswordBox.PasswordChanged += (s, e) =>
             {
-                if (PasswordBox.Password.StartsWith(" "))
+                if (PasswordBox.Password.Contains(" "))
                 {
-                    PasswordBox.Password =
-                        PasswordBox.Password.TrimStart();
+                    PasswordBox.Password = PasswordBox.Password.Replace(" ", "");
                 }
             };
 

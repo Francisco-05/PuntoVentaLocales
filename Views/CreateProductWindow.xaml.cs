@@ -30,20 +30,67 @@ namespace PuntoVenta.Views
             PriceBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
             ImageBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
 
-            // Espacios iniciales
+            // Nombre - no permitir espacios al inicio ni dobles espacios
             NameBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(NameBox);
+                int cursorPosition = NameBox.SelectionStart;
+
+                string nuevoTexto = NameBox.Text.TrimStart();
+
+                while (nuevoTexto.Contains("  "))
+                {
+                    nuevoTexto = nuevoTexto.Replace("  ", " ");
+                }
+
+                if (NameBox.Text != nuevoTexto)
+                {
+                    NameBox.Text = nuevoTexto;
+
+                    if (cursorPosition > 0)
+                        NameBox.SelectionStart = Math.Min(cursorPosition - 1, NameBox.Text.Length);
+                }
             };
 
+            // Marca - no permitir espacios al inicio ni dobles espacios
             BrandBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(BrandBox);
+                int cursorPosition = BrandBox.SelectionStart;
+
+                string nuevoTexto = BrandBox.Text.TrimStart();
+
+                while (nuevoTexto.Contains("  "))
+                {
+                    nuevoTexto = nuevoTexto.Replace("  ", " ");
+                }
+
+                if (BrandBox.Text != nuevoTexto)
+                {
+                    BrandBox.Text = nuevoTexto;
+
+                    if (cursorPosition > 0)
+                        BrandBox.SelectionStart = Math.Min(cursorPosition - 1, BrandBox.Text.Length);
+                }
             };
 
+            // Descripción - no permitir espacios al inicio ni dobles espacios
             DescBox.TextChanging += (s, e) =>
             {
-                InputValidationHelper.PreventLeadingSpaces(DescBox);
+                int cursorPosition = DescBox.SelectionStart;
+
+                string nuevoTexto = DescBox.Text.TrimStart();
+
+                while (nuevoTexto.Contains("  "))
+                {
+                    nuevoTexto = nuevoTexto.Replace("  ", " ");
+                }
+
+                if (DescBox.Text != nuevoTexto)
+                {
+                    DescBox.Text = nuevoTexto;
+
+                    if (cursorPosition > 0)
+                        DescBox.SelectionStart = Math.Min(cursorPosition - 1, DescBox.Text.Length);
+                }
             };
 
             CostBox.TextChanging += (s, e) =>
