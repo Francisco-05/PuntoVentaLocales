@@ -54,6 +54,8 @@ namespace PuntoVenta.Views
             MainWindow.Instance.MainFrameControl.Navigate(typeof(LoginView));
         }
 
+
+        // Animación de entrada para los botones
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             AnimarBoton(BtnEmpleados, 0);

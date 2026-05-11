@@ -69,9 +69,7 @@ namespace PuntoVenta.Views
 
         }
 
-        // =========================================
-        // CARGAR DATOS
-        // =========================================
+        //Carga los datos del usuario en los campos correspondientes
 
         private void LoadUser()
         {
@@ -88,9 +86,7 @@ namespace PuntoVenta.Views
                 user.Telefono;
         }
 
-        // =========================================
-        // ENTER NAVIGATION
-        // =========================================
+        // Configura la navegación con Enter entre los campos del formulario
 
         private void SetupEnterNavigation()
         {
@@ -145,6 +141,8 @@ namespace PuntoVenta.Views
             };
         }
 
+
+        // Limpia los espacios al inicio y dobles espacios en un TextBox, manteniendo la posición del cursor
         private void CleanTextBoxSpaces(TextBox box)
         {
             int cursorPosition = box.SelectionStart;
@@ -167,9 +165,8 @@ namespace PuntoVenta.Views
             }
         }
 
-        // =========================================
-        // SOLO NÚMEROS TELÉFONO
-        // =========================================
+
+        // Valida que solo se puedan ingresar dígitos en el campo de teléfono
 
         private void PhoneBox_BeforeTextChanging(
             TextBox sender,
@@ -182,9 +179,7 @@ namespace PuntoVenta.Views
                 );
         }
 
-        // =========================================
-        // GUARDAR
-        // =========================================
+        // Maneja el clic en el botón de guardar, validando los campos y actualizando el usuario
 
         private async void Save_Click(
                 object sender,
@@ -208,10 +203,7 @@ namespace PuntoVenta.Views
             string password =
                 PasswordBox.Password.Trim();
 
-            // =========================================
-            // CAMPOS VACÍOS
-            // =========================================
-
+            //Validar campos vacíos
             if (
                 string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
@@ -226,10 +218,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // =========================================
-            // TELÉFONO
-            // =========================================
-
+ 
             if (PhoneBox.Text.Length != 10)
             {
                 await ShowMessage(
@@ -239,9 +228,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // =========================================
-            // USERNAME
-            // =========================================
+            
 
             if (
                 !ValidationHelper
@@ -255,9 +242,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // =========================================
-            // PASSWORD
-            // =========================================
+
 
             if (
                 !ValidationHelper
@@ -271,18 +256,13 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // =========================================
-            // CARGAR USERS
-            // =========================================
+
 
             var users =
                 await JsonService.LoadAsync<User>(
                     "users.json"
                 );
 
-            // =========================================
-            // VALIDAR USERNAME DUPLICADO
-            // =========================================
 
             bool exists =
                 users.Any(u =>
@@ -300,9 +280,7 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            // =========================================
-            // ACTUALIZAR
-            // =========================================
+            // Encontrar el índice del usuario que se está editando
 
             var index =
                 users.FindIndex(u =>
@@ -329,9 +307,8 @@ namespace PuntoVenta.Views
 
             users[index] = user;
 
-            // =========================================
-            // GUARDAR
-            // =========================================
+
+            // Guardar los cambios en el archivo JSON
 
             await JsonService.SaveAsync(
                 "users.json",
@@ -344,10 +321,6 @@ namespace PuntoVenta.Views
 
             this.Close();
         }
-
-        // =========================================
-        // MENSAJES
-        // =========================================
 
         private async Task ShowMessage(
             string message
@@ -378,6 +351,8 @@ namespace PuntoVenta.Views
                      Padding = new Thickness(40, 6, 0, 0)
                  };
 
+
+            
             passwordBox.PasswordChanged += (s, e) =>
             {
                 if (passwordBox.Password.Contains(" "))

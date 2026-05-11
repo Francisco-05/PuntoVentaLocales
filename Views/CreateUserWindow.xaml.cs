@@ -83,6 +83,7 @@ namespace PuntoVenta.Views
             SetupEnterNavigation();
         }
 
+        // Configura la navegación con Enter entre los campos del formulario
         private void SetupEnterNavigation()
         {
             UsernameBox.KeyDown += (s, e) =>
@@ -140,6 +141,7 @@ namespace PuntoVenta.Views
             };
         }
 
+        // Valida que solo se puedan ingresar dígitos en el campo de teléfono
         private void PhoneBox_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));

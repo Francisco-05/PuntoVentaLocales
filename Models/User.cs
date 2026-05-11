@@ -15,10 +15,10 @@ namespace PuntoVenta.Models
 
 
 
-
         public bool IsNotAdmin =>
             Rol != "Admin";
 
+        // Para mostrar u ocultar elementos en la UI según el rol
         public Visibility IsAdminVisibility =>
             Rol == "Admin"
                 ? Visibility.Visible

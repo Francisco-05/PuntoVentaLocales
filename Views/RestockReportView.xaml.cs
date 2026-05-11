@@ -19,9 +19,7 @@ namespace PuntoVenta.Views
             LoadLogs();
         }
 
-        // =====================================
-        // CARGAR LOGS
-        // =====================================
+        //CARGAR LOGS
 
         private async void LoadLogs()
         {
@@ -35,9 +33,9 @@ namespace PuntoVenta.Views
                 );
         }
 
-        // =====================================
-        // FILTRAR
-        // =====================================
+
+
+        //FILTRAR
 
         private void Filter_Click(
             object sender,
@@ -94,10 +92,6 @@ namespace PuntoVenta.Views
                     x => x.FechaModificacion
                 );
         }
-
-        // =====================================
-        // VOLVER
-        // =====================================
 
         private void Back_Click(
             object sender,

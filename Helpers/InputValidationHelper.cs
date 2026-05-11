@@ -9,11 +9,7 @@ namespace PuntoVenta.Helpers
     public static class InputValidationHelper
     {
         private static readonly HashSet<VirtualKey> PressedKeys = new();
-
-        // =========================================
-        // EVITAR ESPACIOS AL INICIO
-        // =========================================
-
+        //Evita que el usuario pueda ingresar espacios al inicio del texto en un TextBox
         public static void PreventLeadingSpaces(TextBox textBox)
         {
             if (textBox.Text.StartsWith(" "))
@@ -23,9 +19,7 @@ namespace PuntoVenta.Helpers
             }
         }
 
-        // =========================================
-        // BLOQUEAR TECLA MANTENIDA
-        // =========================================
+        // Evita que el usuario pueda ingresar espacios al inicio del texto en un PasswordBox
 
         public static void PreventHeldKeySpam(
             object sender,
@@ -49,6 +43,7 @@ namespace PuntoVenta.Helpers
                 element.KeyUp += OnKeyUp;
             }
         }
+        // Evita que el usuario pueda ingresar espacios al inicio del texto en un TextBox
         public static void PreventHeldKeySpamtextbox(
      object sender,
      KeyRoutedEventArgs e)
@@ -63,17 +58,15 @@ namespace PuntoVenta.Helpers
             }
         }
 
+          
         private static void OnKeyUp(
             object sender,
             KeyRoutedEventArgs e)
         {
             PressedKeys.Remove(e.Key);
         }
-
-        // =========================================
-        // VALIDAR TEXTBOX
-        // =========================================
-
+        
+ 
         public static void ValidateTextBox(TextBox textBox)
         {
             textBox.TextChanging += (s, e) =>
@@ -89,9 +82,7 @@ namespace PuntoVenta.Helpers
             PressedKeys.Remove(e.Key);
         }
 
-        // =========================================
-        // VALIDAR PASSWORDBOX
-        // =========================================
+        // Valida un PasswordBox para evitar espacios al inicio y prevenir spam de teclas mantenidas
 
         public static void ValidatePasswordBox(
             PasswordBox passwordBox)

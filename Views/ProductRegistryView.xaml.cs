@@ -13,9 +13,7 @@ namespace PuntoVenta.Views
 {
     public sealed partial class ProductRegistryView : Page
     {
-        // =========================================
-        // LISTAS
-        // =========================================
+        // Listas para almacenar productos y usuarios cargados desde JSON
 
         private List<Product> products = new();
 
@@ -32,9 +30,7 @@ namespace PuntoVenta.Views
 
 
 
-        // =========================================
-        // CARGAR PRODUCTOS
-        // =========================================
+        //Cargar productos desde JSON y asignarlos al ListView
 
         private async void LoadProducts()
         {
@@ -48,9 +44,8 @@ namespace PuntoVenta.Views
 
 
 
-        // =========================================
-        // CARGAR USUARIOS
-        // =========================================
+
+        //Cargar usuarios desde JSON y asignarlos al ListView
 
         private async void LoadUsers()
         {
@@ -72,9 +67,7 @@ namespace PuntoVenta.Views
 
         }
 
-        // =========================================
-        // CAMBIAR A PRODUCTOS
-        // =========================================
+        //Cambiar a productos
 
         private void ProductsButton_Click(
             object sender,
@@ -94,10 +87,7 @@ namespace PuntoVenta.Views
                 "Consulta y administra productos";
         }
 
-        // =========================================
-        // CAMBIAR A USUARIOS
-        // =========================================
-
+        // Cambiar a usuarios
         private void UsersButton_Click(
             object sender,
             RoutedEventArgs e
@@ -116,9 +106,8 @@ namespace PuntoVenta.Views
                 "Consulta y administra usuarios";
         }
 
-        // =========================================
-        // MODIFICAR PRODUCTO
-        // =========================================
+
+        //Modificar producto
 
         private void Modify_Click(
             object sender,
@@ -137,9 +126,8 @@ namespace PuntoVenta.Views
             }
         }
 
-        // =========================================
-        // REABASTECIMIENTO
-        // =========================================
+
+        //Metodo para reabastecer producto
 
         private async void Restock_Click(
             object sender,
@@ -232,9 +220,7 @@ namespace PuntoVenta.Views
             RefreshProductsTable();
         }
 
-        // =========================================
-        // ELIMINAR PRODUCTO
-        // =========================================
+        //Eliminar producto
 
         private async void Delete_Click(
             object sender,
@@ -291,9 +277,7 @@ namespace PuntoVenta.Views
             RefreshProductsTable();
         }
 
-        // =========================================
-        // MODIFICAR USUARIO
-        // =========================================
+        //Modificar usuario
 
         private void ModifyUser_Click(
             object sender,
@@ -310,11 +294,8 @@ namespace PuntoVenta.Views
 
                 win.Activate();
             }
-        }
 
-        // =========================================
-        // ELIMINAR USUARIO
-        // =========================================
+            //Eliminar usuario
 
         private async void DeleteUser_Click(
             object sender,
@@ -371,9 +352,7 @@ namespace PuntoVenta.Views
             RefreshUsersTable();
         }
 
-        // =========================================
-        // REFRESCAR TABLAS
-        // =========================================
+        //Refrescar tablas
 
         private void RefreshProductsTable()
         {
@@ -389,10 +368,7 @@ namespace PuntoVenta.Views
             UsersList.ItemsSource = users;
         }
 
-        // =========================================
-        // SOLO NÚMEROS
-        // =========================================
-
+        // Validar que solo se puedan ingresar dígitos en el campo de cantidad
         private void OnlyNumbers_BeforeTextChanging(
             TextBox sender,
             TextBoxBeforeTextChangingEventArgs args
@@ -410,9 +386,7 @@ namespace PuntoVenta.Views
             }
         }
 
-        // =========================================
-        // GUARDAR LOG
-        // =========================================
+        // Guardar un registro de reabastecimiento en un archivo JSON
 
         private async Task SaveRestockLog(
             Product product,
@@ -454,9 +428,7 @@ namespace PuntoVenta.Views
             );
         }
 
-        // =========================================
-        // CONFIRMAR ADMIN
-        // =========================================
+        //Confirmar contraseña de administrador para acciones sensibles
 
         private async Task<bool>
             ConfirmAdminPasswordAsync()
@@ -557,9 +529,7 @@ namespace PuntoVenta.Views
             return true;
         }
 
-        // =========================================
-        // VOLVER
-        // =========================================
+
 
         private void Back_Click(
             object sender,
@@ -571,9 +541,7 @@ namespace PuntoVenta.Views
                 .Navigate(typeof(AdminView));
         }
 
-        // =========================================
-        // ERROR
-        // =========================================
+
 
         private async Task ShowError(
             string message

@@ -111,6 +111,7 @@ namespace PuntoVenta.Views
             SetupEnterNavigation();
         }
 
+        // Configura la navegación con Enter entre los campos del formulario
         private void SetupEnterNavigation()
         {
             NameBox.KeyDown += (s, e) =>
@@ -207,6 +208,8 @@ namespace PuntoVenta.Views
             }
         }
 
+
+        // Validar que solo se puedan ingresar números y un punto decimal en los campos de costo y precio
         private void OnlyNumbersDecimal_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             string text = args.NewText;

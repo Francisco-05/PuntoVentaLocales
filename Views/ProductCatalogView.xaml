@@ -386,7 +386,7 @@
                                             <TextBox Grid.Column="2"
                                                      Text="{Binding Cantidad, Mode=TwoWay}"
                                                      Width="36"
-                                                 
+                                                     MaxLength="4"
                                                      Height="32"
                                                      Padding="0,4,0,0"
                                                      BorderThickness="0"

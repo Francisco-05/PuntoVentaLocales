@@ -77,10 +77,7 @@ namespace PuntoVenta.Views
             SetupEnterNavigation();
         }
 
-        // =========================================
-        // ENTER NAVIGATION
-        // =========================================
-
+        // Configura la navegación con Enter entre los campos y el botón de guardar
         private void SetupEnterNavigation()
         {
             SetEnterFocus(NameBox, BrandBox);
@@ -100,6 +97,7 @@ namespace PuntoVenta.Views
             };
         }
 
+
         private void SetEnterFocus(Control current, Control next)
         {
             current.KeyDown += (s, e) =>
@@ -112,6 +110,7 @@ namespace PuntoVenta.Views
             };
         }
 
+        // Elimina espacios al inicio y dobles espacios dentro del texto de un TextBox
         private void CleanTextBoxSpaces(TextBox box)
         {
             int cursorPosition = box.SelectionStart;
@@ -134,10 +133,7 @@ namespace PuntoVenta.Views
             }
         }
 
-        // =========================================
-        // CARGAR PRODUCTO
-        // =========================================
-
+        // Carga los datos del producto en los campos del formulario
         private void LoadProduct()
         {
             NameBox.Text = product.Nombre;
@@ -153,9 +149,7 @@ namespace PuntoVenta.Views
                 Path.GetFileName(product.Imagen);
         }
 
-        // =========================================
-        // SELECCIONAR IMAGEN
-        // =========================================
+        // Permite seleccionar una imagen para el producto y la guarda en la carpeta de productos
 
         private async void SelectImage_Click(
             object sender,
@@ -209,9 +203,7 @@ namespace PuntoVenta.Views
             ImageBox.Text = fileName;
         }
 
-        // =========================================
-        // VALIDACIONES NUMÉRICAS
-        // =========================================
+        // Validaciones para permitir solo números o números con decimal en los campos correspondientes
 
         private void OnlyNumbersDecimal_BeforeTextChanging(
             TextBox sender,
@@ -239,9 +231,7 @@ namespace PuntoVenta.Views
                 args.NewText.Any(c => !char.IsDigit(c));
         }
 
-        // =========================================
-        // GUARDAR
-        // =========================================
+        // Guarda los cambios del producto después de validar los campos y confirmar la contraseña de administrador
 
         private async void Save_Click(
             object sender,
@@ -317,9 +307,7 @@ namespace PuntoVenta.Views
             Close();
         }
 
-        // =========================================
-        // VALIDAR CAMPOS
-        // =========================================
+        // Valida los campos del formulario y verifica que no haya otro producto con el mismo nombre y marca (ignorando mayúsculas)
 
         private bool ValidateFields(
             System.Collections.Generic.List<Product> products,
@@ -406,9 +394,7 @@ namespace PuntoVenta.Views
             return true;
         }
 
-        // =========================================
-        // GUARDAR LOG
-        // =========================================
+        // Guarda un log de reabastecimiento o ajuste de existencias si hubo un cambio en las existencias del producto
 
         private async Task SaveRestockLog(
             int inicial,
@@ -447,9 +433,7 @@ namespace PuntoVenta.Views
             );
         }
 
-        // =========================================
-        // ERROR
-        // =========================================
+
 
         private async Task ShowError(
             string message
@@ -464,9 +448,7 @@ namespace PuntoVenta.Views
             }.ShowAsync();
         }
 
-        // =========================================
-        // CONFIRMAR ADMIN
-        // =========================================
+        // Muestra un diálogo para confirmar la contraseña de administrador antes de permitir guardar los cambios en el producto
 
         private async Task<bool>
             ConfirmAdminPasswordAsync()
