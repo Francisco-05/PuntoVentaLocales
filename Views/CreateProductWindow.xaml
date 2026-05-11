@@ -107,8 +107,11 @@
                                     Height="48">
                                 <TextBox x:Name="NameBox"
                                          PlaceholderText="Nombre"
+                                         MaxLength="50"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>
@@ -120,8 +123,11 @@
                                     Height="48">
                                 <TextBox x:Name="BrandBox"
                                          PlaceholderText="Marca"
+                                         MaxLength="20"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>
@@ -133,8 +139,11 @@
                                     Height="48">
                                 <TextBox x:Name="DescBox"
                                          PlaceholderText="Descripción"
+                                         MaxLength="200"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>
@@ -149,6 +158,8 @@
                                          BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>
@@ -163,6 +174,8 @@
                                          BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>
@@ -177,6 +190,8 @@
                                          IsReadOnly="True"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="26"
+                                         MaxWidth="570"
                                          Padding="14,0"
                                          FontSize="16"
                                          VerticalContentAlignment="Center"/>

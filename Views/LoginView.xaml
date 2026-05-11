@@ -121,7 +121,7 @@
                                 Height="48"
                                 BorderBrush="#37C6D0"
                                 BorderThickness="1.5"
-                                Padding="14,0">
+                                Padding="2,0">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -136,6 +136,7 @@
                                           VerticalAlignment="Center"/>
 
                                 <TextBox x:Name="UsernameBox"
+                                         Height="24"
                                          Grid.Column="1"
                                          PlaceholderText="Username"
                                          BorderThickness="0"
@@ -143,7 +144,9 @@
                                          Foreground="#102A2F"
                                          PlaceholderForeground="#7A8B90"
                                          VerticalContentAlignment="Center"
-                                         FontSize="15"/>
+                                         FontSize="15"
+                                         MaxLength="30"
+                                         Padding="35,0,0,0"/>
                             </Grid>
                         </Border>
 
@@ -153,7 +156,7 @@
                                 Height="48"
                                 BorderBrush="#37C6D0"
                                 BorderThickness="1.5"
-                                Padding="14,0">
+                                Padding="2,0">
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -168,13 +171,17 @@
                                           VerticalAlignment="Center"/>
 
                                 <PasswordBox x:Name="PasswordBox"
+                                             Height="24"
                                              Grid.Column="1"
                                              PlaceholderText="Password"
                                              BorderThickness="0"
                                              Background="Transparent"
                                              Foreground="#102A2F"
                                              VerticalContentAlignment="Center"
-                                             FontSize="15"/>
+                                             FontSize="15"
+                                             MaxLength="30"
+                                             Padding="35,0,0,0"/>
+                                            
                             </Grid>
                         </Border>
 

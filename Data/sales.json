@@ -732,5 +732,140 @@
     "TotalBruto": 9100.0,
     "TotalCosto": 5800.0,
     "Utilidad": 3300.0
+  },
+  {
+    "Id": 35,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Smartphone 5G 128GB1",
+        "Marca": "Smartphone 5G 128GB",
+        "PrecioUnitario": 9100.0,
+        "CostoUnitario": 5800.0,
+        "Cantidad": 1,
+        "Subtotal": 9100.0,
+        "CostoTotal": 5800.0,
+        "Utilidad": 3300.0
+      }
+    ],
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T08:28:09.305452-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 9100.0,
+    "TotalCosto": 5800.0,
+    "Utilidad": 3300.0
+  },
+  {
+    "Id": 36,
+    "Details": [
+      {
+        "ProductId": 2,
+        "Nombre": "Laptop Ultrabook 14\"",
+        "Marca": "Dell",
+        "PrecioUnitario": 16200.0,
+        "CostoUnitario": 11700.0,
+        "Cantidad": 1,
+        "Subtotal": 16200.0,
+        "CostoTotal": 11700.0,
+        "Utilidad": 4500.0
+      },
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "Apple",
+        "PrecioUnitario": 184500.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 184500.0,
+        "CostoTotal": 10000.0,
+        "Utilidad": 174500.0
+      }
+    ],
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T08:28:48.5550462-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 2,
+    "TotalBruto": 200700.0,
+    "TotalCosto": 21700.0,
+    "Utilidad": 179000.0
+  },
+  {
+    "Id": 37,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Smartphone 5G 128GB1",
+        "Marca": "Smartphone 5G 128GB",
+        "PrecioUnitario": 9100.0,
+        "CostoUnitario": 5800.0,
+        "Cantidad": 1,
+        "Subtotal": 9100.0,
+        "CostoTotal": 5800.0,
+        "Utilidad": 3300.0
+      },
+      {
+        "ProductId": 2,
+        "Nombre": "Laptop Ultrabook 14\"",
+        "Marca": "Dell",
+        "PrecioUnitario": 16200.0,
+        "CostoUnitario": 11700.0,
+        "Cantidad": 1,
+        "Subtotal": 16200.0,
+        "CostoTotal": 11700.0,
+        "Utilidad": 4500.0
+      },
+      {
+        "ProductId": 1,
+        "Nombre": "iPhone 16",
+        "Marca": "Apple",
+        "PrecioUnitario": 184500.0,
+        "CostoUnitario": 10000.0,
+        "Cantidad": 1,
+        "Subtotal": 184500.0,
+        "CostoTotal": 10000.0,
+        "Utilidad": 174500.0
+      },
+      {
+        "ProductId": 4,
+        "Nombre": "Impresora multifuncional",
+        "Marca": "HP",
+        "PrecioUnitario": 2000.0,
+        "CostoUnitario": 1200.0,
+        "Cantidad": 1,
+        "Subtotal": 2000.0,
+        "CostoTotal": 1200.0,
+        "Utilidad": 800.0
+      },
+      {
+        "ProductId": 5,
+        "Nombre": "Cámara web 1080p",
+        "Marca": "Logitech",
+        "PrecioUnitario": 1070.0,
+        "CostoUnitario": 590.0,
+        "Cantidad": 1,
+        "Subtotal": 1070.0,
+        "CostoTotal": 590.0,
+        "Utilidad": 480.0
+      },
+      {
+        "ProductId": 6,
+        "Nombre": "AirPods Pro 3",
+        "Marca": "Apple",
+        "PrecioUnitario": 5799.0,
+        "CostoUnitario": 800.0,
+        "Cantidad": 1,
+        "Subtotal": 5799.0,
+        "CostoTotal": 800.0,
+        "Utilidad": 4999.0
+      }
+    ],
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T08:44:09.7110001-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 6,
+    "TotalBruto": 218669.0,
+    "TotalCosto": 30090.0,
+    "Utilidad": 188579.0
   }
 ]

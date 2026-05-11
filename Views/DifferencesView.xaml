@@ -40,11 +40,13 @@
         </Canvas>
 
         <!-- Contenedor general -->
-        <Grid Padding="35">
+        <Grid Padding="40">
+           
 
             <!-- Tarjeta principal -->
             <Border Background="#F8F8F8"
                     CornerRadius="26"
+                    Height="700"
                     BorderBrush="#E8C6A7"
                     BorderThickness="1.5"
                     Padding="28"
@@ -161,6 +163,7 @@
                     <!-- Lista en cuadritos -->
                     <ListView x:Name="DifferencesList"
                           Grid.Row="2"
+                           Height="400"
                           Background="Transparent"
                           BorderThickness="0"
                           Margin="0,18,0,0">
@@ -187,79 +190,83 @@
                                     CornerRadius="18"
                                     Padding="14"
                                     Width="225"
-                                    Height="205"
+                                    Height="auto"
                                     BorderBrush="#E8D7C8"
                                     BorderThickness="1">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      MaxHeight="260">
 
-                                    <StackPanel Spacing="7">
+                                        <StackPanel Spacing="7">
 
-                                        <!-- Empleado -->
-                                        <TextBlock Text="{Binding Empleado}"
+                                            <!-- Empleado -->
+                                            <TextBlock Text="{Binding Empleado}"
                                            FontSize="17"
                                            FontWeight="Bold"
                                            Foreground="#222222"
                                            TextTrimming="CharacterEllipsis"/>
 
-                                        <!-- Fecha -->
-                                        <TextBlock Text="{Binding Fecha}"
+                                            <!-- Fecha -->
+                                            <TextBlock Text="{Binding Fecha}"
                                            FontSize="12"
                                            Foreground="#444444"
                                            TextTrimming="CharacterEllipsis"/>
 
-                                        <!-- Horarios -->
-                                        <StackPanel Spacing="2">
-                                            <TextBlock Text="{Binding InicioSesion}"
+                                            <!-- Horarios -->
+                                            <StackPanel Spacing="2">
+                                                <TextBlock Text="{Binding InicioSesion}"
                                                FontSize="12"
                                                Foreground="Gray"
                                                TextTrimming="CharacterEllipsis"/>
 
-                                            <TextBlock Text="{Binding FinSesion}"
+                                                <TextBlock Text="{Binding FinSesion}"
                                                FontSize="12"
                                                Foreground="Gray"
                                                TextTrimming="CharacterEllipsis"/>
-                                        </StackPanel>
+                                            </StackPanel>
 
-                                        <!-- Montos -->
-                                        <StackPanel Spacing="4"
+                                            <!-- Montos -->
+                                            <StackPanel Spacing="4"
                                            Margin="0,6,0,0">
 
-                                            <StackPanel Orientation="Horizontal" Spacing="6">
-                                                <TextBlock Text="Sistema:"
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <TextBlock Text="Sistema:"
                                                    FontWeight="SemiBold"
                                                    Foreground="#333333"/>
 
-                                                <TextBlock Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"
+                                                    <TextBlock Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"
                                                    Foreground="#2F6BFF"
                                                    FontWeight="Bold"/>
-                                            </StackPanel>
+                                                </StackPanel>
 
-                                            <StackPanel Orientation="Horizontal" Spacing="6">
-                                                <TextBlock Text="Físico:"
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <TextBlock Text="Físico:"
                                                    FontWeight="SemiBold"
                                                    Foreground="#333333"/>
 
-                                                <TextBlock Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"
+                                                    <TextBlock Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"
                                                    Foreground="#00A86B"
                                                    FontWeight="Bold"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
 
-                                        <!-- Diferencia -->
-                                        <Border Background="#FFF2E8"
+                                            <!-- Diferencia -->
+                                            <Border Background="#FFF2E8"
                                             CornerRadius="12"
                                             Padding="10"
                                             Margin="0,6,0,0">
 
-                                            <TextBlock FontSize="14"
+                                                <TextBlock FontSize="14"
                                                 FontWeight="Bold"
                                                 Foreground="#1F1F1F"
                                                 TextTrimming="CharacterEllipsis">
                                                 <Run Text="Diferencia: "/>
                                                 <Run Text="{Binding Diferencia, Converter={StaticResource CurrencyConverter}}"/>
-                                            </TextBlock>
-                                        </Border>
+                                                </TextBlock>
+                                            </Border>
 
-                                    </StackPanel>
+                                        </StackPanel>
+                                    </ScrollViewer>
                                 </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -61,11 +61,14 @@
                     <!-- Username -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="46"
-                            Padding="10,0">
+                            Height="46">
                         <TextBox x:Name="UsernameBox"
                                  PlaceholderText="Username"
+                                 MaxLength="30"
                                  Background="Transparent"
+                                 Height="22"
+                                 MaxWidth="450"
+                                 Padding="35,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -74,11 +77,14 @@
                     <!-- Password -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="46"
-                            Padding="10,0">
+                            Height="46">
                         <PasswordBox x:Name="PasswordBox"
                                      PlaceholderText="Password"
+                                     MaxLength="30"
                                      Background="Transparent"
+                                     Height="22"
+                                     MaxWidth="450"
+                                     Padding="35,0,14,0"
                                      BorderThickness="0"
                                      FontSize="15"
                                      VerticalContentAlignment="Center"/>
@@ -87,11 +93,14 @@
                     <!-- Nombre -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="46"
-                            Padding="10,0">
+                            Height="46">
                         <TextBox x:Name="NameBox"
                                  PlaceholderText="Nombre"
+                                 MaxLength="50"
                                  Background="Transparent"
+                                 Height="22"
+                                 MaxWidth="450"
+                                 Padding="35,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -106,6 +115,9 @@
                                  PlaceholderText="Teléfono"
                                  MaxLength="10"
                                  Background="Transparent"
+                                 Height="22"
+                                 MaxWidth="450"
+                                 Padding="35,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -114,10 +126,12 @@
                     <!-- Rol -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="46"
-                            Padding="10,0">
+                            Height="46">
                         <ComboBox x:Name="RoleBox"
                                   Background="Transparent"
+                                  Height="42"
+                                  MaxWidth="450"
+                                  Padding="35,0,14,0"
                                   BorderThickness="0"
                                   FontSize="15"
                                   HorizontalAlignment="Stretch">

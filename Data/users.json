@@ -6,7 +6,9 @@
     "NombreCompleto": "Administrador",
     "Telefono": "0000000000",
     "FechaNacimiento": "2000-01-01T00:00:00",
-    "Rol": "Admin"
+    "Rol": "Admin",
+    "IsNotAdmin": false,
+    "IsAdminVisibility": 0
   },
   {
     "Id": 2,
@@ -15,7 +17,9 @@
     "NombreCompleto": "Francisco Ibarra",
     "Telefono": "8113158332",
     "FechaNacimiento": "2005-05-04T18:01:53.5076045",
-    "Rol": "Empleado"
+    "Rol": "Empleado",
+    "IsNotAdmin": true,
+    "IsAdminVisibility": 1
   },
   {
     "Id": 3,
@@ -24,16 +28,9 @@
     "NombreCompleto": "Renata Michelle",
     "Telefono": "1234567890",
     "FechaNacimiento": "2002-05-04T19:04:36.6347801",
-    "Rol": "Empleado"
-  },
-  {
-    "Id": 4,
-    "Username": "Marcelo177",
-    "Password": "Macha177",
-    "NombreCompleto": "Marcelo",
-    "Telefono": "5152623548",
-    "FechaNacimiento": "2007-07-27T01:13:30.306546",
-    "Rol": "Empleado"
+    "Rol": "Empleado",
+    "IsNotAdmin": true,
+    "IsAdminVisibility": 1
   },
   {
     "Id": 5,
@@ -42,7 +39,9 @@
     "NombreCompleto": "Emerson",
     "Telefono": "8152456523",
     "FechaNacimiento": "1983-02-11T13:16:35.0395514",
-    "Rol": "Empleado"
+    "Rol": "Empleado",
+    "IsNotAdmin": true,
+    "IsAdminVisibility": 1
   },
   {
     "Id": 6,
@@ -51,6 +50,8 @@
     "NombreCompleto": "Esteban Quito Robles",
     "Telefono": "1234567890",
     "FechaNacimiento": "2008-02-05T15:32:34.9885445",
-    "Rol": "Empleado"
+    "Rol": "Empleado",
+    "IsNotAdmin": true,
+    "IsAdminVisibility": 1
   }
 ]

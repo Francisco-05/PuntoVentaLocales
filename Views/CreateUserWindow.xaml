@@ -80,8 +80,11 @@
                                 Height="52">
                             <TextBox x:Name="UsernameBox"
                                      PlaceholderText="Username"
+                                     MaxLength="30"
                                      Background="Transparent"
                                      BorderThickness="0"
+                                     Height="25"
+                                     MaxWidth="540"
                                      Padding="15,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
@@ -95,8 +98,11 @@
                                 Height="52">
                             <PasswordBox x:Name="PasswordBox"
                                          PlaceholderText="Password"
+                                         MaxLength="30"
                                          Background="Transparent"
                                          BorderThickness="0"
+                                         Height="25"
+                                         MaxWidth="540"
                                          Padding="15,0"
                                          FontSize="16"/>
                         </Border>
@@ -109,8 +115,11 @@
                                 Height="52">
                             <TextBox x:Name="NameBox"
                                      PlaceholderText="Nombre completo"
+                                     MaxLength="50"
                                      Background="Transparent"
                                      BorderThickness="0"
+                                     Height="25"
+                                     MaxWidth="540"
                                      Padding="15,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
@@ -128,6 +137,8 @@
                                      BeforeTextChanging="PhoneBox_BeforeTextChanging"
                                      Background="Transparent"
                                      BorderThickness="0"
+                                     Height="25"
+                                     MaxWidth="540"
                                      Padding="15,0"
                                      FontSize="16"
                                      VerticalContentAlignment="Center"/>
@@ -144,6 +155,7 @@
                                                 PlaceholderText="Fecha de nacimiento"
                                                 Background="Transparent"
                                                 BorderThickness="0"
+                                                MaxWidth="540"
                                                 FontSize="16"
                                                 HorizontalAlignment="Stretch"/>
                         </Border>
@@ -158,10 +170,14 @@
                             <ComboBox x:Name="RoleBox"
                                       Background="Transparent"
                                       BorderThickness="0"
+                                      Height="Auto"
                                       FontSize="16"
+                                      MaxWidth="540"
+                                      Padding="12,12,12,12"
                                       HorizontalAlignment="Stretch"
                                       SelectedIndex="0">
-                                <ComboBoxItem Content="Empleado"/>
+                                <ComboBoxItem Content="Empleado"
+                                              />
                             </ComboBox>
                         </Border>
 

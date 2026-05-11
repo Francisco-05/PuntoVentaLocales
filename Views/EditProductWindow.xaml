@@ -61,11 +61,14 @@
                     <!-- Nombre -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="48">
                         <TextBox x:Name="NameBox"
                                  PlaceholderText="Nombre"
+                                 MaxLength="50"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -75,10 +78,14 @@
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
                             Height="44"
-                            Padding="10,0">
+>
                         <TextBox x:Name="BrandBox"
                                  PlaceholderText="Marca"
+                                 MaxLength="30"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -87,11 +94,14 @@
                     <!-- Descripción -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="44">
                         <TextBox x:Name="DescBox"
                                  PlaceholderText="Descripción"
+                                 MaxLength="200"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -100,12 +110,14 @@
                     <!-- Costo -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="44">
                         <TextBox x:Name="CostBox"
                                  PlaceholderText="Costo"
                                  BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -114,12 +126,14 @@
                     <!-- Precio venta -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="44">
                         <TextBox x:Name="PriceBox"
                                  PlaceholderText="Precio venta (con IVA)"
                                  BeforeTextChanging="OnlyNumbersDecimal_BeforeTextChanging"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -128,12 +142,14 @@
                     <!-- Existencias -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="44">
                         <TextBox x:Name="StockBox"
                                  PlaceholderText="Existencias"
                                  BeforeTextChanging="OnlyNumbers_BeforeTextChanging"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
@@ -142,12 +158,14 @@
                     <!-- Imagen -->
                     <Border CornerRadius="16"
                             Background="#E9EEF5"
-                            Height="44"
-                            Padding="10,0">
+                            Height="44">
                         <TextBox x:Name="ImageBox"
                                  PlaceholderText="Imagen seleccionada"
                                  IsReadOnly="True"
                                  Background="Transparent"
+                                 Height="24"
+                                 MaxWidth="450"
+                                 Padding="14,0,14,0"
                                  BorderThickness="0"
                                  FontSize="15"
                                  VerticalContentAlignment="Center"/>
