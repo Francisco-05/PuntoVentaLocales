@@ -124,5 +124,14 @@
     "ExistenciasFinales": 53,
     "FechaModificacion": "2026-05-10T16:55:45.9530224-06:00",
     "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "a428ae00-f44f-4cbc-baed-452c89fcc029",
+    "Producto": "Cámara web 1080p",
+    "ExistenciasIniciales": 10,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 11,
+    "FechaModificacion": "2026-05-10T22:39:54.4363459-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   }
 ]
