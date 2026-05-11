@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using PuntoVenta.Helpers;
 using PuntoVenta.Services;
 using PuntoVenta.Views;
 using System;
@@ -12,22 +13,23 @@ namespace PuntoVenta.Views
         {
             this.InitializeComponent();
 
-            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER (USERNAME)
+            // Bloquear spam por tecla mantenida
+            UsernameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            PasswordBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+
+            // Username
             UsernameBox.TextChanging += (s, e) =>
             {
-                if (UsernameBox.Text.StartsWith(" "))
-                {
-                    UsernameBox.Text = UsernameBox.Text.TrimStart();
-                    UsernameBox.SelectionStart = UsernameBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(UsernameBox);
             };
 
-            // 🔥 BLOQUEAR ESPACIO COMO PRIMER CARACTER (PASSWORD)
+            // Password
             PasswordBox.PasswordChanged += (s, e) =>
             {
                 if (PasswordBox.Password.StartsWith(" "))
                 {
-                    PasswordBox.Password = PasswordBox.Password.TrimStart();
+                    PasswordBox.Password =
+                        PasswordBox.Password.TrimStart();
                 }
             };
 

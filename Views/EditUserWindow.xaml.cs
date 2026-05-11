@@ -21,22 +21,18 @@ namespace PuntoVenta.Views
 
             LoadUser();
 
-            // =========================================
-            // EVITAR ESPACIOS AL INICIO
-            // =========================================
-
+            // Bloquear spam por tecla mantenida
+            UsernameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            NameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            PhoneBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            PasswordBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            // Username
             UsernameBox.TextChanging += (s, e) =>
             {
-                if (UsernameBox.Text.StartsWith(" "))
-                {
-                    UsernameBox.Text =
-                        UsernameBox.Text.TrimStart();
-
-                    UsernameBox.SelectionStart =
-                        UsernameBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(UsernameBox);
             };
 
+            // Password
             PasswordBox.PasswordChanged += (s, e) =>
             {
                 if (PasswordBox.Password.StartsWith(" "))
@@ -46,28 +42,16 @@ namespace PuntoVenta.Views
                 }
             };
 
+            // Nombre
             NameBox.TextChanging += (s, e) =>
             {
-                if (NameBox.Text.StartsWith(" "))
-                {
-                    NameBox.Text =
-                        NameBox.Text.TrimStart();
-
-                    NameBox.SelectionStart =
-                        NameBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(NameBox);
             };
 
+            // Teléfono
             PhoneBox.TextChanging += (s, e) =>
             {
-                if (PhoneBox.Text.StartsWith(" "))
-                {
-                    PhoneBox.Text =
-                        PhoneBox.Text.TrimStart();
-
-                    PhoneBox.SelectionStart =
-                        PhoneBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(PhoneBox);
             };
 
             SetupEnterNavigation();

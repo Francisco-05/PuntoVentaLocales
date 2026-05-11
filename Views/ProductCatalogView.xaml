@@ -9,7 +9,8 @@
     </Page.Resources>
 
     <Grid>
-        <!-- Fondo café/dorado como inicio administrativo -->
+
+        <!-- Fondo -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#1B120F" Offset="0"/>
@@ -19,17 +20,21 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <!-- Líneas decorativas -->
+        <!-- Decoración -->
         <Canvas Opacity="0.16">
-            <Line X1="0" Y1="120" X2="1920" Y2="120"
+
+            <Line X1="0" Y1="120"
+                  X2="1920" Y2="120"
                   Stroke="#F5E6C8"
                   StrokeThickness="2"/>
 
-            <Line X1="330" Y1="0" X2="330" Y2="1080"
+            <Line X1="330" Y1="0"
+                  X2="330" Y2="1080"
                   Stroke="#E0B56C"
                   StrokeThickness="1"/>
 
-            <Line X1="0" Y1="0" X2="1920" Y2="1080"
+            <Line X1="0" Y1="0"
+                  X2="1920" Y2="1080"
                   Stroke="#F5E6C8"
                   StrokeThickness="2"/>
 
@@ -44,9 +49,11 @@
                      Fill="#20D6A75A"
                      Canvas.Left="930"
                      Canvas.Top="70"/>
+
         </Canvas>
 
         <Grid>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -59,7 +66,34 @@
                     BorderThickness="0,0,0,1.5">
 
                 <Grid>
-                    <Button Content="Cortar Caja"
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Usuario -->
+                    <TextBlock x:Name="UserText"
+                               Grid.Column="0"
+                               Foreground="#FFF7E8"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,25,0"/>
+
+                    <!-- Reloj -->
+                    <TextBlock x:Name="ClockText"
+                               Grid.Column="1"
+                               Foreground="#FFF7E8"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+
+                    <!-- Botón -->
+                    <Button Grid.Column="3"
+                            Content="Cortar Caja"
                             Width="210"
                             Height="48"
                             Background="#7A2E2E"
@@ -68,18 +102,13 @@
                             CornerRadius="18"
                             Click="CashCut_Click"/>
 
-                    <TextBlock x:Name="UserText"
-                               Foreground="#FFF7E8"
-                               FontSize="15"
-                               FontWeight="SemiBold"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"/>
                 </Grid>
+
             </Border>
 
             <!-- Contenido -->
             <Grid Grid.Row="1"
-                  Padding="25"
+                  Padding="17"
                   ColumnSpacing="25">
 
                 <Grid.ColumnDefinitions>
@@ -96,13 +125,16 @@
                         Padding="20">
 
                     <Grid>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
+                        <!-- Header -->
                         <StackPanel Margin="0,0,0,15">
+
                             <TextBlock Text="Productos disponibles"
                                        FontSize="30"
                                        FontWeight="Bold"
@@ -111,94 +143,116 @@
                             <TextBlock Text="Selecciona productos para agregarlos al carrito"
                                        Foreground="#F2D7A6"
                                        FontSize="14"/>
+
                         </StackPanel>
 
-                        <ScrollViewer Grid.Row="1">
-                            <ItemsControl x:Name="ProductsList">
+                        <!-- Productos -->
+                        <Grid Grid.Row="1">
+
+                            <ItemsControl x:Name="ProductsList"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
 
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapGrid Orientation="Horizontal"
-                                                  MaximumRowsOrColumns="3"/>
+                                                  MaximumRowsOrColumns="3"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
 
                                 <ItemsControl.ItemTemplate>
+
                                     <DataTemplate>
 
-                                        <Border Margin="10"
-                                            Padding="14"
-                                            Background="#FFF7E8"
-                                            BorderBrush="#D6A75A"
-                                            BorderThickness="1.5"
-                                            CornerRadius="22"
-                                            Width="210"
-                                            Height="270">           
+                                        <Border Width="190"
+                                                Height="240"
+                                                Margin="4"
+                                                Padding="8"
+                                                Background="#FFF7E8"
+                                                BorderBrush="#D6A75A"
+                                                BorderThickness="1.5"
+                                                CornerRadius="16">
 
                                             <Grid>
+
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="105"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="85"/>
+                                                    <RowDefinition Height="42"/>
+                                                    <RowDefinition Height="22"/>
+                                                    <RowDefinition Height="28"/>
                                                     <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="40"/>
                                                 </Grid.RowDefinitions>
 
+                                                <!-- Imagen -->
                                                 <Border Grid.Row="0"
-                                                    Background="#F5E6C8"
-                                                    CornerRadius="16"
-                                                    Height="105"
-                                                    Margin="0,0,0,8">
+                                                        Background="#F5E6C8"
+                                                        CornerRadius="12"
+                                                        Margin="0,0,0,8">
+
                                                     <Image Source="{Binding Imagen}"
-                                                       Height="100"
-                                                       Stretch="Uniform"/>      
+                                                           Stretch="Uniform"
+                                                           MaxHeight="72"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+
                                                 </Border>
 
+                                                <!-- Nombre -->
                                                 <TextBlock Grid.Row="1"
-                                                   Text="{Binding Nombre}"
-                                                   FontWeight="Bold"
-                                                   FontSize="15"
-                                                   Foreground="#1B120F"
-                                                   TextWrapping="Wrap"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   MaxLines="2"/>
+                                                           Text="{Binding Nombre}"
+                                                           FontWeight="Bold"
+                                                           FontSize="13"
+                                                           Foreground="#1B120F"
+                                                           TextWrapping="Wrap"
+                                                           MaxLines="2"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           VerticalAlignment="Top"/>
 
+                                                <!-- Marca -->
                                                 <TextBlock Grid.Row="2"
-                                                   Text="{Binding Marca}"
-                                                   Foreground="#6B4A32"
-                                                   FontSize="13"
-                                                   Margin="0,4,0,0"/>
+                                                           Text="{Binding Marca}"
+                                                           Foreground="#6B4A32"
+                                                           FontSize="11"
+                                                           Margin="0,2,0,0"
+                                                           TextTrimming="CharacterEllipsis"/>
 
+                                                <!-- Precio -->
                                                 <TextBlock Grid.Row="3"
-                                                   Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
-                                                   Foreground="#8B5E34"
-                                                   FontSize="16"
-                                                   FontWeight="Bold"
-                                                   Margin="0,6,0,0"/>
+                                                           Text="{Binding PrecioVenta, Converter={StaticResource CurrencyConverter}}"
+                                                           Foreground="#8B5E34"
+                                                           FontSize="14"
+                                                           FontWeight="Bold"
+                                                           Margin="0,2,0,0"/>
 
+                                                <!-- Botón -->
                                                 <Button Grid.Row="5"
-                                                    Content="Agregar"
-                                                    Height="36"
-                                                    Width="95"
-                                                    HorizontalAlignment="Left"
-                                                    Margin="0,8,0,0"
-                                                    Click="AddToCart_Click"
-                                                    Background="#8B5E34"
-                                                    Foreground="#FFF7E8"
-                                                    FontWeight="SemiBold"
-                                                    CornerRadius="14"/>
+                                                        Content="Agregar"
+                                                        Width="95"
+                                                        Height="35"
+                                                        Background="#8B5E34"
+                                                        Foreground="#FFF7E8"
+                                                        FontWeight="SemiBold"
+                                                        CornerRadius="12"
+                                                        HorizontalAlignment="Left"
+                                                        Click="AddToCart_Click"
+                                                        Loaded="AgregarButton_Loaded"/>
+
                                             </Grid>
 
                                         </Border>
 
                                     </DataTemplate>
+
                                 </ItemsControl.ItemTemplate>
 
                             </ItemsControl>
-                        </ScrollViewer>
 
-                        <!-- PAGINACIÓN -->
+                        </Grid>
+
+                        <!-- Paginación -->
                         <StackPanel Grid.Row="2"
                                     Orientation="Horizontal"
                                     HorizontalAlignment="Center"
@@ -210,10 +264,10 @@
                                     Width="48"
                                     Height="48"
                                     FontSize="20"
-                                    CornerRadius="25"
                                     Background="#F5E6C8"
                                     Foreground="#3A241A"
                                     FontWeight="Bold"
+                                    CornerRadius="25"
                                     Click="PreviousPage_Click"/>
 
                             <Button x:Name="NextPageButton"
@@ -221,13 +275,16 @@
                                     Width="48"
                                     Height="48"
                                     FontSize="20"
-                                    CornerRadius="25"
                                     Background="#F5E6C8"
                                     Foreground="#3A241A"
                                     FontWeight="Bold"
+                                    CornerRadius="25"
                                     Click="NextPage_Click"/>
+
                         </StackPanel>
+
                     </Grid>
+
                 </Border>
 
                 <!-- CARRITO -->
@@ -239,6 +296,7 @@
                         Padding="22">
 
                     <Grid>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -246,6 +304,7 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Margin="0,0,0,15">
+
                             <TextBlock Text="Carrito"
                                        FontSize="30"
                                        FontWeight="Bold"
@@ -254,6 +313,7 @@
                             <TextBlock Text="Resumen de compra"
                                        FontSize="14"
                                        Foreground="#6B4A32"/>
+
                         </StackPanel>
 
                         <ListView x:Name="CartList"
@@ -263,14 +323,21 @@
                                   HorizontalContentAlignment="Stretch">
 
                             <ListView.ItemContainerStyle>
+
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch"/>
+
                                     <Setter Property="Padding" Value="0"/>
                                     <Setter Property="Margin" Value="0,0,0,10"/>
+
                                 </Style>
+
                             </ListView.ItemContainerStyle>
 
                             <ListView.ItemTemplate>
+
                                 <DataTemplate>
 
                                     <Border Background="White"
@@ -283,9 +350,9 @@
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="42"/>
-                                                <ColumnDefinition Width="42"/>
-                                                <ColumnDefinition Width="42"/>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="40"/>
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel Grid.Column="0"
@@ -300,12 +367,14 @@
                                                 <TextBlock Text="{Binding PrecioUnitario, Converter={StaticResource CurrencyConverter}}"
                                                            Foreground="#8B5E34"
                                                            FontWeight="SemiBold"/>
+
                                             </StackPanel>
 
                                             <Button Grid.Column="1"
                                                     Content="-"
                                                     Width="32"
                                                     Height="32"
+                                                    Margin="-6,0,0,0"
                                                     Background="#F5E6C8"
                                                     Foreground="#3A241A"
                                                     FontWeight="Bold"
@@ -314,19 +383,29 @@
                                                     VerticalAlignment="Center"
                                                     Click="Decrease_Click"/>
 
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding Cantidad}"
-                                                       Width="32"
-                                                       TextAlignment="Center"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       FontWeight="Bold"
-                                                       Foreground="#1B120F"/>
+                                            <TextBox Grid.Column="2"
+                                                     Text="{Binding Cantidad, Mode=TwoWay}"
+                                                     Width="36"
+                                                     KeyDown="PreventHeldKeys"
+                                                     Height="32"
+                                                     Padding="0,4,0,0"
+                                                     BorderThickness="0"
+                                                     Background="Transparent"
+                                                     TextAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     FontWeight="Bold"
+                                                     FontSize="15"
+                                                     Foreground="#1B120F"
+                                                     BeforeTextChanging="Cantidad_BeforeTextChanging"
+                                                     LostFocus="Cantidad_LostFocus"/>
 
                                             <Button Grid.Column="3"
                                                     Content="+"
                                                     Width="32"
                                                     Height="32"
+                                                    Margin="-6,0,0,0"
                                                     Background="#8B5E34"
                                                     Foreground="#FFF7E8"
                                                     FontWeight="Bold"
@@ -336,9 +415,11 @@
                                                     Click="Increase_Click"/>
 
                                         </Grid>
+
                                     </Border>
 
                                 </DataTemplate>
+
                             </ListView.ItemTemplate>
 
                         </ListView>
@@ -368,11 +449,19 @@
                                         FontWeight="Bold"
                                         CornerRadius="16"
                                         Click="ConfirmSale_Click"/>
+
                             </StackPanel>
+
                         </Border>
+
                     </Grid>
+
                 </Border>
+
             </Grid>
+
         </Grid>
+
     </Grid>
+
 </Page>

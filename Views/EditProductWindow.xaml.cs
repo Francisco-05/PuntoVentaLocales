@@ -27,6 +27,51 @@ namespace PuntoVenta.Views
 
             LoadProduct();
 
+            // Bloquear spam por tecla mantenida
+            NameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            BrandBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            DescBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            CostBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            PriceBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            StockBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            ImageBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+
+            // Evitar espacios al inicio
+            NameBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(NameBox);
+            };
+
+            BrandBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(BrandBox);
+            };
+
+            DescBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(DescBox);
+            };
+
+            CostBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(CostBox);
+            };
+
+            PriceBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(PriceBox);
+            };
+
+            StockBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(StockBox);
+            };
+
+            ImageBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(ImageBox);
+            };
+
             SetupEnterNavigation();
         }
 

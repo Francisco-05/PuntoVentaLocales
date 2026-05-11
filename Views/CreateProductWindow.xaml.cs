@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
+using PuntoVenta.Helpers;
 
 namespace PuntoVenta.Views
 {
@@ -21,59 +22,43 @@ namespace PuntoVenta.Views
         {
             this.InitializeComponent();
 
-           
+            // Bloquear tecla mantenida
+            NameBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            BrandBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            DescBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            CostBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            PriceBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+            ImageBox.PreviewKeyDown += InputValidationHelper.PreventHeldKeySpam;
+
+            // Espacios iniciales
             NameBox.TextChanging += (s, e) =>
             {
-                if (NameBox.Text.StartsWith(" "))
-                {
-                    NameBox.Text = NameBox.Text.TrimStart();
-                    NameBox.SelectionStart = NameBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(NameBox);
             };
 
             BrandBox.TextChanging += (s, e) =>
             {
-                if (BrandBox.Text.StartsWith(" "))
-                {
-                    BrandBox.Text = BrandBox.Text.TrimStart();
-                    BrandBox.SelectionStart = BrandBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(BrandBox);
             };
 
             DescBox.TextChanging += (s, e) =>
             {
-                if (DescBox.Text.StartsWith(" "))
-                {
-                    DescBox.Text = DescBox.Text.TrimStart();
-                    DescBox.SelectionStart = DescBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(DescBox);
             };
 
             CostBox.TextChanging += (s, e) =>
             {
-                if (CostBox.Text.StartsWith(" "))
-                {
-                    CostBox.Text = CostBox.Text.TrimStart();
-                    CostBox.SelectionStart = CostBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(CostBox);
             };
 
             PriceBox.TextChanging += (s, e) =>
             {
-                if (PriceBox.Text.StartsWith(" "))
-                {
-                    PriceBox.Text = PriceBox.Text.TrimStart();
-                    PriceBox.SelectionStart = PriceBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(PriceBox);
             };
 
             ImageBox.TextChanging += (s, e) =>
             {
-                if (ImageBox.Text.StartsWith(" "))
-                {
-                    ImageBox.Text = ImageBox.Text.TrimStart();
-                    ImageBox.SelectionStart = ImageBox.Text.Length;
-                }
+                InputValidationHelper.PreventLeadingSpaces(ImageBox);
             };
 
             SetupEnterNavigation();

@@ -1,23 +1,27 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using PuntoVenta.Helpers;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.System;
 
 namespace PuntoVenta.Views
 {
     public sealed partial class ProductCatalogView : Page
     {
-        private List<Product> products = new List<Product>();
+        private List<Product> products = new();
 
         private int currentPage = 1;
-        private int productsPerPage = 6;
+        private const int ProductsPerPage = 6;
 
-        // Venta actual (carrito)
-        private Sale currentSale = new Sale
+        private readonly DispatcherTimer relojTimer = new();
+
+        private Sale currentSale = new()
         {
             Details = new List<SaleDetail>(),
             Fecha = DateTime.Now
@@ -25,54 +29,91 @@ namespace PuntoVenta.Views
 
         public ProductCatalogView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            UserText.Text = $"Empleado: {SessionService.CurrentUser?.NombreCompleto ?? "Sin sesión"}";
+            UserText.Text =
+                $"Empleado: {SessionService.CurrentUser?.NombreCompleto ?? "Sin sesión"}";
 
             LoadProducts();
+
+            InitializeClock();
         }
 
-        // Cargar productos desde JSON
+        // =========================
+        // Inicialización
+        // =========================
+
+        private void InitializeClock()
+        {
+            ClockText.Text = DateTime.Now.ToString("HH:mm");
+
+            relojTimer.Interval = TimeSpan.FromSeconds(1);
+
+            relojTimer.Tick += (s, e) =>
+            {
+                ClockText.Text = DateTime.Now.ToString("HH:mm");
+            };
+
+            relojTimer.Start();
+        }
+      
+        
+
+        // =========================
+        // Productos y paginación
+        // =========================
+
         private async void LoadProducts()
         {
-            products = await JsonService.LoadAsync<Product>("products.json") ?? new List<Product>();
+            products =
+                await JsonService.LoadAsync<Product>("products.json")
+                ?? new List<Product>();
+
             currentPage = 1;
+
             ShowProductsPage();
         }
 
-        // Mostrar productos por página
         private void ShowProductsPage()
         {
             var paginatedProducts = products
-                .Skip((currentPage - 1) * productsPerPage)
-                .Take(productsPerPage)
+                .Skip((currentPage - 1) * ProductsPerPage)
+                .Take(ProductsPerPage)
                 .ToList();
 
             ProductsList.ItemsSource = paginatedProducts;
 
             PreviousPageButton.IsEnabled = currentPage > 1;
-            NextPageButton.IsEnabled = currentPage * productsPerPage < products.Count;
+            NextPageButton.IsEnabled =
+                currentPage * ProductsPerPage < products.Count;
+
+            ProductsList.UpdateLayout();
         }
 
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
-            if (currentPage > 1)
-            {
-                currentPage--;
-                ShowProductsPage();
-            }
+            if (currentPage <= 1)
+                return;
+
+            currentPage--;
+
+            ShowProductsPage();
         }
 
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
-            if (currentPage * productsPerPage < products.Count)
-            {
-                currentPage++;
-                ShowProductsPage();
-            }
+            if (currentPage * ProductsPerPage >= products.Count)
+                return;
+
+            currentPage++;
+
+            ShowProductsPage();
         }
 
-        // Refrescar vista del carrito
+        // =========================
+        // Carrito
+        // =========================
+
         private void RefreshCart()
         {
             CartList.ItemsSource = null;
@@ -81,24 +122,12 @@ namespace PuntoVenta.Views
             TotalText.Text = $"Total: {currentSale.TotalBruto:C2}";
         }
 
-        private async Task ShowError(string message)
-        {
-            await new ContentDialog
-            {
-                Title = "Error",
-                Content = message,
-                CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
-            }.ShowAsync();
-        }
-
         private int GetAvailableStock(int productId)
         {
-            var product = products?.FirstOrDefault(p => p.Id == productId);
+            var product = products.FirstOrDefault(p => p.Id == productId);
+
             if (product == null)
-            {
                 return 0;
-            }
 
             var inCart = currentSale.Details
                 .Where(d => d.ProductId == productId)
@@ -107,33 +136,49 @@ namespace PuntoVenta.Views
             return Math.Max(0, product.Existencias - inCart);
         }
 
-        // Agregar producto al carrito
+        private bool ProductoTieneExistencias(Product product) =>
+            product != null && GetAvailableStock(product.Id) > 0;
+
+        private void AgregarButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not Button button ||
+                button.DataContext is not Product product)
+                return;
+
+            button.IsEnabled = ProductoTieneExistencias(product);
+
+            if (!button.IsEnabled)
+            {
+                button.Content = "Sin stock";
+                button.Opacity = 0.6;
+            }
+        }
+
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             var product = (sender as Button)?.DataContext as Product;
-            if (product == null) return;
+
+            if (product == null)
+                return;
 
             var existing = currentSale.Details
                 .FirstOrDefault(d => d.ProductId == product.Id);
 
+            if (GetAvailableStock(product.Id) <= 0)
+            {
+                _ = ShowError(existing != null
+                    ? "No hay existencias suficientes para agregar más unidades"
+                    : "No hay existencias disponibles para este producto");
+
+                return;
+            }
+
             if (existing != null)
             {
-                if (GetAvailableStock(product.Id) <= 0)
-                {
-                    _ = ShowError("No hay existencias suficientes para agregar más unidades");
-                    return;
-                }
-
                 existing.Cantidad++;
             }
             else
             {
-                if (GetAvailableStock(product.Id) <= 0)
-                {
-                    _ = ShowError("No hay existencias disponibles para este producto");
-                    return;
-                }
-
                 currentSale.Details.Add(new SaleDetail
                 {
                     ProductId = product.Id,
@@ -148,11 +193,12 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // Aumentar cantidad desde el carrito
         private void Increase_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as Button)?.DataContext as SaleDetail;
-            if (item == null) return;
+
+            if (item == null)
+                return;
 
             if (GetAvailableStock(item.ProductId) <= 0)
             {
@@ -161,14 +207,16 @@ namespace PuntoVenta.Views
             }
 
             item.Cantidad++;
+
             RefreshCart();
         }
 
-        // Disminuir cantidad o eliminar del carrito
         private void Decrease_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as Button)?.DataContext as SaleDetail;
-            if (item == null) return;
+
+            if (item == null)
+                return;
 
             item.Cantidad--;
 
@@ -180,18 +228,130 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // Confirmar venta
+        // =========================
+        // Validaciones
+        // =========================
+
+        private bool IsValidMoneyInput(string text)
+        {
+            if (text.Any(c => !char.IsDigit(c) && c != '.'))
+                return false;
+
+            if (text.Count(c => c == '.') > 1)
+                return false;
+
+            return !text.StartsWith(".");
+        }
+
+        private void Cantidad_BeforeTextChanging(
+            TextBox sender,
+            TextBoxBeforeTextChangingEventArgs args)
+        {
+            if (string.IsNullOrWhiteSpace(args.NewText))
+                return;
+
+            if (!int.TryParse(args.NewText, out int numero))
+            {
+                args.Cancel = true;
+                return;
+            }
+
+            if (numero <= 0)
+            {
+                args.Cancel = true;
+                return;
+            }
+
+            var item = sender.DataContext as SaleDetail;
+
+            if (item == null)
+                return;
+
+            var product = products.FirstOrDefault(p => p.Id == item.ProductId);
+
+            if (product == null)
+                return;
+
+            if (numero > product.Existencias)
+            {
+                args.Cancel = true;
+            }
+        }
+
+        private async void Cantidad_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is not TextBox textBox)
+                return;
+
+            var item = textBox.DataContext as SaleDetail;
+
+            if (item == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                item.Cantidad = 1;
+                textBox.Text = "1";
+
+                RefreshCart();
+                return;
+            }
+
+            if (!int.TryParse(textBox.Text, out int cantidad))
+            {
+                item.Cantidad = 1;
+                textBox.Text = "1";
+
+                await ShowError("Solo se permiten números.");
+
+                RefreshCart();
+                return;
+            }
+
+            if (cantidad <= 0)
+            {
+                item.Cantidad = 1;
+                textBox.Text = "1";
+
+                await ShowError("La cantidad debe ser mayor a 0.");
+
+                RefreshCart();
+                return;
+            }
+
+            var product = products.FirstOrDefault(p => p.Id == item.ProductId);
+
+            if (product == null)
+                return;
+
+            if (cantidad > product.Existencias)
+            {
+                item.Cantidad = product.Existencias;
+                textBox.Text = product.Existencias.ToString();
+
+                await ShowError(
+                    $"Solo hay {product.Existencias} unidades disponibles.");
+            }
+            else
+            {
+                item.Cantidad = cantidad;
+            }
+
+            RefreshCart();
+        }
+
+        // =========================
+        // Venta
+        // =========================
+
         private async void ConfirmSale_Click(object sender, RoutedEventArgs e)
         {
             if (!currentSale.Details.Any())
             {
-                await new ContentDialog
-                {
-                    Title = "Carrito vacío",
-                    Content = "Agrega productos antes de confirmar la compra.",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.XamlRoot
-                }.ShowAsync();
+                await ShowMessage(
+                    "Carrito vacío",
+                    "Agrega productos antes de confirmar la compra.");
+
                 return;
             }
 
@@ -230,23 +390,7 @@ namespace PuntoVenta.Views
 
                 efectivoBox.BeforeTextChanging += (s, e2) =>
                 {
-                    string text = e2.NewText;
 
-                    if (text.Any(c => !char.IsDigit(c) && c != '.'))
-                    {
-                        e2.Cancel = true;
-                        return;
-                    }
-
-                    if (text.Count(c => c == '.') > 1)
-                    {
-                        e2.Cancel = true;
-                    }
-
-                    if (text.StartsWith("."))
-                    {
-                        e2.Cancel = true;
-                    }
                 };
 
                 var panel = new StackPanel();
@@ -265,27 +409,30 @@ namespace PuntoVenta.Views
 
                 efectivoBox.TextChanged += (s, ev) =>
                 {
-                    if (double.TryParse(efectivoBox.Text, out double efectivo))
-                    {
-                        double cambio = efectivo - currentSale.TotalBruto;
-                        cambioText.Text = $"Cambio: {cambio:C2}";
-
-                        cambioText.Foreground = cambio >= 0
-                            ? new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Green)
-                            : new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Red);
-
-                        efectivoDialog.IsPrimaryButtonEnabled = efectivo >= currentSale.TotalBruto;
-
-                        if (efectivo >= currentSale.TotalBruto)
-                        {
-                            efectivoRecibidoFinal = efectivo;
-                            cambioFinal = cambio;
-                        }
-                    }
-                    else
+                    if (!double.TryParse(efectivoBox.Text, out double efectivo))
                     {
                         cambioText.Text = "Cambio: $0.00";
                         efectivoDialog.IsPrimaryButtonEnabled = false;
+                        return;
+                    }
+
+                    double cambio = efectivo - currentSale.TotalBruto;
+
+                    cambioText.Text = $"Cambio: {cambio:C2}";
+
+                    cambioText.Foreground = cambio >= 0
+                        ? new Microsoft.UI.Xaml.Media.SolidColorBrush(
+                            Microsoft.UI.Colors.Green)
+                        : new Microsoft.UI.Xaml.Media.SolidColorBrush(
+                            Microsoft.UI.Colors.Red);
+
+                    efectivoDialog.IsPrimaryButtonEnabled =
+                        efectivo >= currentSale.TotalBruto;
+
+                    if (efectivo >= currentSale.TotalBruto)
+                    {
+                        efectivoRecibidoFinal = efectivo;
+                        cambioFinal = cambio;
                     }
                 };
 
@@ -299,14 +446,20 @@ namespace PuntoVenta.Views
                 currentSale.MetodoPago = "Tarjeta";
             }
 
-            currentSale.Empleado = SessionService.CurrentUser?.NombreCompleto ?? "Desconocido";
+            currentSale.Empleado =
+                SessionService.CurrentUser?.NombreCompleto ?? "Desconocido";
+
             currentSale.Fecha = DateTime.Now;
 
-            var updatedProducts = await JsonService.LoadAsync<Product>("products.json") ?? new List<Product>();
+            var updatedProducts =
+                await JsonService.LoadAsync<Product>("products.json")
+                ?? new List<Product>();
 
             foreach (var detail in currentSale.Details)
             {
-                var product = updatedProducts.FirstOrDefault(p => p.Id == detail.ProductId);
+                var product =
+                    updatedProducts.FirstOrDefault(p => p.Id == detail.ProductId);
+
                 if (product == null)
                 {
                     await ShowError("Producto no encontrado en el inventario");
@@ -315,38 +468,41 @@ namespace PuntoVenta.Views
 
                 if (product.Existencias < detail.Cantidad)
                 {
-                    await ShowError("No hay existencias suficientes para completar la venta");
+                    await ShowError(
+                        "No hay existencias suficientes para completar la venta");
+
                     return;
                 }
             }
 
             foreach (var detail in currentSale.Details)
             {
-                var product = updatedProducts.First(p => p.Id == detail.ProductId);
+                var product =
+                    updatedProducts.First(p => p.Id == detail.ProductId);
+
                 product.Existencias -= detail.Cantidad;
             }
 
             await JsonService.SaveAsync("products.json", updatedProducts);
+
             products = updatedProducts;
+
             ShowProductsPage();
 
             await SaleService.AddAsync(currentSale);
 
-            string mensaje = $"Total: {currentSale.TotalBruto:C2}\nPago: {currentSale.MetodoPago}";
+            string mensaje =
+                $"Total: {currentSale.TotalBruto:C2}\n" +
+                $"Pago: {currentSale.MetodoPago}";
 
             if (currentSale.MetodoPago == "Efectivo")
             {
-                mensaje += $"\nEfectivo recibido: {efectivoRecibidoFinal:C2}" +
-                           $"\nCambio: {cambioFinal:C2}";
+                mensaje +=
+                    $"\nEfectivo recibido: {efectivoRecibidoFinal:C2}" +
+                    $"\nCambio: {cambioFinal:C2}";
             }
 
-            await new ContentDialog
-            {
-                Title = "Venta realizada",
-                Content = mensaje,
-                CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
-            }.ShowAsync();
+            await ShowMessage("Venta realizada", mensaje);
 
             currentSale = new Sale
             {
@@ -356,6 +512,10 @@ namespace PuntoVenta.Views
 
             RefreshCart();
         }
+
+        // =========================
+        // Corte de caja
+        // =========================
 
         private async void CashCut_Click(object sender, RoutedEventArgs e)
         {
@@ -381,7 +541,8 @@ namespace PuntoVenta.Views
 
             passwordBox.PasswordChanged += (s, ev) =>
             {
-                authDialog.IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(passwordBox.Password);
+                authDialog.IsPrimaryButtonEnabled =
+                    !string.IsNullOrWhiteSpace(passwordBox.Password);
             };
 
             var authResult = await authDialog.ShowAsync();
@@ -389,7 +550,10 @@ namespace PuntoVenta.Views
             if (authResult != ContentDialogResult.Primary)
                 return;
 
-            var user = await UserService.Login(currentUser.Username, passwordBox.Password);
+            var user =
+                await UserService.Login(
+                    currentUser.Username,
+                    passwordBox.Password);
 
             if (user == null)
             {
@@ -397,17 +561,22 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            var sales = await JsonService.LoadAsync<Sale>("sales.json") ?? new List<Sale>();
+            var sales =
+                await JsonService.LoadAsync<Sale>("sales.json")
+                ?? new List<Sale>();
 
             var inicio = SessionService.LoginTime;
             var fin = DateTime.Now;
 
             var ventasSesion = sales
-                .Where(s => s.Fecha >= inicio && s.Fecha <= fin &&
-                            s.Empleado == currentUser.NombreCompleto)
+                .Where(s =>
+                    s.Fecha >= inicio &&
+                    s.Fecha <= fin &&
+                    s.Empleado == currentUser.NombreCompleto)
                 .ToList();
 
             double totalBruto = ventasSesion.Sum(v => v.TotalBruto);
+
             double utilidad = ventasSesion.Sum(v => v.Utilidad);
 
             double efectivoSistema = ventasSesion
@@ -419,28 +588,18 @@ namespace PuntoVenta.Views
                 PlaceholderText = "Ingrese efectivo en caja"
             };
 
+            efectivoBox.TextChanging += (s, e) =>
+            {
+                InputValidationHelper.PreventLeadingSpaces(efectivoBox);
+            };
+
             efectivoBox.BeforeTextChanging += (s, e2) =>
             {
-                string text = e2.NewText;
-
-                if (text.Any(c => !char.IsDigit(c) && c != '.'))
-                {
-                    e2.Cancel = true;
-                    return;
-                }
-
-                if (text.Count(c => c == '.') > 1)
-                {
-                    e2.Cancel = true;
-                }
-
-                if (text.StartsWith("."))
-                {
-                    e2.Cancel = true;
-                }
+                e2.Cancel = !IsValidMoneyInput(e2.NewText);
             };
 
             var panel = new StackPanel();
+
             panel.Children.Add(efectivoBox);
 
             var cashDialog = new ContentDialog
@@ -466,20 +625,28 @@ namespace PuntoVenta.Views
             if (cashResult != ContentDialogResult.Primary)
                 return;
 
-            if (!double.TryParse(efectivoBox.Text, out double efectivoRealFinal))
+            if (!double.TryParse(
+                    efectivoBox.Text,
+                    out double efectivoRealFinal))
             {
                 await ShowError("Debes ingresar el efectivo en caja.");
                 return;
             }
 
-            double diferenciaFinal = efectivoRealFinal - efectivoSistema;
+            double diferenciaFinal =
+                efectivoRealFinal - efectivoSistema;
 
-            var diferencias = await JsonService.LoadAsync<DiferenciaCaja>("diferenciasCaja.json")
-                              ?? new List<DiferenciaCaja>();
+            var diferencias =
+                await JsonService.LoadAsync<DiferenciaCaja>(
+                    "diferenciasCaja.json")
+                ?? new List<DiferenciaCaja>();
 
             var nuevaDiferencia = new DiferenciaCaja
             {
-                Id = diferencias.Count > 0 ? diferencias.Max(d => d.Id) + 1 : 1,
+                Id = diferencias.Count > 0
+                    ? diferencias.Max(d => d.Id) + 1
+                    : 1,
+
                 Empleado = currentUser.NombreCompleto,
                 Fecha = DateTime.Now,
                 InicioSesion = inicio,
@@ -491,7 +658,9 @@ namespace PuntoVenta.Views
 
             diferencias.Add(nuevaDiferencia);
 
-            await JsonService.SaveAsync("diferenciasCaja.json", diferencias);
+            await JsonService.SaveAsync(
+                "diferenciasCaja.json",
+                diferencias);
 
             string reporte =
                 $"Empleado: {currentUser.NombreCompleto}\n" +
@@ -504,18 +673,33 @@ namespace PuntoVenta.Views
                 $"Efectivo en caja (Físico): {efectivoRealFinal:C2}\n" +
                 $"Diferencia: {diferenciaFinal:C2}";
 
-            await new ContentDialog
-            {
-                Title = "Reporte de corte",
-                Content = reporte,
-                CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
-            }.ShowAsync();
+            await ShowMessage("Reporte de corte", reporte);
 
             SessionService.CurrentUser = null;
             SessionService.LoginTime = DateTime.MinValue;
 
-            MainWindow.Instance.MainFrameControl.Navigate(typeof(LoginView));
+            MainWindow.Instance.MainFrameControl
+                .Navigate(typeof(LoginView));
+        }
+
+        // =========================
+        // Dialogs
+        // =========================
+
+        private async Task ShowError(string message)
+        {
+            await ShowMessage("Error", message);
+        }
+
+        private async Task ShowMessage(string title, string message)
+        {
+            await new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            }.ShowAsync();
         }
     }
 }

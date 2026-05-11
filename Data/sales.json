@@ -78,7 +78,6 @@
     "TotalBruto": 2600.0,
     "TotalCosto": 1800.0,
     "Utilidad": 800.0
-
   },
   {
     "Id": 8,
@@ -653,5 +652,62 @@
     "TotalBruto": 247499.91,
     "TotalCosto": 148500.0,
     "Utilidad": 98999.91000000002
+  },
+  {
+    "Id": 32,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Smartphone 5G 128GB1",
+        "Marca": "Smartphone 5G 128GB",
+        "PrecioUnitario": 9100.0,
+        "CostoUnitario": 5800.0,
+        "Cantidad": 4,
+        "Subtotal": 36400.0,
+        "CostoTotal": 23200.0,
+        "Utilidad": 13200.0
+      },
+      {
+        "ProductId": 2,
+        "Nombre": "Laptop Ultrabook 14\"",
+        "Marca": "Dell",
+        "PrecioUnitario": 16200.0,
+        "CostoUnitario": 11700.0,
+        "Cantidad": 10,
+        "Subtotal": 162000.0,
+        "CostoTotal": 117000.0,
+        "Utilidad": 45000.0
+      }
+    ],
+    "Empleado": "Desconocido",
+    "Fecha": "2026-05-10T20:29:43.0885711-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 14,
+    "TotalBruto": 198400.0,
+    "TotalCosto": 140200.0,
+    "Utilidad": 58200.0
+  },
+  {
+    "Id": 33,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Smartphone 5G 128GB1",
+        "Marca": "Smartphone 5G 128GB",
+        "PrecioUnitario": 9100.0,
+        "CostoUnitario": 5800.0,
+        "Cantidad": 1,
+        "Subtotal": 9100.0,
+        "CostoTotal": 5800.0,
+        "Utilidad": 3300.0
+      }
+    ],
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-10T21:31:29.4555071-06:00",
+    "MetodoPago": "Tarjeta",
+    "TotalArticulos": 1,
+    "TotalBruto": 9100.0,
+    "TotalCosto": 5800.0,
+    "Utilidad": 3300.0
   }
 ]
