@@ -187,10 +187,21 @@ namespace PuntoVenta.Views
         // =========================================
 
         private async void Save_Click(
-            object sender,
-            RoutedEventArgs e
-        )
+                object sender,
+                RoutedEventArgs e)
         {
+            bool confirmed =
+                await ConfirmAdminPasswordAsync();
+
+            if (!confirmed)
+            {
+                await ShowMessage(
+                    "Se requiere confirmación de administrador"
+                );
+
+                return;
+            }
+
             string username =
                 UsernameBox.Text.Trim();
 
@@ -355,6 +366,73 @@ namespace PuntoVenta.Views
                 };
 
             await dialog.ShowAsync();
+        }
+
+        private async Task<bool>
+        ConfirmAdminPasswordAsync()
+        {
+            var passwordBox =
+                 new PasswordBox
+                 {
+                     MaxLength = 10,
+                     Padding = new Thickness(40, 6, 0, 0)
+                 };
+
+            passwordBox.PasswordChanged += (s, e) =>
+            {
+                if (passwordBox.Password.Contains(" "))
+                {
+                    passwordBox.Password =
+                        passwordBox.Password.Replace(" ", "");
+                }
+            };
+
+            var result =
+                await new ContentDialog
+                {
+                    Title = "Confirmar administrador",
+
+                    Content = passwordBox,
+
+                    PrimaryButtonText = "Confirmar",
+
+                    CloseButtonText = "Cancelar",
+
+                    XamlRoot = this.Content.XamlRoot
+                }.ShowAsync();
+
+            if (
+                result !=
+                ContentDialogResult.Primary
+            )
+            {
+                return false;
+            }
+
+            string password =
+                passwordBox.Password;
+
+            if (
+                string.IsNullOrWhiteSpace(password) ||
+                !ValidationHelper.IsValidPassword(password)
+            )
+            {
+                await ShowMessage(
+                    "Contraseña incorrecta"
+                );
+
+                return false;
+            }
+
+            var users =
+                await JsonService.LoadAsync<User>(
+                    "users.json"
+                );
+
+            return users.Any(u =>
+                u.Rol == "Admin" &&
+                u.Password == password
+            );
         }
     }
 }

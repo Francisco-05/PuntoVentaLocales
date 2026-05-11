@@ -527,7 +527,19 @@ namespace PuntoVenta.Views
                 return;
             }
 
-            var passwordBox = new PasswordBox();
+            var passwordBox = new PasswordBox {
+                MaxLength = 15,
+                Padding = new Thickness(40, 6, 0, 0)
+            };
+
+            passwordBox.PasswordChanged += (s, e) =>
+            {
+                if (passwordBox.Password.Contains(" "))
+                {
+                    passwordBox.Password =
+                        passwordBox.Password.Replace(" ", "");
+                }
+            };
 
             var authDialog = new ContentDialog
             {
@@ -585,7 +597,32 @@ namespace PuntoVenta.Views
 
             var efectivoBox = new TextBox
             {
-                PlaceholderText = "Ingrese efectivo en caja"
+                PlaceholderText = "Ingrese efectivo en caja",
+                MaxLength = 10,
+            };
+
+            efectivoBox.TextChanging += (s, e) =>
+            {
+                if (efectivoBox.Text.Contains(" "))
+                {
+                    efectivoBox.Text =
+                        efectivoBox.Text.Replace(" ", "");
+
+                    efectivoBox.SelectionStart =
+                        efectivoBox.Text.Length;
+                }
+            };
+
+            efectivoBox.BeforeTextChanging += (sender, args) =>
+            {
+                string text = args.NewText;
+
+                // Solo números y un punto decimal
+                bool valid =
+                    text.Count(c => c == '.') <= 1 &&
+                    text.All(c => char.IsDigit(c) || c == '.');
+
+                args.Cancel = !valid;
             };
 
             efectivoBox.TextChanging += (s, e) =>

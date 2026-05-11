@@ -49,6 +49,19 @@ namespace PuntoVenta.Helpers
                 element.KeyUp += OnKeyUp;
             }
         }
+        public static void PreventHeldKeySpamtextbox(
+     object sender,
+     KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+                return;
+
+            // La tecla ya estaba presionada
+            if (e.KeyStatus.WasKeyDown)
+            {
+                e.Handled = true;
+            }
+        }
 
         private static void OnKeyUp(
             object sender,
@@ -69,6 +82,11 @@ namespace PuntoVenta.Helpers
             };
 
             textBox.KeyDown += PreventHeldKeySpam;
+        }
+
+        public static void ReleaseKey(object sender, KeyRoutedEventArgs e)
+        {
+            PressedKeys.Remove(e.Key);
         }
 
         // =========================================

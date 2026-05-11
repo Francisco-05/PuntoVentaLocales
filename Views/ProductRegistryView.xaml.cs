@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Controls;
 
 namespace PuntoVenta.Views
 {
@@ -29,6 +30,8 @@ namespace PuntoVenta.Views
             LoadUsers();
         }
 
+
+
         // =========================================
         // CARGAR PRODUCTOS
         // =========================================
@@ -41,6 +44,13 @@ namespace PuntoVenta.Views
                 );
 
             ProductsList.ItemsSource = products;
+        }
+
+        private async void Refresh_Click(
+            object sender,
+            RoutedEventArgs e)
+                {
+            LoadProducts();
         }
 
         // =========================================
@@ -141,13 +151,12 @@ namespace PuntoVenta.Views
 
             var amountBox = new TextBox
             {
-                PlaceholderText =
-                    "Cantidad a añadir"
+                PlaceholderText = "Cantidad a añadir",
+                MaxLength = 4
+
             };
-
             amountBox.BeforeTextChanging +=
-                OnlyNumbers_BeforeTextChanging;
-
+            OnlyNumbers_BeforeTextChanging;
             var dialog = new ContentDialog
             {
                 Title = "Reabastecimiento",
@@ -160,6 +169,7 @@ namespace PuntoVenta.Views
 
                 XamlRoot = this.XamlRoot
             };
+
 
             var result =
                 await dialog.ShowAsync();
@@ -447,7 +457,20 @@ namespace PuntoVenta.Views
             ConfirmAdminPasswordAsync()
         {
             var passwordBox =
-                new PasswordBox();
+                 new PasswordBox
+                 {
+                     MaxLength = 10,
+                     Padding= new Thickness(40, 6, 0, 0)
+                 };
+
+            passwordBox.PasswordChanged += (s, e) =>
+            {
+                if (passwordBox.Password.Contains(" "))
+                {
+                    passwordBox.Password =
+                        passwordBox.Password.Replace(" ", "");
+                }
+            };
 
             var dialog =
                 new ContentDialog

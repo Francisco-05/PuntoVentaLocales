@@ -46,24 +46,36 @@
                         <StackPanel>
 
                             <TextBlock x:Name="TitleText"
-                                       Text="Registro de productos"
-                                       FontSize="34"
-                                       FontWeight="Bold"
-                                       Foreground="White"/>
+                               Text="Registro de productos"
+                               FontSize="34"
+                               FontWeight="Bold"
+                               Foreground="White"/>
 
                             <TextBlock x:Name="SubtitleText"
-                                       Text="Consulta y administra productos"
-                                       FontSize="14"
-                                       Foreground="#DCE7F5"/>
+                               Text="Consulta y administra productos"
+                               FontSize="14"
+                               Foreground="#DCE7F5"/>
 
                         </StackPanel>
 
-                        <Button Grid.Column="1"
-                                Content="Volver"
-                                Background="#EF4444"
-                                Foreground="White"
-                                Padding="20,10"
-                                Click="Back_Click"/>
+                        <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="10">
+
+                            <Button Content="↻ Refresh"
+                            Background="#2563EB"
+                            Foreground="White"
+                            Padding="20,10"
+                            Click="Refresh_Click"/>
+
+                            <Button Content="Volver"
+                            Background="#EF4444"
+                            Foreground="White"
+                            Padding="20,10"
+                            Click="Back_Click"/>
+
+                        </StackPanel>
+
                     </Grid>
 
                     <!-- BOTONES -->

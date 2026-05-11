@@ -472,7 +472,20 @@ namespace PuntoVenta.Views
             ConfirmAdminPasswordAsync()
         {
             var passwordBox =
-                new PasswordBox();
+                 new PasswordBox
+                 {
+                     MaxLength = 10,
+                     Padding = new Thickness(40, 6, 0, 0)
+                 };
+
+            passwordBox.PasswordChanged += (s, e) =>
+            {
+                if (passwordBox.Password.Contains(" "))
+                {
+                    passwordBox.Password =
+                        passwordBox.Password.Replace(" ", "");
+                }
+            };
 
             var result =
                 await new ContentDialog
