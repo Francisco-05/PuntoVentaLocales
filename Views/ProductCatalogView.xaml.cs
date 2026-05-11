@@ -1,6 +1,8 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using PuntoVenta.Helpers;
 using PuntoVenta.Models;
 using PuntoVenta.Services;
@@ -413,6 +415,12 @@ namespace PuntoVenta.Views
                     {
                         args.Cancel = true;
                     }
+                    if ( decimal.TryParse(text, out decimal value) &&
+                        value > 100000
+)
+                    {
+                        args.Cancel = true;
+                    }
                 };
 
                 efectivoBox.TextChanging += (s, e) =>
@@ -440,8 +448,16 @@ namespace PuntoVenta.Views
 
                 };
 
+                var warningText = new TextBlock
+                {
+                    Text = "Monto máximo en efectivo: $100,000",
+                    Foreground = new SolidColorBrush(Colors.Red),
+                    Margin = new Thickness(0, 0, 0, 8)
+                };
+
                 var panel = new StackPanel();
                 panel.Children.Add(efectivoBox);
+                panel.Children.Add(warningText);
                 panel.Children.Add(cambioText);
 
                 var efectivoDialog = new ContentDialog
