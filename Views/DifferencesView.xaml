@@ -47,13 +47,14 @@
                     CornerRadius="26"
                     BorderBrush="#E8C6A7"
                     BorderThickness="1.5"
-                    Padding="28">
+                    Padding="28"
+                    VerticalAlignment="Top">
 
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <!-- Encabezado -->
@@ -110,8 +111,8 @@
                                         CornerRadius="14"
                                         Padding="10,4">
                                     <CalendarDatePicker x:Name="StartDate"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"/>
+                                        Background="Transparent"
+                                        BorderThickness="0"/>
                                 </Border>
                             </StackPanel>
 
@@ -124,8 +125,8 @@
                                         CornerRadius="14"
                                         Padding="10,4">
                                     <CalendarDatePicker x:Name="EndDate"
-                                                        Background="Transparent"
-                                                        BorderThickness="0"/>
+                                         Background="Transparent"
+                                         BorderThickness="0"/>
                                 </Border>
                             </StackPanel>
 
@@ -157,93 +158,102 @@
                         </Grid>
                     </Border>
 
-                    <!-- Lista -->
+                    <!-- Lista en cuadritos -->
                     <ListView x:Name="DifferencesList"
-                              Grid.Row="2"
-                              Background="Transparent"
-                              BorderThickness="0"
-                              Margin="0,5,0,0">
+                          Grid.Row="2"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Margin="0,18,0,0">
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                    MaximumRowsOrColumns="5"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
 
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Padding" Value="0"/>
-                                <Setter Property="Margin" Value="0,0,0,14"/>
+                                <Setter Property="Margin" Value="0,0,16,20"/>
                             </Style>
                         </ListView.ItemContainerStyle>
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="White"
-                                        CornerRadius="18"
-                                        Padding="18"
-                                        BorderBrush="#E8D7C8"
-                                        BorderThickness="1">
+                                    CornerRadius="18"
+                                    Padding="14"
+                                    Width="225"
+                                    Height="205"
+                                    BorderBrush="#E8D7C8"
+                                    BorderThickness="1">
 
-                                    <StackPanel Spacing="8">
+                                    <StackPanel Spacing="7">
 
                                         <!-- Empleado -->
                                         <TextBlock Text="{Binding Empleado}"
-                                                   FontSize="20"
-                                                   FontWeight="Bold"
-                                                   Foreground="#222222"/>
+                                           FontSize="17"
+                                           FontWeight="Bold"
+                                           Foreground="#222222"
+                                           TextTrimming="CharacterEllipsis"/>
 
                                         <!-- Fecha -->
                                         <TextBlock Text="{Binding Fecha}"
-                                                   FontSize="14"
-                                                   Foreground="#444444"/>
+                                           FontSize="12"
+                                           Foreground="#444444"
+                                           TextTrimming="CharacterEllipsis"/>
 
                                         <!-- Horarios -->
                                         <StackPanel Spacing="2">
                                             <TextBlock Text="{Binding InicioSesion}"
-                                                       FontSize="12"
-                                                       Foreground="Gray"/>
+                                               FontSize="12"
+                                               Foreground="Gray"
+                                               TextTrimming="CharacterEllipsis"/>
+
                                             <TextBlock Text="{Binding FinSesion}"
-                                                       FontSize="12"
-                                                       Foreground="Gray"/>
+                                               FontSize="12"
+                                               Foreground="Gray"
+                                               TextTrimming="CharacterEllipsis"/>
                                         </StackPanel>
 
                                         <!-- Montos -->
-                                        <Grid Margin="0,6,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="20"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
+                                        <StackPanel Spacing="4"
+                                           Margin="0,6,0,0">
 
-                                            <TextBlock Grid.Column="0"
-                                                       Text="Sistema:"
-                                                       FontWeight="SemiBold"
-                                                       Foreground="#333333"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <TextBlock Text="Sistema:"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#333333"/>
 
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"
-                                                       Foreground="#2F6BFF"
-                                                       FontWeight="Bold"
-                                                       Margin="6,0,0,0"/>
+                                                <TextBlock Text="{Binding EfectivoSistema, Converter={StaticResource CurrencyConverter}}"
+                                                   Foreground="#2F6BFF"
+                                                   FontWeight="Bold"/>
+                                            </StackPanel>
 
-                                            <TextBlock Grid.Column="3"
-                                                       Text="Físico:"
-                                                       FontWeight="SemiBold"
-                                                       Foreground="#333333"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <TextBlock Text="Físico:"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#333333"/>
 
-                                            <TextBlock Grid.Column="4"
-                                                       Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"
-                                                       Foreground="#00A86B"
-                                                       FontWeight="Bold"
-                                                       Margin="6,0,0,0"/>
-                                        </Grid>
+                                                <TextBlock Text="{Binding EfectivoReal, Converter={StaticResource CurrencyConverter}}"
+                                                   Foreground="#00A86B"
+                                                   FontWeight="Bold"/>
+                                            </StackPanel>
+                                        </StackPanel>
 
                                         <!-- Diferencia -->
                                         <Border Background="#FFF2E8"
-                                                CornerRadius="12"
-                                                Padding="10"
-                                                Margin="0,6,0,0">
-                                            <TextBlock FontSize="16"
-                                                       FontWeight="Bold"
-                                                       Foreground="#1F1F1F">
+                                            CornerRadius="12"
+                                            Padding="10"
+                                            Margin="0,6,0,0">
+
+                                            <TextBlock FontSize="14"
+                                                FontWeight="Bold"
+                                                Foreground="#1F1F1F"
+                                                TextTrimming="CharacterEllipsis">
                                                 <Run Text="Diferencia: "/>
                                                 <Run Text="{Binding Diferencia, Converter={StaticResource CurrencyConverter}}"/>
                                             </TextBlock>

@@ -163,106 +163,121 @@
                                         Padding="24,12"
                                         FontWeight="SemiBold"/>
                             </StackPanel>
+
+                            <Border Grid.Column="4"
+                                Background="#18FFFFFF"
+                                CornerRadius="18"
+                                Padding="16,10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom">
+
+                                <TextBlock x:Name="TotalUtilidadText"
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="DarkCyan"/>
+                            </Border>
                         </Grid>
                     </Border>
 
-                    <!-- Totales superiores -->
-                    <Grid Grid.Row="1"
-                          Margin="0,0,0,18"
-                          VerticalAlignment="Bottom">
-                        <TextBlock x:Name="TotalUtilidadText"
-                                   FontSize="24"
-                                   FontWeight="Bold"
-                                   Foreground="DarkCyan"
-                                   HorizontalAlignment="Right"
-                                   Margin="0,0,8,-42"/>
-                    </Grid>
-
-                    <!-- Lista de ventas -->
+                    <!-- Lista de ventas en cuadritos -->
                     <ListView x:Name="SalesList"
-                              Grid.Row="2"
-                              Background="Transparent"
-                              BorderThickness="0"
-                              Margin="0,10,0,10">
+                      Grid.Row="2"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Margin="0,10,0,10"
+                      HorizontalAlignment="Stretch">
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                     MaximumRowsOrColumns="4"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
 
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
                                 <Setter Property="Padding" Value="0"/>
-                                <Setter Property="Margin" Value="0,0,0,14"/>
+                                <Setter Property="Margin" Value="0,0,18,20"/>
                             </Style>
                         </ListView.ItemContainerStyle>
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="#EDE6EA"
-                                        CornerRadius="22"
-                                        Padding="18"
-                                        BorderBrush="#35FFFFFF"
-                                        BorderThickness="1">
+                                    CornerRadius="22"
+                                    Padding="16"
+                                    Width="280"
+                                    MinHeight="205"
+                                    BorderBrush="#35FFFFFF"
+                                    BorderThickness="1">
 
                                     <StackPanel Spacing="8">
+
                                         <!-- Fecha -->
                                         <TextBlock Text="{Binding Fecha, Converter={StaticResource DateConverter}}"
-                                                   FontSize="12"
-                                                   Foreground="#6B6B6B"/>
+                                             FontSize="12"
+                                             Foreground="#6B6B6B"/>
 
                                         <!-- Empleado -->
                                         <TextBlock Text="{Binding Empleado}"
-                                                   FontSize="20"
-                                                   FontWeight="Bold"
-                                                   Foreground="#2F2230"/>
+                                            FontSize="20"
+                                            FontWeight="Bold"
+                                            Foreground="#2F2230"
+                                            TextTrimming="CharacterEllipsis"/>
 
                                         <!-- Productos -->
                                         <TextBlock Text="Productos:"
-                                                   FontWeight="SemiBold"
-                                                   Foreground="#4A4A4A"/>
+                                            FontWeight="SemiBold"
+                                            Foreground="#4A4A4A"/>
 
                                         <ItemsControl ItemsSource="{Binding Details}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="6,0,0,0">
+                                                    <StackPanel Orientation="Horizontal"
+                                                        Spacing="5"
+                                                         Margin="6,0,0,0">
                                                         <TextBlock Text="•"
-                                                            Foreground="#3F3F3F"/>
+                                                             Foreground="#3F3F3F"/>
+
                                                         <TextBlock Text="{Binding Nombre}"
-                                                            Foreground="#3F3F3F"/>
+                                                            Foreground="#3F3F3F"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            MaxLines="1"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
 
                                         <!-- Totales -->
-                                        <Grid Margin="0,10,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="20"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
+                                        <StackPanel Margin="0,10,0,0"
+                                            Spacing="4">
 
-                                            <TextBlock Grid.Column="0"
-                                                       Text="Total:"
-                                                       FontWeight="SemiBold"
-                                                       Foreground="#333333"/>
+                                            <StackPanel Orientation="Horizontal"
+                                                Spacing="6">
+                                                <TextBlock Text="Total:"
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#333333"/>
 
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding TotalBruto, Converter={StaticResource CurrencyConverter}}"
-                                                       Foreground="#2F6BFF"
-                                                       FontWeight="Bold"
-                                                       Margin="6,0,0,0"/>
+                                                <TextBlock Text="{Binding TotalBruto, Converter={StaticResource CurrencyConverter}}"
+                                                    Foreground="#2F6BFF"
+                                                    FontWeight="Bold"/>
+                                            </StackPanel>
 
-                                            <TextBlock Grid.Column="3"
-                                                       Text="Utilidad:"
-                                                       FontWeight="SemiBold"
-                                                       Foreground="#333333"/>
+                                            <StackPanel Orientation="Horizontal"
+                                                 Spacing="6">
+                                                <TextBlock Text="Utilidad:"
+                                                     FontWeight="SemiBold"
+                                                     Foreground="#333333"/>
 
-                                            <TextBlock Grid.Column="4"
-                                                       Text="{Binding Utilidad, Converter={StaticResource CurrencyConverter}}"
-                                                       Foreground="#00A86B"
-                                                       FontWeight="Bold"
-                                                       Margin="6,0,0,0"/>
-                                        </Grid>
+                                                <TextBlock Text="{Binding Utilidad, Converter={StaticResource CurrencyConverter}}"
+                                                    Foreground="#00A86B"
+                                                    FontWeight="Bold"/>
+                                            </StackPanel>
+
+                                        </StackPanel>
+
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

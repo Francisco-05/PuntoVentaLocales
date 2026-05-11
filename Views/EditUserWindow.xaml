@@ -5,58 +5,159 @@
     Title="Modificar Usuario">
 
     <Grid>
-
+        <!-- Fondo oscuro degradado -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#143B73" Offset="0"/>
-                <GradientStop Color="#1C2456" Offset="0.5"/>
-                <GradientStop Color="#F59AA0" Offset="1"/>
+                <GradientStop Color="#2F3542" Offset="0.00"/>
+                <GradientStop Color="#1F2937" Offset="0.45"/>
+                <GradientStop Color="#111827" Offset="1.00"/>
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Border Width="850"
-                Height="650"
-                Background="#22000000"
-                CornerRadius="30"
-                Padding="40"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+        <!-- Luces decorativas -->
+        <Canvas>
+            <Ellipse Width="420"
+                     Height="420"
+                     Fill="#1838BDF8"
+                     Canvas.Left="-120"
+                     Canvas.Top="-90"/>
 
-            <StackPanel Spacing="18">
+            <Ellipse Width="360"
+                     Height="360"
+                     Fill="#2022D3EE"
+                     Canvas.Left="870"
+                     Canvas.Top="90"/>
 
-                <TextBlock Text="Modificar Usuario"
-                           FontSize="34"
-                           FontWeight="Bold"
-                           Foreground="White"/>
+            <Ellipse Width="260"
+                     Height="260"
+                     Fill="#18FFFFFF"
+                     Canvas.Left="520"
+                     Canvas.Top="420"/>
+        </Canvas>
 
-                <TextBox x:Name="UsernameBox"
-                         PlaceholderText="Username"/>
+        <!-- Tarjeta principal -->
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
 
-                <PasswordBox x:Name="PasswordBox"
-                             PlaceholderText="Password"/>
+            <Border Width="560"
+                    Height="560"
+                    Background="#55FFFFFF"
+                    CornerRadius="28"
+                    BorderBrush="#B8FFFFFF"
+                    BorderThickness="1.5"
+                    Padding="35"
+                    Margin="0,45,0,0">
 
-                <TextBox x:Name="NameBox"
-                         PlaceholderText="Nombre"/>
+                <StackPanel Spacing="15"
+                            VerticalAlignment="Center">
 
-                <TextBox x:Name="PhoneBox"
-                         MaxLength="10"
-                         PlaceholderText="Teléfono"/>
+                    <TextBlock Text="Modificar Usuario"
+                               FontSize="30"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               Margin="0,20,0,10"/>
 
-                <ComboBox x:Name="RoleBox">
+                    <!-- Username -->
+                    <Border CornerRadius="16"
+                            Background="#E9EEF5"
+                            Height="46"
+                            Padding="10,0">
+                        <TextBox x:Name="UsernameBox"
+                                 PlaceholderText="Username"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 FontSize="15"
+                                 VerticalContentAlignment="Center"/>
+                    </Border>
 
-                    <ComboBoxItem Content="Empleado"/>
+                    <!-- Password -->
+                    <Border CornerRadius="16"
+                            Background="#E9EEF5"
+                            Height="46"
+                            Padding="10,0">
+                        <PasswordBox x:Name="PasswordBox"
+                                     PlaceholderText="Password"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     FontSize="15"
+                                     VerticalContentAlignment="Center"/>
+                    </Border>
 
-                </ComboBox>
+                    <!-- Nombre -->
+                    <Border CornerRadius="16"
+                            Background="#E9EEF5"
+                            Height="46"
+                            Padding="10,0">
+                        <TextBox x:Name="NameBox"
+                                 PlaceholderText="Nombre"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 FontSize="15"
+                                 VerticalContentAlignment="Center"/>
+                    </Border>
 
-                <Button Content="Guardar Cambios"
-                        Height="50"
-                        Background="#2563EB"
-                        Foreground="White"
-                        Click="Save_Click"/>
+                    <!-- Teléfono -->
+                    <Border CornerRadius="16"
+                            Background="#E9EEF5"
+                            Height="46"
+                            Padding="10,0">
+                        <TextBox x:Name="PhoneBox"
+                                 PlaceholderText="Teléfono"
+                                 MaxLength="10"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 FontSize="15"
+                                 VerticalContentAlignment="Center"/>
+                    </Border>
 
-            </StackPanel>
+                    <!-- Rol -->
+                    <Border CornerRadius="16"
+                            Background="#E9EEF5"
+                            Height="46"
+                            Padding="10,0">
+                        <ComboBox x:Name="RoleBox"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  FontSize="15"
+                                  HorizontalAlignment="Stretch">
+                            <ComboBoxItem Content="Empleado"/>
+                        </ComboBox>
+                    </Border>
 
-        </Border>
+                    <!-- Botón guardar -->
+                    <Button Content="Guardar Cambios"
+                            Width="230"
+                            Height="48"
+                            Background="#0EA5E9"
+                            Foreground="White"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            CornerRadius="16"
+                            HorizontalAlignment="Center"
+                            Margin="0,15,0,0"
+                            Click="Save_Click"/>
 
+                </StackPanel>
+            </Border>
+
+            <!-- Icono circular arriba -->
+            <Grid Width="110"
+                  Height="110"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top">
+
+                <Ellipse Fill="#38BDF8"
+                         Stroke="#AEEBFF"
+                         StrokeThickness="3"/>
+
+                <FontIcon Glyph="&#xE77B;"
+                          FontFamily="Segoe MDL2 Assets"
+                          FontSize="48"
+                          Foreground="White"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

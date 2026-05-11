@@ -426,6 +426,7 @@
                                                         <TextBlock Text="{Binding Rol}"
                                                                    Margin="10,0"
                                                                    VerticalAlignment="Center"
+                                                                   HorizontalTextAlignment="Center"
                                                                    Foreground="#2563EB"
                                                                    FontWeight="SemiBold"/>
                                                     </Border>

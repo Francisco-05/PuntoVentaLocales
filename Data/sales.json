@@ -709,5 +709,28 @@
     "TotalBruto": 9100.0,
     "TotalCosto": 5800.0,
     "Utilidad": 3300.0
+  },
+  {
+    "Id": 34,
+    "Details": [
+      {
+        "ProductId": 3,
+        "Nombre": "Smartphone 5G 128GB1",
+        "Marca": "Smartphone 5G 128GB",
+        "PrecioUnitario": 9100.0,
+        "CostoUnitario": 5800.0,
+        "Cantidad": 1,
+        "Subtotal": 9100.0,
+        "CostoTotal": 5800.0,
+        "Utilidad": 3300.0
+      }
+    ],
+    "Empleado": "Desconocido",
+    "Fecha": "2026-05-11T00:27:18.2338256-06:00",
+    "MetodoPago": "Efectivo",
+    "TotalArticulos": 1,
+    "TotalBruto": 9100.0,
+    "TotalCosto": 5800.0,
+    "Utilidad": 3300.0
   }
 ]
