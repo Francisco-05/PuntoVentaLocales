@@ -145,7 +145,7 @@
                                          PlaceholderForeground="#7A8B90"
                                          VerticalContentAlignment="Center"
                                          FontSize="15"
-                                         MaxLength="30"
+                                         MaxLength="50"
                                          Padding="35,0,0,0"/>
                             </Grid>
                         </Border>

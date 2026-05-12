@@ -64,7 +64,7 @@
                             Height="46">
                         <TextBox x:Name="UsernameBox"
                                  PlaceholderText="Username"
-                                 MaxLength="30"
+                                 MaxLength="50"
                                  Background="Transparent"
                                  Height="22"
                                  MaxWidth="450"
@@ -80,7 +80,7 @@
                             Height="46">
                         <PasswordBox x:Name="PasswordBox"
                                      PlaceholderText="Password"
-                                     MaxLength="30"
+                                     MaxLength="12"
                                      Background="Transparent"
                                      Height="22"
                                      MaxWidth="450"

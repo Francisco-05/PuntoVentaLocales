@@ -612,7 +612,7 @@ namespace PuntoVenta.Views
             }
 
             var passwordBox = new PasswordBox {
-                MaxLength = 15,
+                MaxLength = 12,
                 Padding = new Thickness(40, 6, 0, 0)
             };
 
@@ -682,7 +682,7 @@ namespace PuntoVenta.Views
             var efectivoBox = new TextBox
             {
                 PlaceholderText = "Ingrese efectivo en caja",
-                MaxLength = 10,
+                MaxLength = 6,
             };
 
             efectivoBox.TextChanging += (s, e) =>
