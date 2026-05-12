@@ -118,6 +118,8 @@ namespace PuntoVenta.Views
             TotalText.Text = $"Total: {currentSale.TotalBruto:C2}";
         }
 
+
+        //Valida si hay stock del producto
         private int GetAvailableStock(int productId)
         {
             var product = products.FirstOrDefault(p => p.Id == productId);
@@ -135,6 +137,7 @@ namespace PuntoVenta.Views
         private bool ProductoTieneExistencias(Product product) =>
             product != null && GetAvailableStock(product.Id) > 0;
 
+        // Deshabilita el botón de agregar si no hay stock
         private void AgregarButton_Loaded(object sender, RoutedEventArgs e)
         {
             if (sender is not Button button ||
@@ -150,6 +153,7 @@ namespace PuntoVenta.Views
             }
         }
 
+        // Agrega al carrito o aumenta cantidad si ya está
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
             var product = (sender as Button)?.DataContext as Product;

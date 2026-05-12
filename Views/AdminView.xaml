@@ -145,7 +145,7 @@
                     <Button x:Name="BtnReportes"
                             Grid.Row="0"
                             Grid.Column="2"
-                            Content="📊 Ver Reportes Ventas"
+                            Content="💲 Ver Reportes Ventas"
                             Width="320"
                             Height="170"
                             Background="#4A2E1F"
@@ -168,7 +168,7 @@
                     <Button x:Name="BtnDiferencias"
                             Grid.Row="1"
                             Grid.Column="0"
-                            Content="💲 Ver Reporte De Diferencias"
+                            Content="📊 Ver Reporte De Diferencias"
                             Width="Auto"
                             Height="170"
                             Background="#5A3424"
@@ -188,6 +188,7 @@
                     </Button>
 
                     <!-- REGISTRO -->
+                    
                     <Button x:Name="BtnRegistroProductos"
                             Grid.Row="1"
                             Grid.Column="1"

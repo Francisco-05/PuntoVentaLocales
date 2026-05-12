@@ -263,9 +263,24 @@
                                         <!-- Totales -->
                                         <StackPanel Margin="0,10,0,0"
                                             Spacing="4">
+                                            <StackPanel Orientation="Horizontal"
+                                                Spacing="6">
+
+                                                <TextBlock Text="Metodo de Pago: "
+                                                    FontWeight="SemiBold"
+                                                    Foreground="#333333"/>
+
+                                                <TextBlock Text="{Binding MetodoPago}"
+                                                    Foreground="BlueViolet"
+                                                    FontWeight="Bold"
+                                                     FontSize="14"/>
+                                                    
+                                            </StackPanel>
+
 
                                             <StackPanel Orientation="Horizontal"
                                                 Spacing="6">
+                                                
                                                 <TextBlock Text="Total:"
                                                     FontWeight="SemiBold"
                                                     Foreground="#333333"/>
