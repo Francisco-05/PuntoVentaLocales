@@ -106,40 +106,5 @@ namespace PuntoVenta.Views
 
             ErrorText.Text = "Rol no válido";
         }
-
-        private void AdminLogin_Click(object sender, RoutedEventArgs e)
-        {
-            SessionService.CurrentUser = null;
-            SessionService.LoginTime = DateTime.Now;
-            MainWindow.Instance.MainFrameControl.Navigate(typeof(AdminView));
-        }
-
-        private async void EmployeeLogin_Click(
-            object sender,
-            RoutedEventArgs e)
-        {
-            var users =
-                await JsonService.LoadAsync<User>(
-                    "users.json"
-                );
-
-            var devUser =
-                users.FirstOrDefault(u =>
-                    u.Rol == "Empleado"
-                );
-
-            if (devUser == null)
-                return;
-
-            SessionService.CurrentUser =
-                devUser;
-
-            SessionService.LoginTime =
-                DateTime.Now;
-
-            MainWindow.Instance
-                .MainFrameControl
-                .Navigate(typeof(ProductCatalogView));
-        }
     }
 }

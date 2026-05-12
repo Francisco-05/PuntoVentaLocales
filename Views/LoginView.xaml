@@ -199,8 +199,6 @@
                                 Margin="0,8,0,0"
                                 Click="Login_Click"/>
 
-                        <!-- ACCESOS -->
-
                         <!-- MENSAJE DE ERROR -->
                         <TextBlock x:Name="ErrorText"
                                    Text=""

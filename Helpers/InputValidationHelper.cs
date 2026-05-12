@@ -25,7 +25,7 @@ namespace PuntoVenta.Helpers
             object sender,
             KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Enter)
+            if (e.Key == VirtualKey.Enter || e.Key == VirtualKey.Back)
                 return;
 
             // Si la tecla sigue presionada
@@ -48,10 +48,10 @@ namespace PuntoVenta.Helpers
      object sender,
      KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Enter)
+            if (e.Key == VirtualKey.Enter || e.Key == VirtualKey.Back)
                 return;
 
-            // La tecla ya estaba presionada
+            // La tecla ya estaba presionada (y no es Backspace)
             if (e.KeyStatus.WasKeyDown)
             {
                 e.Handled = true;

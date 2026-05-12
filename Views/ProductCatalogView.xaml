@@ -133,18 +133,60 @@
                         </Grid.RowDefinitions>
 
                         <!-- Header -->
-                        <StackPanel Margin="0,0,0,15">
+                         <Grid Margin="0,0,0,15">
+                             <Grid.ColumnDefinitions>
+                                 <ColumnDefinition Width="*"/>
+                                 <ColumnDefinition Width="300"/>
+                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Productos disponibles"
-                                       FontSize="30"
-                                       FontWeight="Bold"
-                                       Foreground="#FFF7E8"/>
+                             <StackPanel Grid.Column="0">
+                                 <TextBlock Text="Productos disponibles"
+                                            FontSize="30"
+                                            FontWeight="Bold"
+                                            Foreground="#FFF7E8"/>
 
-                            <TextBlock Text="Selecciona productos para agregarlos al carrito"
-                                       Foreground="#F2D7A6"
-                                       FontSize="14"/>
+                                 <TextBlock Text="Selecciona productos para agregarlos al carrito"
+                                            Foreground="#F2D7A6"
+                                            FontSize="14"/>
+                             </StackPanel>
 
-                        </StackPanel>
+                             <!-- Search Bar -->
+                             <Border Grid.Column="1"
+                                     Background="Transparent"
+                                     BorderBrush="#D6A75A"
+                                     BorderThickness="2"
+                                     CornerRadius="12"
+                                     Padding="12,8"
+                                     VerticalAlignment="Bottom"
+                                     Margin="10,0,0,0">
+
+                                 <Grid>
+                                     <Grid.ColumnDefinitions>
+                                         <ColumnDefinition Width="*"/>
+                                         <ColumnDefinition Width="Auto"/>
+                                     </Grid.ColumnDefinitions>
+
+                                     <TextBox x:Name="SearchBox"
+                                              Grid.Column="0"
+                                              PlaceholderText="Buscar producto..."
+                                              PlaceholderForeground="#A0A0A0"
+                                              Background="Transparent"
+                                              Foreground="White"
+                                              BorderThickness="0"
+                                              TextChanged="SearchBox_TextChanged"
+                                              PreviewKeyDown="SearchBox_PreviewKeyDown"
+                                              FontSize="14"/>
+
+                                     <FontIcon Grid.Column="1"
+                                               Glyph="&#xE721;"
+                                               FontFamily="Segoe MDL2 Assets"
+                                               FontSize="18"
+                                               Foreground="#D6A75A"
+                                               VerticalAlignment="Center"
+                                               Margin="8,0,0,0"/>
+                                 </Grid>
+                             </Border>
+                         </Grid>
 
                         <!-- Productos -->
                         <Grid Grid.Row="1">
