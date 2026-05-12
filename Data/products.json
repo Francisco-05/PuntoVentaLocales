@@ -6,7 +6,7 @@
     "Descripcion": "AMD Ryzen 5 5625U 8GB 512 SSD Windows 11",
     "Costo": 6000.0,
     "PrecioVenta": 9499.99,
-    "Existencias": 10,
+    "Existencias": 0,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\48908230-64d3-4635-bc49-1d4f3ebdde78.jpg"
   },
   {
@@ -16,7 +16,7 @@
     "Descripcion": "Intel Core i5-1334U, 16GB, 1TB SSD, Windows 11",
     "Costo": 7345.0,
     "PrecioVenta": 12839.0,
-    "Existencias": 10,
+    "Existencias": 3,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\db945b47-090d-4446-bf64-42bb1c6c1c3f.jpg"
   },
   {
@@ -26,7 +26,7 @@
     "Descripcion": "Apple M3 (CPU Núcleos y GPU 10 Núcleos), 24GB, 512GB SSD, Español, Plata",
     "Costo": 18265.0,
     "PrecioVenta": 30099.0,
-    "Existencias": 10,
+    "Existencias": 4,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\7b6336f5-1e56-44c0-8d26-2530e6843a06.jpg"
   },
   {
@@ -36,7 +36,7 @@
     "Descripcion": "MD RYZEN 7-7730U /16GB /512 SSD/Resistencia Grado Militar",
     "Costo": 7000.0,
     "PrecioVenta": 12899.0,
-    "Existencias": 10,
+    "Existencias": 0,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\62329863-e2c1-4758-944d-e06b4dcd0203.jpg"
   },
   {
@@ -46,7 +46,7 @@
     "Descripcion": "128gb interno, 6gb ram",
     "Costo": 5000.0,
     "PrecioVenta": 8499.0,
-    "Existencias": 15,
+    "Existencias": 6,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\f5f683bd-d7da-45f7-b886-e8f92111a42e.jpg"
   },
   {
@@ -56,7 +56,7 @@
     "Descripcion": "256gb interno, 8gb RAM",
     "Costo": 7000.0,
     "PrecioVenta": 10500.0,
-    "Existencias": 15,
+    "Existencias": 5,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\21949ffc-7d51-43e6-9928-08f0fe8f97ed.jpg"
   },
   {
@@ -136,7 +136,7 @@
     "Descripcion": "6 horas por carga, cancelacion de ruido",
     "Costo": 1900.0,
     "PrecioVenta": 3100.0,
-    "Existencias": 20,
+    "Existencias": 19,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\80d18e18-3b48-44a5-ab6c-f3031282eee5.jpg"
   },
   {
@@ -146,7 +146,7 @@
     "Descripcion": "3 horas por carga",
     "Costo": 200.0,
     "PrecioVenta": 450.0,
-    "Existencias": 60,
+    "Existencias": 55,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\43b14fe2-60ca-4fbd-b45b-af58e74088d0.jpg"
   },
   {
@@ -156,7 +156,7 @@
     "Descripcion": "Cargador tipo C",
     "Costo": 480.0,
     "PrecioVenta": 1200.0,
-    "Existencias": 40,
+    "Existencias": 38,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\fdae670d-0836-4ad2-885b-9da1fb51bdfd.jpg"
   },
   {
@@ -166,7 +166,7 @@
     "Descripcion": "Cargador USB a C",
     "Costo": 400.0,
     "PrecioVenta": 1100.0,
-    "Existencias": 40,
+    "Existencias": 38,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\9074f86e-0c6a-4005-b8b6-b1d19ec728b0.jpg"
   },
   {
@@ -176,7 +176,7 @@
     "Descripcion": "Carga rapida 60W",
     "Costo": 180.0,
     "PrecioVenta": 350.0,
-    "Existencias": 50,
+    "Existencias": 45,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\d42d8858-2e7c-41f3-b0b9-0af7b3eaa01b.jpg"
   },
   {
@@ -186,7 +186,7 @@
     "Descripcion": "Cargador generic USB a C",
     "Costo": 80.0,
     "PrecioVenta": 250.0,
-    "Existencias": 100,
+    "Existencias": 84,
     "Imagen": "C:\\Users\\packo\\OneDrive\\Documentos\\PuntoVenta\\Products\\ecb40c48-806c-4eec-af78-637f4cd91360.jpg"
   }
 ]

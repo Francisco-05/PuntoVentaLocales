@@ -178,5 +178,14 @@
     "ExistenciasFinales": 100,
     "FechaModificacion": "2026-05-11T16:09:06.8244238-06:00",
     "TipoMovimiento": "Reabastecimiento"
+  },
+  {
+    "Id": "437341b6-a14b-428e-8e7b-6877a0926aaa",
+    "Producto": "iPhone 15",
+    "ExistenciasIniciales": 11,
+    "ExistenciasAgregadas": -5,
+    "ExistenciasFinales": 6,
+    "FechaModificacion": "2026-05-11T18:16:17.7616242-06:00",
+    "TipoMovimiento": "Ajuste"
   }
 ]

@@ -18,5 +18,95 @@
     "EfectivoSistema": 0.0,
     "EfectivoReal": 0.0,
     "Diferencia": 0.0
+  },
+  {
+    "Id": 3,
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T18:02:25.0754047-06:00",
+    "InicioSesion": "2026-05-11T18:01:00.3640001-06:00",
+    "FinSesion": "2026-05-11T18:02:19.6710117-06:00",
+    "EfectivoSistema": 0.0,
+    "EfectivoReal": 0.0,
+    "Diferencia": 0.0
+  },
+  {
+    "Id": 4,
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T18:03:37.0766122-06:00",
+    "InicioSesion": "2026-05-11T18:02:53.0205668-06:00",
+    "FinSesion": "2026-05-11T18:03:34.2447254-06:00",
+    "EfectivoSistema": 56336.99,
+    "EfectivoReal": 500000.0,
+    "Diferencia": 443663.01
+  },
+  {
+    "Id": 5,
+    "Empleado": "Renata Michelle",
+    "Fecha": "2026-05-11T18:09:45.0380629-06:00",
+    "InicioSesion": "2026-05-11T18:08:13.0024416-06:00",
+    "FinSesion": "2026-05-11T18:09:32.7036622-06:00",
+    "EfectivoSistema": 0.0,
+    "EfectivoReal": 500.0,
+    "Diferencia": 500.0
+  },
+  {
+    "Id": 6,
+    "Empleado": "Emerson",
+    "Fecha": "2026-05-11T18:13:20.0730159-06:00",
+    "InicioSesion": "2026-05-11T18:12:20.2454803-06:00",
+    "FinSesion": "2026-05-11T18:13:15.1580198-06:00",
+    "EfectivoSistema": 2550.0,
+    "EfectivoReal": 6000.0,
+    "Diferencia": 3450.0
+  },
+  {
+    "Id": 7,
+    "Empleado": "Esteban Quito Robles",
+    "Fecha": "2026-05-11T18:14:24.2579997-06:00",
+    "InicioSesion": "2026-05-11T18:13:35.4484451-06:00",
+    "FinSesion": "2026-05-11T18:14:19.9934797-06:00",
+    "EfectivoSistema": 30099.0,
+    "EfectivoReal": 300.0,
+    "Diferencia": -29799.0
+  },
+  {
+    "Id": 8,
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T18:27:34.22541-06:00",
+    "InicioSesion": "2026-05-11T18:27:11.2148972-06:00",
+    "FinSesion": "2026-05-11T18:27:30.2126639-06:00",
+    "EfectivoSistema": 10500.0,
+    "EfectivoReal": 6000.0,
+    "Diferencia": -4500.0
+  },
+  {
+    "Id": 9,
+    "Empleado": "Emerson",
+    "Fecha": "2026-05-11T18:29:03.7108705-06:00",
+    "InicioSesion": "2026-05-11T18:28:09.9393917-06:00",
+    "FinSesion": "2026-05-11T18:28:59.5806995-06:00",
+    "EfectivoSistema": 2250.0,
+    "EfectivoReal": 2600.0,
+    "Diferencia": 350.0
+  },
+  {
+    "Id": 10,
+    "Empleado": "Francisco Ibarra",
+    "Fecha": "2026-05-11T18:30:02.2798306-06:00",
+    "InicioSesion": "2026-05-11T18:29:50.2511568-06:00",
+    "FinSesion": "2026-05-11T18:30:00.1300151-06:00",
+    "EfectivoSistema": 0.0,
+    "EfectivoReal": 500.0,
+    "Diferencia": 500.0
+  },
+  {
+    "Id": 11,
+    "Empleado": "Renata Michelle",
+    "Fecha": "2026-05-11T18:30:55.2138351-06:00",
+    "InicioSesion": "2026-05-11T18:30:29.7151423-06:00",
+    "FinSesion": "2026-05-11T18:30:51.9148317-06:00",
+    "EfectivoSistema": 0.0,
+    "EfectivoReal": 500.0,
+    "Diferencia": 500.0
   }
 ]

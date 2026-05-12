@@ -41,9 +41,6 @@ namespace PuntoVenta.Views
             InitializeClock();
         }
 
-        // =========================
-        // Inicialización
-        // =========================
 
         private void InitializeClock()
         {
@@ -61,9 +58,7 @@ namespace PuntoVenta.Views
       
         
 
-        // =========================
-        // Productos y paginación
-        // =========================
+        
 
         private async void LoadProducts()
         {
@@ -112,10 +107,9 @@ namespace PuntoVenta.Views
             ShowProductsPage();
         }
 
-        // =========================
+        
         // Carrito
-        // =========================
-
+        
         private void RefreshCart()
         {
             CartList.ItemsSource = null;
@@ -230,10 +224,7 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // =========================
-        // Validaciones
-        // =========================
-
+        //Validaciones
         private bool IsValidMoneyInput(string text)
         {
             if (text.Any(c => !char.IsDigit(c) && c != '.'))
@@ -244,20 +235,27 @@ namespace PuntoVenta.Views
 
             return !text.StartsWith(".");
         }
-
-        private void Cantidad_BeforeTextChanging(
-            TextBox sender,
-            TextBoxBeforeTextChangingEventArgs args)
+        private void Cantidad_BeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            if (string.IsNullOrWhiteSpace(args.NewText))
+            // 🚫 Bloquear espacios
+            if (args.NewText.Any(char.IsWhiteSpace))
+            {
+                args.Cancel = true;
+                return;
+            }
+
+            // ✔ Permitir vacío (cuando el usuario borra con Backspace)
+            if (string.IsNullOrEmpty(args.NewText))
                 return;
 
+            // ✔ Permitir solo números
             if (!int.TryParse(args.NewText, out int numero))
             {
                 args.Cancel = true;
                 return;
             }
 
+            // ✔ No permitir negativos o cero
             if (numero <= 0)
             {
                 args.Cancel = true;
@@ -265,12 +263,10 @@ namespace PuntoVenta.Views
             }
 
             var item = sender.DataContext as SaleDetail;
-
             if (item == null)
                 return;
 
             var product = products.FirstOrDefault(p => p.Id == item.ProductId);
-
             if (product == null)
                 return;
 
@@ -280,6 +276,7 @@ namespace PuntoVenta.Views
             }
         }
 
+
         private async void Cantidad_LostFocus(object sender, RoutedEventArgs e)
         {
             if (sender is not TextBox textBox)
@@ -287,24 +284,22 @@ namespace PuntoVenta.Views
 
             var item = textBox.DataContext as SaleDetail;
 
+            
+
             if (item == null)
                 return;
 
-            if (string.IsNullOrWhiteSpace(textBox.Text))
+
+
+            // ✔ vacío o inválido
+            if (string.IsNullOrWhiteSpace(textBox.Text) ||
+                !int.TryParse(textBox.Text, out int cantidad))
             {
                 item.Cantidad = 1;
                 textBox.Text = "1";
 
-                RefreshCart();
-                return;
-            }
-
-            if (!int.TryParse(textBox.Text, out int cantidad))
-            {
-                item.Cantidad = 1;
-                textBox.Text = "1";
-
-                await ShowError("Solo se permiten números.");
+                if (!string.IsNullOrWhiteSpace(textBox.Text))
+                    await ShowError("Solo se permiten números.");
 
                 RefreshCart();
                 return;
@@ -316,7 +311,6 @@ namespace PuntoVenta.Views
                 textBox.Text = "1";
 
                 await ShowError("La cantidad debe ser mayor a 0.");
-
                 RefreshCart();
                 return;
             }
@@ -331,8 +325,7 @@ namespace PuntoVenta.Views
                 item.Cantidad = product.Existencias;
                 textBox.Text = product.Existencias.ToString();
 
-                await ShowError(
-                    $"Solo hay {product.Existencias} unidades disponibles.");
+                await ShowError($"Solo hay {product.Existencias} unidades disponibles.");
             }
             else
             {
@@ -341,10 +334,7 @@ namespace PuntoVenta.Views
 
             RefreshCart();
         }
-
-        // =========================
-        // Venta
-        // =========================
+        //COnfirmar compra
 
         private async void ConfirmSale_Click(object sender, RoutedEventArgs e)
         {
@@ -576,10 +566,8 @@ namespace PuntoVenta.Views
             RefreshCart();
         }
 
-        // =========================
         // Corte de caja
-        // =========================
-
+        
         private async void CashCut_Click(object sender, RoutedEventArgs e)
         {
             var currentUser = SessionService.CurrentUser;
@@ -782,9 +770,7 @@ namespace PuntoVenta.Views
                 .Navigate(typeof(LoginView));
         }
 
-        // =========================
-        // Dialogs
-        // =========================
+
 
         private async Task ShowError(string message)
         {
