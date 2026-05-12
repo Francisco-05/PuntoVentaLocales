@@ -17,6 +17,7 @@ namespace PuntoVenta.Views
     public sealed partial class ProductCatalogView : Page
     {
         private List<Product> products = new();
+        private List<Product> filteredProducts = new();
 
         private int currentPage = 1;
         private const int ProductsPerPage = 6;
@@ -66,6 +67,8 @@ namespace PuntoVenta.Views
                 await JsonService.LoadAsync<Product>("products.json")
                 ?? new List<Product>();
 
+            filteredProducts = new List<Product>(products);
+
             currentPage = 1;
 
             ShowProductsPage();
@@ -73,7 +76,7 @@ namespace PuntoVenta.Views
 
         private void ShowProductsPage()
         {
-            var paginatedProducts = products
+            var paginatedProducts = filteredProducts
                 .Skip((currentPage - 1) * ProductsPerPage)
                 .Take(ProductsPerPage)
                 .ToList();
@@ -82,9 +85,35 @@ namespace PuntoVenta.Views
 
             PreviousPageButton.IsEnabled = currentPage > 1;
             NextPageButton.IsEnabled =
-                currentPage * ProductsPerPage < products.Count;
+                currentPage * ProductsPerPage < filteredProducts.Count;
 
             ProductsList.UpdateLayout();
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = SearchBox.Text.ToLower().Trim();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                filteredProducts = new List<Product>(products);
+            }
+            else
+            {
+                filteredProducts = products
+                    .Where(p => p.Nombre.ToLower().Contains(searchText) ||
+                                p.Marca.ToLower().Contains(searchText) ||
+                                p.Descripcion.ToLower().Contains(searchText))
+                    .ToList();
+            }
+
+            currentPage = 1;
+            ShowProductsPage();
+        }
+
+        private void SearchBox_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            InputValidationHelper.PreventHeldKeySpamtextbox(sender, e);
         }
 
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
