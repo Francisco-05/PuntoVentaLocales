@@ -1,6 +1,6 @@
 [
   {
-    "Id": "46e6cc8d-2258-44c6-a69b-c044c2bccfd7",
+    "Id": 1,
     "Producto": "Laptop Lenovo Ideapad Slim 3",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -9,7 +9,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "af61bbd0-a89d-4168-b94f-924d35c92bf7",
+    "Id": 2,
     "Producto": "Laptop Dell Inspiron 15 ",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -18,7 +18,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "63d4537c-cb93-4522-b1de-dd9393c10953",
+    "Id": 3,
     "Producto": "Apple MacBook Air Retina",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -27,7 +27,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "990e7a66-0dab-420c-a8aa-fc2d9da43563",
+    "Id": 4,
     "Producto": "ASUS Laptop Vivobook 16",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -36,7 +36,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "9da08fd4-3b3a-430a-9488-90bfa565263b",
+    "Id": 5,
     "Producto": "iPhone 15",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 15,
@@ -45,7 +45,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "929e77db-af32-4452-833f-73d09f0eaac7",
+    "Id": 6,
     "Producto": "iPhone 15 PRO",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 15,
@@ -54,7 +54,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "f362de59-68ca-415c-97b0-3be2a5f6fa4f",
+    "Id": 7,
     "Producto": "iPhone 16",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 15,
@@ -63,7 +63,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "4c30b8c1-455c-4f56-a356-d24deee6a910",
+    "Id": 8,
     "Producto": "iPhone 16 PRO ",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -72,7 +72,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "6ade4bb6-497f-4d03-87c4-b79a6e94ae14",
+    "Id": 9,
     "Producto": "iPhone 16 PRO MAX",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 10,
@@ -81,7 +81,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "45ba510e-974d-407f-97b4-759075f10ebf",
+    "Id": 10,
     "Producto": "Galaxy S23",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 20,
@@ -90,7 +90,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "73682f21-31b5-4341-adf2-ca2a0c9fa002",
+    "Id": 11,
     "Producto": "Galaxy S23 ULTRA",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 20,
@@ -99,7 +99,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "5ab08f63-71e4-499a-8969-aebdc29772d4",
+    "Id": 12,
     "Producto": "Galaxy S24 ULTRA",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 15,
@@ -108,7 +108,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "f8fd866b-4052-4c93-989d-4b6d7569af84",
+    "Id": 13,
     "Producto": "Airpods 4",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 25,
@@ -117,7 +117,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "81d82930-355d-4f46-a79d-63f6a725cc62",
+    "Id": 14,
     "Producto": "Galaxy Buds 3",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 20,
@@ -126,7 +126,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "99f2581f-7683-442b-b3bc-8df15da45b85",
+    "Id": 15,
     "Producto": "Audifonos Bluetooth Generico",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 20,
@@ -135,7 +135,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "7f3f95fc-34a3-4fe0-a132-cd1b311c8e46",
+    "Id": 16,
     "Producto": "Audifonos Bluetooth Generico",
     "ExistenciasIniciales": 20,
     "ExistenciasAgregadas": 40,
@@ -144,7 +144,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "f88866c5-5173-41d0-a9ae-9fc9fbd08a4c",
+    "Id": 17,
     "Producto": "Cargador iPhone",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 40,
@@ -153,7 +153,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "59d2972c-fe44-413f-b510-e088a1a38ca1",
+    "Id": 18,
     "Producto": "Cargador iPhone USB",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 40,
@@ -162,7 +162,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "1ba44bf0-feeb-40d8-8338-5fd5edbcc21c",
+    "Id": 19,
     "Producto": "Cargador carga rapida",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 50,
@@ -171,7 +171,7 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "24c3767a-e0c9-44c7-a078-4b8aafe19e0b",
+    "Id": 20,
     "Producto": "Cargador Generico",
     "ExistenciasIniciales": 0,
     "ExistenciasAgregadas": 100,
@@ -180,12 +180,21 @@
     "TipoMovimiento": "Reabastecimiento"
   },
   {
-    "Id": "437341b6-a14b-428e-8e7b-6877a0926aaa",
+    "Id": 21,
     "Producto": "iPhone 15",
     "ExistenciasIniciales": 11,
     "ExistenciasAgregadas": -5,
     "ExistenciasFinales": 6,
     "FechaModificacion": "2026-05-11T18:16:17.7616242-06:00",
     "TipoMovimiento": "Ajuste"
+  },
+  {
+    "Id": 22,
+    "Producto": "Laptop Lenovo Ideapad Slim 3",
+    "ExistenciasIniciales": 0,
+    "ExistenciasAgregadas": 1,
+    "ExistenciasFinales": 1,
+    "FechaModificacion": "2026-05-12T14:12:43.8678234-06:00",
+    "TipoMovimiento": "Reabastecimiento"
   }
 ]

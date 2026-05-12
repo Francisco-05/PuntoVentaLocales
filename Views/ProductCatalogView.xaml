@@ -170,6 +170,7 @@
                                               Grid.Column="0"
                                               PlaceholderText="Buscar producto..."
                                               PlaceholderForeground="#A0A0A0"
+                                              MaxLength="50"
                                               Background="Transparent"
                                               Foreground="White"
                                               BorderThickness="0"
