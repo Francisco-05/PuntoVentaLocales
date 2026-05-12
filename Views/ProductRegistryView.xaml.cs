@@ -403,7 +403,7 @@ namespace PuntoVenta.Views
 
             restockLogs.Add(new RestockLog
             {
-                Id = Guid.NewGuid(),
+                Id = IdGenerator.GetNextId(restockLogs),
 
                 Producto = product.Nombre,
 

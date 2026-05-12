@@ -19,7 +19,7 @@ namespace PuntoVenta.Helpers
             }
         }
 
-        // Evita que el usuario pueda ingresar espacios al inicio del texto en un PasswordBox
+        
 
         public static void PreventHeldKeySpam(
             object sender,

@@ -8,7 +8,7 @@ namespace PuntoVenta.Models
 {
     public class RestockLog
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Producto { get; set; }
 

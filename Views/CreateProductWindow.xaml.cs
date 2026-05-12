@@ -93,8 +93,11 @@ namespace PuntoVenta.Views
                 }
             };
 
+
+            // Permitir solo números, punto decimal y evitar espacios al inicio
             CostBox.TextChanging += (s, e) =>
             {
+                
                 InputValidationHelper.PreventLeadingSpaces(CostBox);
             };
 
