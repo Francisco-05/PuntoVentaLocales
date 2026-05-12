@@ -57,6 +57,15 @@ namespace PuntoVenta.Views
                     Filter_Click(null, null);
                 }
             };
+
+            PaymentMethodFilter.KeyDown += (s, e) =>
+            {
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    e.Handled = true;
+                    Filter_Click(null, null);
+                }
+            };
         }
 
         private async void LoadData()
@@ -76,6 +85,16 @@ namespace PuntoVenta.Views
             EmployeeFilter.ItemsSource = empleados;
             EmployeeFilter.SelectedIndex = 0;
 
+            var paymentMethods = allSales
+                .Select(s => s.MetodoPago)
+                .Distinct()
+                .ToList();
+
+            paymentMethods.Insert(0, "Todos");
+
+            PaymentMethodFilter.ItemsSource = paymentMethods;
+            PaymentMethodFilter.SelectedIndex = 0;
+
             CalculateTotals(allSales);
         }
 
@@ -88,8 +107,7 @@ namespace PuntoVenta.Views
             {
                 var start = StartDate.Date.Value.Date;
 
-                filtered = filtered.Where(s =>
-                    s.Fecha.Date >= start);
+                filtered = filtered.Where(s =>s.Fecha.Date >= start);
             }
 
             // Filtro por fecha final
@@ -97,8 +115,7 @@ namespace PuntoVenta.Views
             {
                 var end = EndDate.Date.Value.Date.AddDays(1);
 
-                filtered = filtered.Where(s =>
-                    s.Fecha < end);
+                filtered = filtered.Where(s =>s.Fecha < end);
             }
 
             // Filtro por empleado
@@ -107,8 +124,16 @@ namespace PuntoVenta.Views
             {
                 string emp = EmployeeFilter.SelectedItem.ToString();
 
-                filtered = filtered.Where(s =>
-                    s.Empleado == emp);
+                filtered = filtered.Where(s =>s.Empleado == emp);
+            }
+
+            if (PaymentMethodFilter.SelectedItem != null &&
+                PaymentMethodFilter.SelectedItem.ToString() != "Todos")
+            {
+                
+               string metodoPago =PaymentMethodFilter.SelectedItem.ToString();
+
+                filtered = filtered.Where(s => s.MetodoPago == metodoPago);
             }
 
             var result = filtered.ToList();

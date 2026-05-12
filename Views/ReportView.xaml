@@ -106,6 +106,7 @@
                                 <ColumnDefinition Width="190"/>
                                 <ColumnDefinition Width="190"/>
                                 <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="230"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
@@ -143,9 +144,11 @@
                                 <TextBlock Text="Empleado"
                                            FontWeight="SemiBold"
                                            Foreground="White"/>
+
                                 <Border Background="#F7F7F7"
                                         CornerRadius="16"
                                         Padding="10,2">
+
                                     <ComboBox x:Name="EmployeeFilter"
                                               Width="200"
                                               Background="Transparent"
@@ -153,8 +156,24 @@
                                 </Border>
                             </StackPanel>
 
+                            <StackPanel Grid.Column="3" Spacing="6">
+                                <TextBlock Text="Tipo de Pago"
+                                           FontWeight="SemiBold"
+                                           Foreground="White"/>
+
+                                <Border Background="#F7F7F7"
+                                        CornerRadius="16"
+                                        Padding="10,2">
+
+                                    <ComboBox x:Name="PaymentMethodFilter"
+                                          Width="200"
+                                          Background="Transparent"
+                                          BorderThickness="0"/>
+                                </Border>
+                            </StackPanel>
+
                             <!-- Botón filtrar -->
-                            <StackPanel Grid.Column="3"
+                            <StackPanel Grid.Column="4"
                                         VerticalAlignment="Bottom">
                                 <Button Content="Filtrar"
                                         Click="Filter_Click"
@@ -164,7 +183,7 @@
                                         FontWeight="SemiBold"/>
                             </StackPanel>
 
-                            <Border Grid.Column="4"
+                            <Border Grid.Column="5"
                                 Background="#18FFFFFF"
                                 CornerRadius="18"
                                 Padding="16,10"
@@ -208,7 +227,7 @@
                                 <Border Background="#EDE6EA"
                                     CornerRadius="22"
                                     Padding="16"
-                                    Width="280"
+                                    Width="320"
                                     Height="auto"
                                     BorderBrush="#35FFFFFF"
                                     BorderThickness="1">
